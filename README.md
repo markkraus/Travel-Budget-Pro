@@ -74,7 +74,19 @@ The Travel Expense Tracker will be constructed using modern web development tech
 <br>
 
 # Software Interfaces
-![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/43998fc3-7583-4239-9448-bc487c63edff)
+## User Registration
+* Allows a user to create their username and password to login.
+## User Login
+* Create a simple login screen that allows a user to input their username and password.
+* For new users, they will be able to select an option to create a new account.
+## Dashboard
+* Provide a centralized dashboard where useres can view an overview of their travel expenses, budget status, and recent activity.
+## Expense Form
+* Form for users to input their travel expenses, including fields for date, amount, category, description, and currency.
+## Visual Tools
+* Incorporate charts, graphs, and tables to visually represent users' spending patterns, budget breakdowns, and comparisons between actual spending and budgeted amounts.
+## Settings
+* Offer a settings menu where users can manage their account preferences, currenc preferences, notifications preferences, and other application settings.
 <br>
 <br>
 <br>
