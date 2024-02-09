@@ -90,7 +90,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 
 ## Register a New User
 |                        |                                                |
-|------------------------|------------------------------------------------|
+|-----------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.1                                       |
 | **Use Case Name:**     | Register a New User                            |
 | **Created By:**        | Henry Uz  | 
