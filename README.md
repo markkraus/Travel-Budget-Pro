@@ -111,28 +111,103 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Assumptions:** | The assumptions made are that the user is entering English text. |
 | **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
-![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/e3c6c62d-4985-44b9-be02-6270820c62e6) <br>
+<br> 
+
+## User Login
+|                             |                                                |
+|--------------------------------------|------------------------------------------------|
+| **Use Case ID:**       | UC-3.3.2 |
+| **Use Case Name:**     | |
+| **Created By:**        | Henry Uz  | 
+| **Last Updated By:**    | Henry Uz |
+| **Date Created:**      |   | 
+| **Last Revision Date:** |  |
+| **Actors:**            | The primary actor will be the end user.|
+| **Description:**       | |
+| **Trigger:**           | |
+| **Preconditions:**     | |
+| **Postconditions:**    | |
+| **Normal Flow:**       | |
+| **Alternative Flows:** | |
+| **Exceptions:**        | |
+| **Includes:** | |
+| **Frequency of Use:** | |
+| **Special Requirements:** | |
+| **Notes and Issues:** | | 
+
+<br>
+
+## Edit Budget
+|                             |                                                |
+|--------------------------------------|------------------------------------------------|
+| **Use Case ID:**       | UC-3.3.3 |
+| **Use Case Name:**     | |
+| **Created By:**        | Henry Uz  | 
+| **Last Updated By:**    | Henry Uz |
+| **Date Created:**      |   | 
+| **Last Revision Date:** |  |
+| **Actors:**            | The primary actor will be the end user.|
+| **Description:**       | |
+| **Trigger:**           | |
+| **Preconditions:**     | |
+| **Postconditions:**    | |
+| **Normal Flow:**       | |
+| **Alternative Flows:** | |
+| **Exceptions:**        | |
+| **Includes:** | |
+| **Frequency of Use:** | |
+| **Special Requirements:** | |
+| **Notes and Issues:** | | 
+
+## Manage Settings
+|                             |                                                |
+|--------------------------------------|------------------------------------------------|
+| **Use Case ID:**       | UC-3.3.4 |
+| **Use Case Name:**     | |
+| **Created By:**        | Henry Uz  | 
+| **Last Updated By:**    | Henry Uz |
+| **Date Created:**      |   | 
+| **Last Revision Date:** |  |
+| **Actors:**            | The primary actor will be the end user.|
+| **Description:**       | |
+| **Trigger:**           | |
+| **Preconditions:**     | |
+| **Postconditions:**    | |
+| **Normal Flow:**       | |
+| **Alternative Flows:** | |
+| **Exceptions:**        | |
+| **Includes:** | |
+| **Frequency of Use:** | |
+| **Special Requirements:** | |
+| **Notes and Issues:** | | 
+
+<br>
+
+## Download Budget Report
+|                             |                                                |
+|--------------------------------------|------------------------------------------------|
+| **Use Case ID:**       | UC-3.3.5 |
+| **Use Case Name:**     | |
+| **Created By:**        | Henry Uz  | 
+| **Last Updated By:**    | Henry Uz |
+| **Date Created:**      |   | 
+| **Last Revision Date:** |  |
+| **Actors:**            | The primary actor will be the end user.|
+| **Description:**       | |
+| **Trigger:**           | |
+| **Preconditions:**     | |
+| **Postconditions:**    | |
+| **Normal Flow:**       | |
+| **Alternative Flows:** | |
+| **Exceptions:**        | |
+| **Includes:** | |
+| **Frequency of Use:** | |
+| **Special Requirements:** | |
+| **Notes and Issues:** | | 
+
 <br>
 <br>
 <br>
-
-## User Registration
-
-| **Actor**           | New User                                  |
-|---------------------|-------------------------------------------|
-| **Description**     | The user creates a new account.           |
-| **Trigger**         | User navigates to the registration page. |
-| **Preconditions**   | None                                      |
-| **Postconditions**  | User's account is created.                |
-
-#### Normal Flow:
-1. User accesses the registration page.
-2. User enters their desired username, email, and password.
-3. User confirms the registration.
-4. System validates the input data and creates a new account.
-5. User is redirected to their
-
-
 
 # Classes and Objects
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/830a751e-1cd3-488e-9160-69f7a6b9a3aa)
