@@ -3,7 +3,7 @@
   * [Functional Requirements](#functional-requirements)
   * [Software Interfaces](#software-interfaces)
   * [Use Cases](#use-cases)
-  * [Classes/Objects](#classes/objects)
+  * [Classes & Objects](#classes-&-objects)
 
 # CS1530-Project
 
