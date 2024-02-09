@@ -40,8 +40,26 @@ The Travel Expense Tracker will be constructed using modern web development tech
 * The application should allow the user to customize application controls such as visual changes and privacy settings.<br>
 
 # Nonfunctional Requirements
-![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/879bdac9-d5b8-4c38-84eb-a9af6e905699) <br>
-
+## Performance
+* The system should respond to user interactions within a reasonable time frame (i.e. a few seconds).<br>
+* The system should support concurrent access by multiple users without data corruption or inconsistencies.<br>
+## Security
+* User passwords, personal information, and sensitive data should be encrypted during storage and transmission.
+* Users should be authenticated before accessing their accounts, and access to sensitive functionalities should be authorized based on user roles and permissions.
+## Reliability
+* The system should be available and accessible to users at all times, with minimal downtime for maintenance or updates. It should aim for high availability 99% of the time.
+* The system should be resilient to failures, with mechanisms in place to detect and recover from errors or crashes gracefully.
+## Usability
+* The user interface should be intuitive, visually appealing, and easy to navigate. It should follow usability best practices to minimize user errors and maximize user satisfaction.
+## Compatbility
+* The system should work consistently across different web browsers (i.e. Chrome, Firefox, Safari, Edge) and versions.
+## Maintainability
+* The system should be modularized, with well-defined components and clear separation of concerns.
+* Comprehensive documentation should be provided for developers and end users covering system architecture, APIs and usage guidelines.
+## Performance Testing
+* The system should undergo stress-testing to identify its breaking points and limitations under extreme conditions.
+## Compliance
+* The system should comply with relevant laws, regulations, and industry standards related to data privacy and security.
 
 # Software Interfaces
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/43998fc3-7583-4239-9448-bc487c63edff) <br>
