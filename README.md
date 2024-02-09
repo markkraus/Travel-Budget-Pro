@@ -3,7 +3,7 @@
   * [Functional Requirements](#functional-requirements)
   * [Software Interfaces](#software-interfaces)
   * [Use Cases](#use-cases)
-  * [Classes & Objects](#classes-&-objects)
+  * [Classes and Objects](#classes-and-objects)
 
 # CS1530-Project
 
@@ -30,6 +30,6 @@ The Travel Expense Tracker will be constructed using modern web development tech
 
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/e3c6c62d-4985-44b9-be02-6270820c62e6)
 
-# Classes/Objects
+# Classes and Objects
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/830a751e-1cd3-488e-9160-69f7a6b9a3aa)
 
