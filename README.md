@@ -1,7 +1,7 @@
 [CS1530-Project](#cs1530-project)
   * [Functional Requirements](#functional-requirements)
   * [Software Interfaces](#software-interfaces)
-  * [Use Cases](use-cases)
+  * [Use Cases](#use-cases)
 
 # CS1530-Project
 
