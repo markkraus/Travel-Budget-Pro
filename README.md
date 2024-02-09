@@ -89,11 +89,16 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | UC-3.3.5    | End User      | Download Budget Report |
 
 ## Register a New User
-|-----------------------|-------------------------------------------------|
+|                        |                                                |
+|------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.1                                       |
 | **Use Case Name:**     | Register a New User                            |
+|                        |           |                         |          |
+|------------------------|-----------|-------------------------|----------|
 | **Created By:**        | Henry Uz  | **Last Updated By:**    | Henry Uz |
 | **Date Created:**      | 2/9/2024  | **Last Revision Date:** | 2/9/2024 |
+|                        |                                                |
+|------------------------|------------------------------------------------|
 | **Actors:**            | The primary actor will be the end user         |
 | **Description:**       | The reason for this use case is so that the    |
 | **Trigger:**           |                                                |
