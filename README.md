@@ -89,10 +89,10 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | UC-3.3.5    | End User      | Download Budget Report |
 
 ## Register a New User
-|                        |                                                |
-|-----------------------------|------------------------------------------------|
-| **Use Case ID:**       | UC-3.3.1                                       |
-| **Use Case Name:**     | Register a New User                            |
+|                             |                                                |
+|--------------------------------------|------------------------------------------------|
+| **Use Case ID:**       | UC-3.3.1 |
+| **Use Case Name:**     | Register a New User |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
 | **Date Created:**      | 2/9/2024  | 
@@ -102,9 +102,14 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Trigger:**           | The trigger for this event will be the user entering a username and password to create an account on the appropriate page.|
 | **Preconditions:**     | 1. User will not already have an account with their desired username. |
 | **Postconditions:**    | 1. User has an account created and registered. <br> 2. User is notified that this process was successful and prompts them to login. <br> <br> If unsuccessful: <br> 1. User account is not created. <br> 2. User is notified of what the error is regarding their entry.|
-| **Normal Flow:**       |                                                |
-| **Alternative Flows:** |                                                |
-| **Exceptions:**        |                                                |
+| **Normal Flow:**       | 1. User enters their desired username. <br> 2. User enters their desired password. <br> 3. Check if the username and password meet required credentials as specified. <br> 4. Register the new user. |
+| **Alternative Flows:** | 3a. In step 3 of normal flow, the user entries does not meet the specified criteria. <br> 1. The user is notified that they must fulfill the criteria specified for the password. <br> 2. The use case restarts and awaits another attempt to register. <br> <br> 4a. In step 4 of normal flow, if user does not enter any text. <br> 1. The system will alert the user that they must populate the fields. <br> 2. Use case restarts and awaits another user attempt. <br> <br> 4b. In step 4 of the normal flow, if an account with this name already exists <br> 1. Notify the user that this username is already taken. <br> 2. Use case restarts and awaits another user attempt. |
+| **Exceptions:**        | 4a. In step 4 of the normal flow, if the database is not initialized <br> 1. The registration will not be completed. <br> 2. An error will be presented, alerting host machine of this issue. <br> 3. Use case must abort until error is corrected by host |
+| **Includes:** | This use case will ot call other use cases. |
+| **Frequency of Use:** | This use case will be executed only once per new user. |
+| **Special Requirements:** | The username and password will need to be checked for special characters and criteria specified in this SRS. |
+| **Assumptions:** | The assumptions made are that the user is entering English text. |
+| **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/e3c6c62d-4985-44b9-be02-6270820c62e6) <br>
 <br>
