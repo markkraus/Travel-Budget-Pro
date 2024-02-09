@@ -3,7 +3,7 @@
   * [Functional Requirements](#functional-requirements)
   * [Nonfunctional Requirements](#nonfunctional-requirements)
   * [Software Interfaces](#software-interfaces)
-  * [Use Cases](#use-cases)
+  * [Use Case List](#use-case-list)
   * [Classes and Objects](#classes-and-objects)
 
 # CS1530-Project
@@ -79,12 +79,14 @@ The Travel Expense Tracker will be constructed using modern web development tech
 <br>
 <br>
 
-# Use Cases
-- User Registration <br>
-- User Login <br>
-- Edit Budget <br>
-- Manage Settings <br>
-- Download Budget Report <br>
+# Use Case List
+| **Use Case ID** | **Primary Actor** | **Use Case** |
+|-------------|---------------|------------------------|
+| UC-3.3.1    | End User      | Register a New User    |
+| UC-3.3.2    | End User      | User Login             |
+| UC-3.3.3    | End User      | Edit Budget            |
+| UC-3.3.4    | End User      | Manage Settings        |
+| UC-3.3.5    | End User      | Download Budget Report |
 
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/e3c6c62d-4985-44b9-be02-6270820c62e6) <br>
 <br>
@@ -92,7 +94,6 @@ The Travel Expense Tracker will be constructed using modern web development tech
 <br>
 
 ## User Registration
-### User Registration
 
 | **Actor**           | New User                                  |
 |---------------------|-------------------------------------------|
