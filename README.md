@@ -88,6 +88,21 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | UC-3.3.4    | End User      | Manage Settings        |
 | UC-3.3.5    | End User      | Download Budget Report |
 
+## Register a New User
+|-----------------------|-------------------------------------------------|
+| **Use Case ID:**       | UC-3.3.1                                       |
+| **Use Case Name:**     | Register a New User                            |
+| **Created By:**        | Henry Uz  | **Last Updated By:**    | Henry Uz |
+| **Date Created:**      | 2/9/2024  | **Last Revision Date:** | 2/9/2024 |
+| **Actors:**            | The primary actor will be the end user         |
+| **Description:**       | The reason for this use case is so that the    |
+| **Trigger:**           |                                                |
+| **Preconditions:**     |                                                |
+| **Postconditions:**    |                                                |
+| **Normal Flow:**       |                                                |
+| **Alternative Flows:** |                                                |
+| **Exceptions:**        |                                                |
+
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/e3c6c62d-4985-44b9-be02-6270820c62e6) <br>
 <br>
 <br>
