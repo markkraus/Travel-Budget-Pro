@@ -17,7 +17,10 @@ The importance of the Travel Expense Tracker lies in its ability to address comm
 The Travel Expense Tracker will be constructed using modern web development technologies and best practices to ensure reliability, scalability, and user satisfaction. The frontend of the application will be built using HTML, CSS, and JavaScript, with frameworks like React.js or Angular for dynamic user interfaces. The backend will be developed using Node.js with Express.js for server-side logic and API development. Data storage and management will be handled using MongoDB or MySQL databases, allowing for efficient storage and retrieval of user data, expense records, budget information, and authentication details. Additionally, the application will integrate with third-party APIs for currency conversion, financial data integration, and authentication to enhance functionality and provide users with a seamless experience. Overall, the Travel Expense Tracker will be constructed with a user-centric approach, prioritizing usability, functionality, and data security to deliver a valuable tool for travelers worldwide.<br>
 
 # Functional Requirements
-![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/960c5cf3-17d2-43a6-a7a8-fd664d5bc274) <br>
+## User Registration
+* Users should be able to create accounts and log in securely to access the application.<br>
+* Authentication mechanisms should ensure that only registered user can access their own expense records and settings.<br>
+## Expense Tracking
 
 # Nonfunctional Requirements
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/879bdac9-d5b8-4c38-84eb-a9af6e905699) <br>
