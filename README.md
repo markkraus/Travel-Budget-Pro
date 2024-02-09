@@ -21,6 +21,23 @@ The Travel Expense Tracker will be constructed using modern web development tech
 * Users should be able to create accounts and log in securely to access the application.<br>
 * Authentication mechanisms should ensure that only registered user can access their own expense records and settings.<br>
 ## Expense Tracking
+* Users should be able to log their travel expenses, including date, amount, category, and description. <br>
+* The application should support multiple currencies for recording expenses incurred in different countries. <br>
+## Expense Categorization/Budgeting
+* The application should provide predefined expense categories (i.e. lodging, transportation, food) and allow users to create custom categories. <br>
+* Users should be able to set overall travel budgets and allocate budgets for each expense category. <br>
+## Expense Visualization
+* The application should generate visual representations of users' spending patterns using charts, graphs, and/or tables. <br>
+* Users should be able to view breakdowns of their expenses by category, compare actual spending to budgeted amounts, and track their overall travel expenses over time. <br>
+## Currency Conversion
+* For international travelers, the application should support real-time currency conversion and display expenses in both the user’s home currency and the local currency of the destination. <br>
+## Data Reporting and Exporting
+* Users should have the option to export their expense data into a PDF version for further analysis or record-keeping purposes.<br>
+* The application should allow the user to create multiple expense reports summarizing users' spending during different trips.<br>
+## Notifications and Alerts
+* The application should warn the user when they exceed budget limits, reach predefined spending thresholds, or encounter unusual spending patterns.<br>
+## Settings Modification
+* The application should allow the user to customize application controls such as visual changes and privacy settings.<br>
 
 # Nonfunctional Requirements
 ![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/879bdac9-d5b8-4c38-84eb-a9af6e905699) <br>
