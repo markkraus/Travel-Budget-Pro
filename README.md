@@ -6,6 +6,10 @@
   * [Use Case List](#use-case-list)
   * [Classes and Objects](#classes-and-objects)
 
+# Important Links
+[**Trello Board:**](#https://trello.com/invite/b/6lvhIZHT/ATTI73870a8c1608c5ebd80a1d8c5b67beea2B5FABAE/cs-1530-project) <br>
+**UML Diagrams:**  
+
 # CS1530-Project
 <br>
 <br>
