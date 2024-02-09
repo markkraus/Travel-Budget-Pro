@@ -96,10 +96,10 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Created By:**        | Henry Uz  | **Last Updated By:**    | Henry Uz |
 | **Date Created:**      | 2/9/2024  | **Last Revision Date:** | 2/9/2024 |
 | **Actors:**            | The primary actor will be the end user         |
-| **Description:**       | The reason for this use case is so that the    |
-| **Trigger:**           |                                                |
-| **Preconditions:**     |                                                |
-| **Postconditions:**    |                                                |
+| **Description:**       | The reason for this use case is so that the user may registr for a new account on the system. The outcome will be adding the user to the underlying database and allowing them budget their traveling.|
+| **Trigger:**           | The trigger for this event will be the user entering a username and password to create an account on the appropriate page.|
+| **Preconditions:**     | 1. User will not already have an account with their desired username. |
+| **Postconditions:**    | 1. User has an account created and registered. <br> 2. User is notified that this process was successful and prompts them to login. <br> <br> If unsuccessful: <br> 1. User account is not created. <br> 2. User is notified of what the error is regarding their entry.|
 | **Normal Flow:**       |                                                |
 | **Alternative Flows:** |                                                |
 | **Exceptions:**        |                                                |
