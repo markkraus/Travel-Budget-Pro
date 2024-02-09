@@ -93,8 +93,10 @@ The Travel Expense Tracker will be constructed using modern web development tech
 |------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.1                                       |
 | **Use Case Name:**     | Register a New User                            |
-| **Created By:**        | Henry Uz  | **Last Updated By:**    | Henry Uz |
-| **Date Created:**      | 2/9/2024  | **Last Revision Date:** | 2/9/2024 |
+| **Created By:**        | Henry Uz  | 
+| **Last Updated By:**    | Henry Uz |
+| **Date Created:**      | 2/9/2024  | 
+| **Last Revision Date:** | 2/9/2024 |
 | **Actors:**            | The primary actor will be the end user         |
 | **Description:**       | The reason for this use case is so that the user may registr for a new account on the system. The outcome will be adding the user to the underlying database and allowing them budget their traveling.|
 | **Trigger:**           | The trigger for this event will be the user entering a username and password to create an account on the appropriate page.|
