@@ -227,5 +227,21 @@ The Travel Expense Tracker will be constructed using modern web development tech
 <br>
 
 # Classes and Objects
-![image](https://github.com/Scrum-Team-Six/CS1530-Project/assets/91558299/830a751e-1cd3-488e-9160-69f7a6b9a3aa)
-
+## User
+**Attributes:** Username, email, password, notification preferences <br>
+**Behaviors:** Register, login, update profile, change password, manage settings
+## Expense
+**Attributes:** Date, amount, category, description, currency <br>
+**Behaviors:** Add, update, delete
+## Budget
+**Attributes:** Overall budget, budget allocations for expense categories <br>
+**Behaviors:** Set overall budget, allocate budget for expense categories, update budget
+## Settings
+**Attributes:** User settings <br>
+**Behaviors:** Update profile
+## Notification
+**Attributes:** Notification type, content <br>
+**Behaviors:** Send message
+## CurrencyCoverter
+**Attributes:** Exchange rates <br>
+**Behaviors:** Convert between currencies
