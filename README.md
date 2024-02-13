@@ -187,8 +187,8 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | |
-| **Trigger:**           | |
-| **Preconditions:**     | |
+| **Trigger:**           | The trigger for this event will be the user pressing the "Settings" button. |
+| **Preconditions:**     | 1. User has successfully logged in to their account.  |
 | **Postconditions:**    | |
 | **Normal Flow:**       | |
 | **Alternative Flows:** | |
@@ -212,7 +212,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | |
 | **Trigger:**           | |
-| **Preconditions:**     | |
+| **Preconditions:**     | 1. User has successfully logged in to their account. 2. User has inputted their budget and expenses. |
 | **Postconditions:**    | |
 | **Normal Flow:**       | |
 | **Alternative Flows:** | |
