@@ -134,11 +134,11 @@ The Travel Expense Tracker will be constructed using modern web development tech
 |                             |                                                |
 |--------------------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.2 |
-| **Use Case Name:**     | |
+| **Use Case Name:**     | User Login |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
-| **Date Created:**      |   | 
-| **Last Revision Date:** |  |
+| **Date Created:**      | 2/12/2024 | 
+| **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | |
 | **Trigger:**           | |
@@ -158,11 +158,11 @@ The Travel Expense Tracker will be constructed using modern web development tech
 |                             |                                                |
 |--------------------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.3 |
-| **Use Case Name:**     | |
+| **Use Case Name:**     | Edit Budget |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
-| **Date Created:**      |   | 
-| **Last Revision Date:** |  |
+| **Date Created:**      | 2/12/2024 | 
+| **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | |
 | **Trigger:**           | |
@@ -180,11 +180,11 @@ The Travel Expense Tracker will be constructed using modern web development tech
 |                             |                                                |
 |--------------------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.4 |
-| **Use Case Name:**     | |
+| **Use Case Name:**     | Manage Settings |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
-| **Date Created:**      |   | 
-| **Last Revision Date:** |  |
+| **Date Created:**      | 2/12/2024 | 
+| **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | |
 | **Trigger:**           | |
@@ -204,11 +204,11 @@ The Travel Expense Tracker will be constructed using modern web development tech
 |                             |                                                |
 |--------------------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.5 |
-| **Use Case Name:**     | |
+| **Use Case Name:**     | Download Budget Report |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
-| **Date Created:**      |   | 
-| **Last Revision Date:** |  |
+| **Date Created:**      | 2/12/2024 | 
+| **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | |
 | **Trigger:**           | |
