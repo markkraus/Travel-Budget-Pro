@@ -144,7 +144,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Description:**       | The reason for this use case is so that the user may access their existing account. This is useful because it allows them to access their budget, making future changes easier. |
 | **Trigger:**           | The trigger for this event will be the user running the program. |
 | **Preconditions:**     | 1. User will not already have an account with their desired username. |
-| **Postconditions:**    | 1. User successfully logs in. 2. User is shown the "Edit Budget" page. <br> <br> If unsuccessful: <br> 1. User is not logged in. <br> 2. User is notified of what the error is regarding their entry.|
+| **Postconditions:**    | 1. User successfully logs in. 2. User is shown the home page displaying all existing trips. <br> <br> If unsuccessful: <br> 1. User is not logged in. <br> 2. User is notified of what the error is regarding their entry.|
 | **Normal Flow:**       | 1. User enters their username. 2. User enters their password. 3. User clicks "Login" button. 4. User is taken to the "Edit Budget" page.|
 | **Alternative Flows:** | 3a. In step 3 of normal flow, the username does not exist in the system. <br> 1. The user is notified that they have inputted a nonexistent username. <br><br> 3b. In step 3 of normal flow, the username exists but their password is incorrect. <br> 1. The user is notified that the password is incorrect. <br> |
 | **Exceptions:**        | None |
@@ -166,7 +166,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | This is the primary function of the program. The user will input their budget and add expenses, allowing them to see all important financial data related to their trip in one place. |
-| **Trigger:**           | The trigger for this event will be the user entering their username and password and pressing "Enter" on the login page. |
+| **Trigger:**           | The trigger for this event will be the user pressing "Create Budget" on the home page. |
 | **Preconditions:**     | 1. User has successfully logged in to their account. |
 | **Postconditions:**    | |
 | **Normal Flow:**       | |
@@ -235,13 +235,13 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Date Created:**      | 2/12/2024 | 
 | **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
-| **Description:**       | |
+| **Description:**       | The purpose of this use case is to allow the user to export the budget report. This would be useful for having quick access to the report or sending it to someone. |
 | **Trigger:**           | The trigger for this event will be the user pressing the "Download Budget Report" button.|
-| **Preconditions:**     | 1. User has successfully logged in to their account. 2. User has inputted their budget and expenses. |
-| **Postconditions:**    | |
-| **Normal Flow:**       | |
-| **Alternative Flows:** | |
-| **Exceptions:**        | |
+| **Preconditions:**     | 1. User has successfully logged in to their account. 2. User has saved at least one trip. |
+| **Postconditions:**    | 1. User successfully downloads the trip's budget report |
+| **Normal Flow:**       | 1. User selects a trip from the home page. 2. User presses the "Download Budget Report" button.|
+| **Alternative Flows:** | None |
+| **Exceptions:**        | None |
 | **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** |Likely medium-high use (at the discretion of the user) |
 | **Special Requirements:** | None |
