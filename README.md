@@ -214,8 +214,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Description:**       | This use case allows the user to edit the program settings. One example is changing the graph type output on the budget report. |
 | **Trigger:**           | The trigger for this event will be the user pressing the "Settings" button. |
 | **Preconditions:**     | 1. User has successfully logged in to their account.  |
-| **Postconditions:**    |  1. User is shown the settings page <br> 2. If user changes settings and selects "Save Changes" button, the settings are changed <br>
-2a. If the user selects the "Exit" button, no changes are made to the settings.  <br> 3. The user is returned to the home page.|
+| **Postconditions:**    |  1. User is shown the settings page <br> 2. If user changes settings and selects "Save Changes" button, the settings are changed <br> 2a. If the user selects the "Exit" button, no changes are made to the settings.  <br> 3. The user is returned to the home page. |
 | **Normal Flow:**       | 1. User selects the "Settings" button 2. User changes the desired settings 3. User selects the "Save Changes" button |
 | **Alternative Flows:** | 1. User selects the "Settings" button 2. User selects the "Exit" button |
 | **Exceptions:**        | None |
