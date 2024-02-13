@@ -144,8 +144,8 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Trigger:**           | The trigger for this event will be the user running the program. |
 | **Preconditions:**     | 1. User will not already have an account with their desired username. |
 | **Postconditions:**    | 1. User successfully logs in. 2. User is shown the "Edit Budget" page. <br> <br> If unsuccessful: <br> 1. User is not logged in. <br> 2. User is notified of what the error is regarding their entry.|
-| **Normal Flow:**       | |
-| **Alternative Flows:** | |
+| **Normal Flow:**       | 1. User enters their username. 2. User enters their password. 3. User clicks "Login" button. 4. User is taken to the "Edit Budget" page.|
+| **Alternative Flows:** | 3a. In step 3 of normal flow, the username does not exist in the system. <br> 1. The user is notified that they have inputted a nonexistent username. <br><br> 3b. In step 3 of normal flow, the username exists but their password is incorrect. <br> 1. The user is notified that the password is incorrect. <br> |
 | **Exceptions:**        | |
 | **Includes:** | |
 | **Frequency of Use:** | This use case will be executed once for every time a user initiates a session. |
