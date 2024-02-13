@@ -149,8 +149,8 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Exceptions:**        | |
 | **Includes:** | This use case will not call other use cases.|
 | **Frequency of Use:** | This use case will be executed once for every time a user initiates a session. |
-| **Special Requirements:** | |
-| **Notes and Issues:** | | 
+| **Special Requirements:** | None |
+| **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
 <br>
 
@@ -173,8 +173,8 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Exceptions:**        | |
 | **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | |
-| **Special Requirements:** | |
-| **Notes and Issues:** | | 
+| **Special Requirements:** | None |
+| **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
 ## Manage Settings
 |                             |                                                |
@@ -195,8 +195,8 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Exceptions:**        | |
 | **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | |
-| **Special Requirements:** | |
-| **Notes and Issues:** | | 
+| **Special Requirements:** | None |
+| **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
 <br>
 
@@ -211,7 +211,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Last Revision Date:** | 2/12/2024 |
 | **Actors:**            | The primary actor will be the end user.|
 | **Description:**       | |
-| **Trigger:**           | |
+| **Trigger:**           | The trigger for this event will be the user pressing the "Download Budget Report" button.|
 | **Preconditions:**     | 1. User has successfully logged in to their account. 2. User has inputted their budget and expenses. |
 | **Postconditions:**    | |
 | **Normal Flow:**       | |
@@ -219,8 +219,8 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Exceptions:**        | |
 | **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | |
-| **Special Requirements:** | |
-| **Notes and Issues:** | | 
+| **Special Requirements:** | None |
+| **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
 <br>
 <br>
