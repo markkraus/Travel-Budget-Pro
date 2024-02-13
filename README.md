@@ -122,7 +122,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Normal Flow:**       | 1. User enters their desired username. <br> 2. User enters their desired password. <br> 3. Check if the username and password meet required credentials as specified. <br> 4. Register the new user. |
 | **Alternative Flows:** | 3a. In step 3 of normal flow, the user entries does not meet the specified criteria. <br> 1. The user is notified that they must fulfill the criteria specified for the password. <br> 2. The use case restarts and awaits another attempt to register. <br> <br> 4a. In step 4 of normal flow, if user does not enter any text. <br> 1. The system will alert the user that they must populate the fields. <br> 2. Use case restarts and awaits another user attempt. <br> <br> 4b. In step 4 of the normal flow, if an account with this name already exists <br> 1. Notify the user that this username is already taken. <br> 2. Use case restarts and awaits another user attempt. |
 | **Exceptions:**        | 4a. In step 4 of the normal flow, if the database is not initialized <br> 1. The registration will not be completed. <br> 2. An error will be presented, alerting host machine of this issue. <br> 3. Use case must abort until error is corrected by host |
-| **Includes:** | This use case will ot call other use cases. |
+| **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | This use case will be executed only once per new user. |
 | **Special Requirements:** | The username and password will need to be checked for special characters and criteria specified in this SRS. |
 | **Assumptions:** | The assumptions made are that the user is entering English text. |
@@ -147,7 +147,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Normal Flow:**       | 1. User enters their username. 2. User enters their password. 3. User clicks "Login" button. 4. User is taken to the "Edit Budget" page.|
 | **Alternative Flows:** | 3a. In step 3 of normal flow, the username does not exist in the system. <br> 1. The user is notified that they have inputted a nonexistent username. <br><br> 3b. In step 3 of normal flow, the username exists but their password is incorrect. <br> 1. The user is notified that the password is incorrect. <br> |
 | **Exceptions:**        | |
-| **Includes:** | |
+| **Includes:** | This use case will not call other use cases.|
 | **Frequency of Use:** | This use case will be executed once for every time a user initiates a session. |
 | **Special Requirements:** | |
 | **Notes and Issues:** | | 
@@ -171,7 +171,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Normal Flow:**       | |
 | **Alternative Flows:** | |
 | **Exceptions:**        | |
-| **Includes:** | |
+| **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | |
 | **Special Requirements:** | |
 | **Notes and Issues:** | | 
@@ -193,7 +193,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Normal Flow:**       | |
 | **Alternative Flows:** | |
 | **Exceptions:**        | |
-| **Includes:** | |
+| **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | |
 | **Special Requirements:** | |
 | **Notes and Issues:** | | 
@@ -217,7 +217,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Normal Flow:**       | |
 | **Alternative Flows:** | |
 | **Exceptions:**        | |
-| **Includes:** | |
+| **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | |
 | **Special Requirements:** | |
 | **Notes and Issues:** | | 
