@@ -101,9 +101,10 @@ The Travel Expense Tracker will be constructed using modern web development tech
 |-------------|---------------|------------------------|
 | UC-3.3.1    | End User      | Register a New User    |
 | UC-3.3.2    | End User      | User Login             |
-| UC-3.3.3    | End User      | Edit Budget            |
-| UC-3.3.4    | End User      | Manage Settings        |
-| UC-3.3.5    | End User      | Download Budget Report |
+| UC-3.3.3    | End User      | Create Budget          |
+| UC-3.3.4    | End User      | Edit Budget            |
+| UC-3.3.5    | End User      | Manage Settings        |
+| UC-3.3.6    | End User      | Download Budget Report |
 
 ## Register a New User
 |                             |                                                |
@@ -146,7 +147,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Postconditions:**    | 1. User successfully logs in. 2. User is shown the "Edit Budget" page. <br> <br> If unsuccessful: <br> 1. User is not logged in. <br> 2. User is notified of what the error is regarding their entry.|
 | **Normal Flow:**       | 1. User enters their username. 2. User enters their password. 3. User clicks "Login" button. 4. User is taken to the "Edit Budget" page.|
 | **Alternative Flows:** | 3a. In step 3 of normal flow, the username does not exist in the system. <br> 1. The user is notified that they have inputted a nonexistent username. <br><br> 3b. In step 3 of normal flow, the username exists but their password is incorrect. <br> 1. The user is notified that the password is incorrect. <br> |
-| **Exceptions:**        | |
+| **Exceptions:**        | None |
 | **Includes:** | This use case will not call other use cases.|
 | **Frequency of Use:** | This use case will be executed once for every time a user initiates a session. |
 | **Special Requirements:** | None |
@@ -154,11 +155,11 @@ The Travel Expense Tracker will be constructed using modern web development tech
 
 <br>
 
-## Edit Budget
+## Create Budget
 |                             |                                                |
 |--------------------------------------|------------------------------------------------|
 | **Use Case ID:**       | UC-3.3.3 |
-| **Use Case Name:**     | Edit Budget |
+| **Use Case Name:**     | Create Budget |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
 | **Date Created:**      | 2/12/2024 | 
@@ -170,16 +171,40 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Postconditions:**    | |
 | **Normal Flow:**       | |
 | **Alternative Flows:** | |
+| **Exceptions:**        | None |
+| **Includes:** | This use case will not call other use cases. |
+| **Frequency of Use:** | Likely medium-high use (at the discretion of the user)|
+| **Special Requirements:** | None |
+| **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
+
+<br>
+
+## Edit Budget
+|                             |                                                |
+|--------------------------------------|------------------------------------------------|
+| **Use Case ID:**       | UC-3.3.4 |
+| **Use Case Name:**     | Edit Budget |
+| **Created By:**        | Henry Uz  | 
+| **Last Updated By:**    | Henry Uz |
+| **Date Created:**      | 2/12/2024 | 
+| **Last Revision Date:** | 2/12/2024 |
+| **Actors:**            | The primary actor will be the end user.|
+| **Description:**       | The purpose of this use case is to allow the user to edit the budget and/or expenses of an existing trip.  |
+| **Trigger:**           | The trigger for this event will be the user selecting the "Edit Budget" button. |
+| **Preconditions:**     | 1. User has successfully logged in to their account. 1. User has selected an existing trip. |
+| **Postconditions:**    | |
+| **Normal Flow:**       | |
+| **Alternative Flows:** | |
 | **Exceptions:**        | |
 | **Includes:** | This use case will not call other use cases. |
-| **Frequency of Use:** | |
+| **Frequency of Use:** |Likely low-medium use (at the discretion of the user) |
 | **Special Requirements:** | None |
 | **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
 ## Manage Settings
 |                             |                                                |
 |--------------------------------------|------------------------------------------------|
-| **Use Case ID:**       | UC-3.3.4 |
+| **Use Case ID:**       | UC-3.3.5 |
 | **Use Case Name:**     | Manage Settings |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
@@ -194,7 +219,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Alternative Flows:** | |
 | **Exceptions:**        | |
 | **Includes:** | This use case will not call other use cases. |
-| **Frequency of Use:** | |
+| **Frequency of Use:** | Likely low use (at the discretion of the user) |
 | **Special Requirements:** | None |
 | **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
@@ -203,7 +228,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 ## Download Budget Report
 |                             |                                                |
 |--------------------------------------|------------------------------------------------|
-| **Use Case ID:**       | UC-3.3.5 |
+| **Use Case ID:**       | UC-3.3.6 |
 | **Use Case Name:**     | Download Budget Report |
 | **Created By:**        | Henry Uz  | 
 | **Last Updated By:**    | Henry Uz |
@@ -218,7 +243,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Alternative Flows:** | |
 | **Exceptions:**        | |
 | **Includes:** | This use case will not call other use cases. |
-| **Frequency of Use:** | |
+| **Frequency of Use:** |Likely medium-high use (at the discretion of the user) |
 | **Special Requirements:** | None |
 | **Notes and Issues:** | As of creating this use case there are no details; TBD. | 
 
