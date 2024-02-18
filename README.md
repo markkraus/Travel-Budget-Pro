@@ -145,7 +145,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Trigger:**           | The trigger for this event will be the user running the program. |
 | **Preconditions:**     | 1. User will not already have an account with their desired username. |
 | **Postconditions:**    | 1. User successfully logs in. 2. User is shown the home page displaying all existing trips. <br> <br> If unsuccessful: <br> 1. User is not logged in. <br> 2. User is notified of what the error is regarding their entry.|
-| **Normal Flow:**       | 1. User enters their username. 2. User enters their password. 3. User clicks "Login" button. 4. User is taken to the "Edit Budget" page.|
+| **Normal Flow:**       | 1. User enters their username. 2. User enters their password. 3. User clicks "Login" button. 4. User is taken to the home page.|
 | **Alternative Flows:** | 3a. In step 3 of normal flow, the username does not exist in the system. <br> 1. The user is notified that they have inputted a nonexistent username. <br><br> 3b. In step 3 of normal flow, the username exists but their password is incorrect. <br> 1. The user is notified that the password is incorrect. <br> |
 | **Exceptions:**        | None |
 | **Includes:** | This use case will not call other use cases.|
@@ -216,7 +216,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Preconditions:**     | 1. User has successfully logged in to their account.  |
 | **Postconditions:**    |  1. User is shown the settings page <br> 2. If user changes settings and selects "Save Changes" button, the settings are changed <br> 2a. If the user selects the "Exit" button, no changes are made to the settings.  <br> 3. The user is returned to the home page. |
 | **Normal Flow:**       | 1. User selects the "Settings" button 2. User changes the desired settings 3. User selects the "Save Changes" button |
-| **Alternative Flows:** | 1. User selects the "Settings" button 2. User selects the "Exit" button |
+| **Alternative Flows:** | User views settings: 1. User selects the "Settings" button 2. User selects the "Exit" button <br> User changes settings but does not save them: 1. User selects the "Settings" button 2. User changes the desired settings 3. User selects the "Exit" button|
 | **Exceptions:**        | None |
 | **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | Likely low use (at the discretion of the user) |
