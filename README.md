@@ -168,8 +168,8 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Description:**       | This is the primary function of the program. The user will input their budget and add expenses, allowing them to see all important financial data related to their trip in one place. |
 | **Trigger:**           | The trigger for this event will be the user pressing "Create Budget" on the home page. |
 | **Preconditions:**     | 1. User has successfully logged in to their account. |
-| **Postconditions:**    | |
-| **Normal Flow:**       | |
+| **Postconditions:**    | 1. Budget has successfully been created 2. Budget will now show on the home page|
+| **Normal Flow:**       | 1. User will click create budget 2. User will be taken to a page to list their trip name and budget 3. User will select next and enter their expenses 4. User will select "Save" when complete |
 | **Alternative Flows:** | |
 | **Exceptions:**        | None |
 | **Includes:** | This use case will not call other use cases. |
