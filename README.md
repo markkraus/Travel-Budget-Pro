@@ -169,9 +169,9 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Trigger:**           | The trigger for this event will be the user pressing "Create Budget" on the home page. |
 | **Preconditions:**     | 1. User has successfully logged in to their account. |
 | **Postconditions:**    | 1. Budget has successfully been created 2. Budget will now show on the home page|
-| **Normal Flow:**       | 1. User will click create budget 2. User will be taken to a page to list their trip name and budget 3. User will select next and enter their expenses 4. User will select "Save" when complete |
-| **Alternative Flows:** | |
-| **Exceptions:**        | None |
+| **Normal Flow:**       | 1. User will click "Create Budget" 2. User will be taken to a page to list their trip name and budget 3. User will select next and enter their expenses 4. User will select "Save" when complete |
+| **Alternative Flows:** | 1. User will click "Create Budget" 2a. User clicks the arrow buttons to change previously submitted info 2b. User clicks "Cancel" to return to the home page without saving the trip|
+| **Exceptions:**        | User's budget is <= 0 |
 | **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** | Likely medium-high use (at the discretion of the user)|
 | **Special Requirements:** | None |
@@ -192,10 +192,10 @@ The Travel Expense Tracker will be constructed using modern web development tech
 | **Description:**       | The purpose of this use case is to allow the user to edit the budget and/or expenses of an existing trip.  |
 | **Trigger:**           | The trigger for this event will be the user selecting the "Edit Budget" button. |
 | **Preconditions:**     | 1. User has successfully logged in to their account. 1. User has selected an existing trip. |
-| **Postconditions:**    ||
-| **Normal Flow:**       | |
-| **Alternative Flows:** | |
-| **Exceptions:**        | |
+| **Postconditions:**    |1. Changes to the budget are saved to the system|
+| **Normal Flow:**       |1. User selects the "Edit Budget" button 2. User makes desired changes and uses arrow buttons to navigate between pages 3. User clicks "Save Changes" to finalize edits|
+| **Alternative Flows:** |1. User selects the "Edit Budget" button 2. User clicks "Cancel" to return to the home page without saving edits|
+| **Exceptions:**        | User's budget is <= 0  |
 | **Includes:** | This use case will not call other use cases. |
 | **Frequency of Use:** |Likely low-medium use (at the discretion of the user) |
 | **Special Requirements:** | None |
