@@ -270,3 +270,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 ## CurrencyCoverter
 **Attributes:** Exchange rates <br>
 **Behaviors:** Convert between currencies
+
+# Architectural Patterns
+1. MVC Pattern <br>
+2. Pipe and Filter
