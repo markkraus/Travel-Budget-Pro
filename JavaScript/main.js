@@ -1,10 +1,11 @@
-import TravelItinerary from './hotel.js';
-import OtherClass from './otherClass.js';
+const express = require('express')
 
-// Example usage:
-const userPreferences = new TravelItinerary(['Sightseeing', 'Hiking'], 1000, 5);
-userPreferences.generateItinerary();
-userPreferences.displayItinerary();
+const app = express()
 
-const anotherObject = new OtherClass();
-// Use the functionality of the OtherClass
+app.listen(3000, () => {
+  console.log("app listening on port 3000")
+})
+
+app.get('/users', (req, res) => {
+  res.json({mssg: "received"})
+})
