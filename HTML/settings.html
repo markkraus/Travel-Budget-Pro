@@ -1,0 +1,44 @@
+<!--        settings.html
+
+        (Author: Henry Uz)
+
+  Overview:
+    Allows existing users to personalize the application 
+    and meet their wants and needs
+    
+  Functionality:
+    1. Select preferred currency
+    2. Change how budget data is displayed (graph type & color)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="styles.css"> 
+</head>
+
+<body>
+  <header>
+    <h1>Settings</h1>
+  </header>
+
+  <section id="main-content">
+    <div class="button-container">
+      <button class="graph-button" onclick="selectGraphType('line')">Line Graph</button>
+      <button class="graph-button" onclick="selectGraphType('bar')">Bar Graph</button>
+      <button class="graph-button" onclick="selectGraphType('pie')">Pie Chart</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Scrum Team 6 - CS 1530</p>
+  </footer>
+
+  <script src="../JavaScript/main.js"></script> <!-- Link to JS program -->
+</body>
+
+</html>
