@@ -3,6 +3,10 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: burlywood;
 }
 
 header {
@@ -10,6 +14,15 @@ header {
   color: #fff;
   text-align: center;
   padding: 1rem;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: .5rem;
+  }
 }
 
 section {
@@ -18,35 +31,152 @@ section {
   padding: 1rem;
 }
 
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 0.5rem;
+/* main content quadrants */
+#main-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  column-gap: 300px;
+  row-gap: 400px;
+  position: relative;
+  margin-left: 10rem;
 }
 
-#taskbar {
-  width: 80px;
-  background-color: #333;
+#main-content .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid black;
+  box-sizing: border-box;
+  height: 100%;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin: 50px 50px;
+  background-color: brown;
+  width: 150%;
+  height: 300%;
+  font-size: 1.5rem;
+}
+
+#main-content .top-left {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+#main-content .top-right {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#main-content .bottom-left {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+#main-content .bottom-right {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+@media (max-width: 768px) {
+  #main-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+
+  #main-content .button {
+    height: 100%;
+  }
+
+  #main-content .top-left,
+  #main-content .top-right {
+    grid-row: 1 / 2;
+  }
+
+  #main-content .bottom-left,
+  #main-content .bottom-right {
+    grid-row: 3 / 3;
+  }
+}
+
+/* taskbar */
+.taskbar-container {
+  position: relative;
+  width: 300px;
+  background-color: blue;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   color: white;
+  transition: width 0.3s ease-out;
+  position: fixed;
+  top: 9rem;
+  z-index: 2;
 }
 
+/* buttons container */
+.buttons-container {
+  position: relative;
+  margin-top: 30px; /* add margin-top: 20px */
+}
+
+/* button */
 .button {
-  padding: 10px;
-  margin: 10px;
+  padding: 10px 100px;
+  margin: 50px 10px; /* add margin-top: 20px */
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
 }
 
+.button:hover {
+  background-color: #e0e0e0;
+}
+
+/* task arrow */
 #toggle-button {
   cursor: pointer;
   padding: 10px;
-  background-color: #333;
+  background-color: green;
   color: white;
   text-align: center;
   border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#toggle-button:hover {
+  background-color: #e0e0e0;
+}
+
+#taskbar.compressed {
+  width: 40px;
+}
+
+@media (max-width: 768px) {
+  #taskbar {
+    display: none;
+  }
+
+  #toggle-button {
+    display: block;
+  }
+
+  #main-content {
+    width: 100%;
+  }
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
 }

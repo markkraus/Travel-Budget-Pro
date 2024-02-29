@@ -23,9 +23,16 @@ app.get('/users', (req, res) => {
   res.json({mssg: "received"})
 })
 
-// Task bar
-document.getElementById('toggle-button').addEventListener('click', function () {
-  document.getElementById('taskbar').classList.toggle('collapsed');
+// Task bar collapse
+document.getElementById('toggle-button').addEventListener('click', () => {
+  console.log("clicked");
+  const taskbar = document.getElementById('taskbar');
+  taskbar.classList.toggle('compressed');
 });
-//=======
-//>>>>>>> 2860af7bea0b46d87397e899542bb7b834d1792a
+
+//Task bar buttons
+document.querySelectorAll('.button').forEach(button => {
+  button.addEventListener('click', () => {
+    // Add your desired functionality here
+  });
+});
