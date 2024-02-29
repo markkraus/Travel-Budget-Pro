@@ -104,8 +104,11 @@ section {
 
 /* taskbar */
 .taskbar-container {
-  position: relative;
+  position: fixed;
+  /* top: 9rem; */
+  left: 0;
   width: 300px;
+  height: 100vh; /* set height to 100vh */
   background-color: blue;
   display: flex;
   flex-direction: column;
@@ -113,8 +116,6 @@ section {
   justify-content: space-around;
   color: white;
   transition: width 0.3s ease-out;
-  position: fixed;
-  top: 9rem;
   z-index: 2;
 }
 
