@@ -1,0 +1,122 @@
+<!--        settings.html
+
+        (Author: Henry Uz)
+
+  Overview:
+    Allows existing users to personalize the application 
+    and meet their wants and needs
+    
+  Functionality:
+    1. Select preferred currency
+    2. Change how budget data is displayed (graph type & color)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .button-container {
+      text-align: center; /* Center the buttons container horizontally */
+      padding: 10px;
+    }
+
+    .graph-button {
+      padding: 10px 20px; /* Add padding inside the buttons */
+      font-size: 16px; /* Increase the font size for better readability */
+      cursor: pointer; /* Change cursor to pointer on hover over the buttons */
+      background-color: #333;
+      color: #fff;
+      transition: background-color 0.3s ease;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .graph-button:hover {
+      background-color: #555;
+    }
+
+    /* Additional styles to ensure content is centered */
+    #main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .description {
+      font-size: 18px; /* Slightly larger font size for the description */
+      margin-bottom: 5px; /* Space before the buttons */
+    }
+    
+    #dropdown-container {
+      max-height: 200px; /* Adjust based on your preference */
+      overflow-y: auto; /* Enables vertical scrolling */
+      width: 100%; /* Adjust width as needed */
+      align-items: center;
+      padding: 10px;
+    }
+    select {
+      width: 100%; /* Makes the select box fill its container */
+      max-height: 180px; /* Limits the visible area, requiring scrolling */
+      overflow-y: scroll; /* Enables vertical scrolling within the select box */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Settings</h1>
+  </header>
+
+  <section id="main-content">
+    <p class="description">Select graph type:</p>
+    <div class="button-container">
+      <button class="graph-button" onclick="selectGraphType('line')">Line Graph</button>
+      <button class="graph-button" onclick="selectGraphType('bar')">Bar Graph</button>
+      <button class="graph-button" onclick="selectGraphType('pie')">Pie Chart</button>
+    </div>
+    
+    <!-- Currency Selector Dropdown -->
+    <div id="dropdown-container">
+      <p class="description">Select currency:</p>
+      <select id="currency-select" name="currency">
+        <option value="">--Please choose an option--</option>
+        <option value="USD">USD - United States Dollar</option>
+        <option value="EUR">EUR - Euro</option>
+        <option value="GBP">GBP - British Pound</option>
+        <option value="JPY">JPY - Japanese Yen</option>
+        <option value="CNY">CNY - Chinese Yuan</option>
+        <option value="INR">INR - Indian Rupee</option>
+        <option value="AUD">AUD - Australian Dollar</option>
+        <option value="CAD">CAD - Canadian Dollar</option>
+        <option value="SGD">SGD - Singapore Dollar</option>
+        <option value="CHF">CHF - Swiss Franc</option>
+        <option value="MYR">MYR - Malaysian Ringgit</option>
+        <option value="NZD">NZD - New Zealand Dollar</option>
+        <option value="THB">THB - Thai Baht</option>
+        <option value="RUB">RUB - Russian Ruble</option>
+        <option value="ZAR">ZAR - South African Rand</option>
+        <option value="BRL">BRL - Brazilian Real</option>
+        <option value="PHP">PHP - Philippine Peso</option>
+        <option value="IDR">IDR - Indonesian Rupiah</option>
+        <option value="TRY">TRY - Turkish Lira</option>
+        <option value="KRW">KRW - South Korean Won</option>
+        <option value="MXN">MXN - Mexican Peso</option>
+        <option value="NOK">NOK - Norwegian Krone</option>
+      </select>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Scrum Team 6 - CS 1530</p>
+  </footer>
+
+  <script src="../JavaScript/main.js"></script>
+</body>
+
+</html>

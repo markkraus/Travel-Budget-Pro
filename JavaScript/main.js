@@ -1,9 +1,11 @@
-const express = require('express') // Express.js
-const { connectToDb, getDb} = require('./db') // Connecting MongoDB functionality
 
-// Init app & middleware
-const app = express()
+/*         --main.js-- 
+ * 
+ * The driver of Travel Budget Pro. 
+ * 
+ */
 
+//<<<<<<< HEAD
 // Connect to the database
 let db
 connectToDb((err) => {
@@ -25,3 +27,5 @@ app.get('/users', (req, res) => {
 document.getElementById('toggle-button').addEventListener('click', function () {
   document.getElementById('taskbar').classList.toggle('collapsed');
 });
+//=======
+//>>>>>>> 2860af7bea0b46d87397e899542bb7b834d1792a
