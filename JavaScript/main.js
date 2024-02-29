@@ -20,3 +20,8 @@ connectToDb((err) => {
 app.get('/users', (req, res) => {
   res.json({mssg: "received"})
 })
+
+// Task bar
+document.getElementById('toggle-button').addEventListener('click', function () {
+  document.getElementById('taskbar').classList.toggle('collapsed');
+});

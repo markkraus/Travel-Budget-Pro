@@ -41,3 +41,12 @@ footer {
   font-size: 16px;
   cursor: pointer;
 }
+
+#toggle-button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  border: none;
+}
