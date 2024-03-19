@@ -1,59 +1,107 @@
-<!--        mainPage.html
-
-        (Author: Connor Gramling)
-
-  Overview:
-    Allows existing users to access 
-    all program functionality.
-    
-  Functionality:
-    1. Create, edit, or delete budgets
-    2. Create, view, or delete reports
-    3. Create, edit, or delete expenses
--->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+    }
+
+    #sidebar {
+      background-color: #333;
+      color: #fff;
+      width: 250px;
+      padding: 20px;
+      border-right: 2px solid #ccc;
+    }
+
+    #sidebar h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    #sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #sidebar li {
+      margin-bottom: 10px;
+    }
+
+    #sidebar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+    }
+
+    #sidebar a:hover {
+      background-color: #555;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      width: calc(100% - 250px);
+      /* Adjust for sidebar width */
+    }
+
+    #logout-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 20px;
+      flex: 1;
+    }
+  </style>
 </head>
 
 <body>
+  <div id="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="#">Create New Budget</a></li>
+      <li><a href="#">View Existing Budgets</a></li>
+      <li><a href="#">Create New Report</a></li>
+      <li><a href="#">View Existing Reports</a></li>
+      <li><a href="#">Edit Settings</a></li>
+    </ul>
+  </div>
+
   <header>
+    <button id="logout-button">Logout</button>
     <h1>Travel Budget Pro</h1>
     <p>Stay up-to-date on your travel expenses</p>
   </header>
 
-  <div class="taskbar-container">
-    
-    <nav id="taskbar">
-      <button class="button">Budget</button>
-      <button class="button">Create Report</button>
-      <button class="button"></button>
-      <button class="button">Settings</button>
-
-      <button id="toggle-button">&#8592;</button>
-    </nav>
-
-    <button id="toggle-button">&#8592;</button>
+  <div class="content">
+    <!-- Content loaded dynamically based on button clicks -->
   </div>
-
-  <main id="main-content">
-    <div id="main-content">
-      <div class="button top-left">Top Left</div>
-      <div class="button top-right">Top Right</div>
-      <div class="button bottom-left">Bottom Left</div>
-      <div class="button bottom-right">Bottom Right</div>
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Scrum Team 6 - CS 1530</p>
-  </footer>
 
   <script src="../JavaScript/main.js"></script> <!-- Link to JS program -->
 </body>
+
 </html>
