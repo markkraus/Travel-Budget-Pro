@@ -22,17 +22,3 @@ connectToDb((err) => {
 app.get('/users', (req, res) => {
   res.json({mssg: "received"})
 })
-
-// Task bar collapse
-document.getElementById('toggle-button').addEventListener('click', () => {
-  console.log("clicked");
-  const taskbar = document.getElementById('taskbar');
-  taskbar.classList.toggle('compressed');
-});
-
-//Task bar buttons
-document.querySelectorAll('.button').forEach(button => {
-  button.addEventListener('click', () => {
-    // Add your desired functionality here
-  });
-});
