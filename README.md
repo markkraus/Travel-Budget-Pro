@@ -275,3 +275,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 # Architectural Patterns
 1. MVC Pattern <br>
 2. Pipe and Filter
+
+# MongoDB Information
+
+**To access Mongo Shell from command line**: mongosh "mongodb+srv://mrk133:ovlP6h4epIrWyDcq@cluster0.o58ssex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"<br>
