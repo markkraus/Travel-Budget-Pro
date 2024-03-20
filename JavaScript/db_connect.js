@@ -1,3 +1,5 @@
+/* Connects to the MongoDB  server and returns a connection object. */
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 // Connection URI
