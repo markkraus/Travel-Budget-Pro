@@ -119,7 +119,41 @@
     </div>
   </div>
 
-  <script src="registerUser.js"></script>
+  <script>
+    // Function to handle form submission
+      function registerUser() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        var userData = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          username: username,
+          password: password
+        };
+
+        db.registeredusers.insertOne({
+          name: firstName + lastName,
+          email: email,
+          username: username,
+          password: password
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/register", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("User registered successfully!");
+          }
+        };
+        xhr.send(JSON.stringify(userData));
+      }
+  </script>
 
 </body>
 
