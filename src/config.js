@@ -1,3 +1,6 @@
+/** Manages  */
+
+// Importing the mongoose library 
 const mongoose = require("mongoose");
 
 // URI to connect to the MongoDB database      <username>  <password>
@@ -13,7 +16,7 @@ connect.then(() => {
 })
 
 // Blueprint for expected user input data to be pulled from the registration page
-const LoginSchema = new mongoose.Schema({
+const RegistrationSchema = new mongoose.Schema({
 
     firstname: {
     type: String, 
@@ -41,7 +44,9 @@ const LoginSchema = new mongoose.Schema({
 
 });
 
-const collection = new mongoose.model("registeredusers", LoginSchema);
+// Create a Mongoose collection to interact with MongoDB database
+const collection = new mongoose.model("registeredusers", RegistrationSchema);
 
+// Allows the collection to be accessible in other parts of the program
 module.exports = collection;
 
