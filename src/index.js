@@ -38,6 +38,7 @@ app.post("/registration", async (req, res) => {
     console.log(userdata);
 })
 
-app.listen( process.env.PORT, () => {
-    console.log('Server is running...');
-});
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Server running on Port: ${port}`);
+})
