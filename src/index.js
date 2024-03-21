@@ -13,7 +13,14 @@ app.set('view engine', 'ejs');
 
 app.use(express.static("public"));
 
+//Pulls html/ejs file for default site (no extension)
+
 app.get("/", (req, res) => {
+
+    res.render("login");
+});
+
+app.get("/login", (req, res) => {
 
     res.render("login");
 });
@@ -22,6 +29,7 @@ app.get("/registration", (req, res) => {
 
     res.render("registration");
 });
+
 
 //Register user
 
