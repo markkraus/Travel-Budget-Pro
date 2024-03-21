@@ -11,6 +11,8 @@ app.use(express.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
 
+res.set('Content-Type', 'text/html');
+
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
