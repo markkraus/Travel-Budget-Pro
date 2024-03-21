@@ -1,42 +1,61 @@
+/** Manages  */
+
+// Importing the mongoose library 
 const mongoose = require("mongoose");
+
+// URI to connect to the MongoDB database      <username>  <password>
 const connect = mongoose.connect("mongodb+srv://heu5:AgDsYabct7p56ksI@cluster0.o58ssex.mongodb.net/logindata");
 
 connect.then(() => {
-    console.log("it worked");
+  // Connection was successful
+  console.log("it worked");
 })
 .catch(() =>{
-    console.log("it didnt worked");
+  // Connection was unsuccessful
+  console.log("it didnt worked");
 })
 
-const LoginSchema = new mongoose.Schema({
-
-    firstname: {
+// Blueprint for expected user input data to be pulled from the registration page
+const RegistrationSchema = new mongoose.Schema({
+  firstname: {
     type: String, 
     required: true
-    },
+  },
 
-    lastname: {
+  lastname: {
     type: String, 
     required: true
-    },
+  },
 
-    email: {
+  email: {
     type: String, 
     required: true
-    },
+  },
 
-    username: {
+  username: {
     type: String, 
     required: true
-    },
-    password: {
+  },
+  password: {
     type: String,
     required: true
-    }
-
+  }
 });
 
-const collection = new mongoose.model("registeredusers", LoginSchema);
+// Blueprint for expected user input data to be pulled from the login page
+const LoginSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+})
 
-module.exports = collection;
+// Create a Mongoose collection to interact with MongoDB database
+const userCollection = new mongoose.model("registeredusers", RegistrationSchema);
 
+// Allows the collection to be accessible in other parts of the program
+module.exports = userCollection;

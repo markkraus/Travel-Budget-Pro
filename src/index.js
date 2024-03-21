@@ -1,31 +1,41 @@
+// Pulling libraries and dependencies
 const express = require('express');
-const path = require("path");
+const paths = require("path");
 const bcrypt = require("bcrypt");
-const collection = require("./config");
+const userCollection = require("./config");
 
+//  Creating an instance of the Express server
 const app = express();
 
+// 
 app.use(express.json());
 
 app.use(express.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
 
+app.use(express.static("public"));
 
-app.use('/login', express.static(path.join(__dirname, 'public')));
-
+// Pulls html/ejs file for default site (no extension)
 app.get("/", (req, res) => {
 
     res.render("login");
 });
 
+// Pulls login page
+app.get("/login", (req, res) => {
+
+    res.render("login");
+});
+
+// Pulls registration page
 app.get("/registration", (req, res) => {
 
     res.render("registration");
 });
 
-//Register user
 
+// User get added to MongoDB database
 app.post("/registration", async (req, res) => {
     const data = {
         firstname: req.body.firstName,
@@ -35,11 +45,12 @@ app.post("/registration", async (req, res) => {
         password: req.body.password
     }
 
-    const userdata = await collection.insertMany(data);
+    const userdata = await userCollection.insertMany(data); // Call to add the user
     console.log(userdata);
 })
 
-
-app.listen( process.env.PORT || 3000, () => {
-    console.log('Server is running...');
-});
+// Website is being hosted either on localhost or server
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Server running on Port: ${port}`);
+})
