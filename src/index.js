@@ -9,8 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
-// Assuming you've set the MONGO_URI environment variable on Heroku
-const mongoURI = process.env.MONGODB_URI;
 
 
 
