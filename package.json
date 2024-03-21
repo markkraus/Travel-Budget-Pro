@@ -1,15 +1,10 @@
 {
-  "name": "cs1530-project",
-  "version": "1.0.0",
-  "description": "[CS1530-Project](#cs1530-project)   * [Project Proposal](#project-proposal)   * [Functional Requirements](#functional-requirements)   * [Nonfunctional Requirements](#nonfunctional-requirements)   * [Software Interfaces](#software-interfaces)   * [Use Case List](#use-case-list)   * [Classes and Objects](#classes-and-objects)",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "mongodb": "^6.3.0"
+    "bcrypt": "^5.1.1",
+    "ejs": "^3.1.9",
+    "express": "^4.19.0",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.2",
+    "nodemon": "^3.1.0"
   }
 }

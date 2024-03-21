@@ -9,7 +9,8 @@
 # CS1530-Project
 [Trello Board](https://trello.com/invite/b/6lvhIZHT/ATTI73870a8c1608c5ebd80a1d8c5b67beea2B5FABAE/cs-1530-project) <br>
 [UML Diagrams](https://lucid.app/lucidchart/384a6b0b-4091-4ff8-afcc-241bd85cca15/edit?viewport_loc=-1933%2C-1025%2C2988%2C1660%2C0_0&invitationId=inv_6caa6a88-0067-4431-a453-9d6c825077ea) <br>
-[SRS Document](https://1drv.ms/w/s!AkJ1OcSfKKliixtpA1iiXtBMwvKP)
+[SRS Document](https://1drv.ms/w/s!AkJ1OcSfKKliixtpA1iiXtBMwvKP)<br>
+[Live Website](https://travelbudgetpro.net/login.html) 
 
 
 <br>
@@ -274,3 +275,7 @@ The Travel Expense Tracker will be constructed using modern web development tech
 # Architectural Patterns
 1. MVC Pattern <br>
 2. Pipe and Filter
+
+# MongoDB Information
+
+**To access Mongo Shell from command line**: mongosh "mongodb+srv://mrk133:ovlP6h4epIrWyDcq@cluster0.o58ssex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"<br>
