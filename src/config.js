@@ -17,36 +17,45 @@ connect.then(() => {
 
 // Blueprint for expected user input data to be pulled from the registration page
 const RegistrationSchema = new mongoose.Schema({
-
-    firstname: {
+  firstname: {
     type: String, 
     required: true
-    },
+  },
 
-    lastname: {
+  lastname: {
     type: String, 
     required: true
-    },
+  },
 
-    email: {
+  email: {
     type: String, 
     required: true
-    },
+  },
 
-    username: {
+  username: {
     type: String, 
     required: true
-    },
-    password: {
+  },
+  password: {
     type: String,
     required: true
-    }
-
+  }
 });
 
+// Blueprint for expected user input data to be pulled from the login page
+const LoginSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+})
+
 // Create a Mongoose collection to interact with MongoDB database
-const collection = new mongoose.model("registeredusers", RegistrationSchema);
+const userCollection = new mongoose.model("registeredusers", RegistrationSchema);
 
 // Allows the collection to be accessible in other parts of the program
-module.exports = collection;
-
+module.exports = userCollection;

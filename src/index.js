@@ -2,7 +2,7 @@
 const express = require('express');
 const paths = require("path");
 const bcrypt = require("bcrypt");
-const collection = require("./config");
+const userCollection = require("./config");
 
 //  Creating an instance of the Express server
 const app = express();
@@ -30,7 +30,7 @@ app.get("/login", (req, res) => {
 
 // Pulls registration page
 app.get("/registration", (req, res) => {
-  
+
     res.render("registration");
 });
 
@@ -45,7 +45,7 @@ app.post("/registration", async (req, res) => {
         password: req.body.password
     }
 
-    const userdata = await collection.insertMany(data); // Call to add the user
+    const userdata = await userCollection.insertMany(data); // Call to add the user
     console.log(userdata);
 })
 
