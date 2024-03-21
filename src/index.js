@@ -1,5 +1,5 @@
 const express = require('express');
-const paths = require("path");
+const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
 
@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: false}));
 app.set('view engine', 'ejs');
 
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
 
