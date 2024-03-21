@@ -87,6 +87,16 @@
       margin-left: 330px;
     }
 
+    .surface {
+      max-width: 100% !important;
+      height: auto !important;
+      box-shadow: none !important;
+      position: relative;
+      top: 60px; /* This will move the surface div down by the height of the header */
+      margin-bottom: 20px;
+      background-color: aqua;
+    }
+
     .content {
       background-color: red;
       padding: 20px;
@@ -107,17 +117,6 @@
 </head>
 
 <body>
-  <div id="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="#">Create New Budget</a></li>
-      <li><a href="#">View Existing Budgets</a></li>
-      <li><a href="#">Create Report</a></li>
-      <li><a href="#">View Existing Reports</a></li>
-      <li><a href="#">Edit Settings</a></li>
-    </ul>
-  </div>
-
   <header>
     <button id="logout-button">Logout</button>
     <div class="header-text-container"> <!-- Text container for independent positioning -->
@@ -125,10 +124,24 @@
       <p>Stay up-to-date on your travel expenses</p>
     </div>
   </header>
+  
+  <div id ="surface"> 
+    <div id="sidebar">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="#">Create New Budget</a></li>
+        <li><a href="#">View Existing Budgets</a></li>
+        <li><a href="#">Create Report</a></li>
+        <li><a href="#">View Existing Reports</a></li>
+        <li><a href="#">Edit Settings</a></li>
+      </ul>
+    </div>
 
-  <div class="content">
-    <!-- Content loaded dynamically based on button clicks -->
-  </div>
+    <div class="content">
+      <!-- Content loaded dynamically based on button clicks -->
+    </div>
+  </div> 
+  
 
   <footer>
     &copy; 2024 Travel Budget Pro
