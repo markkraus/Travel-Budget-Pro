@@ -1,31 +1,25 @@
 const express = require('express');
-const paths = require("path");
-const bcrypt = require("bcrypt");
+const path = require('path');
 const collection = require("./config");
 
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.use(express.urlencoded({extended: false}));
+// Set the directory where HTML files are located
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('view engine', 'ejs');
-
-
-app.use(express.static("public"));
-
+// Define routes
 app.get("/", (req, res) => {
-
-    res.render("login");
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 app.get("/registration", (req, res) => {
-
-    res.render("registration");
+    res.sendFile(path.join(__dirname, 'public', 'registration.html'));
 });
 
-//Register user
-
+// Register user
 app.post("/registration", async (req, res) => {
     const data = {
         firstname: req.body.firstName,
@@ -33,13 +27,14 @@ app.post("/registration", async (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
-    }
+    };
 
     const userdata = await collection.insertMany(data);
     console.log(userdata);
-})
+});
 
-
-app.listen( process.env.PORT || 3000, () => {
-    console.log('Server is running...');
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
