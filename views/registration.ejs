@@ -115,45 +115,9 @@
       <button type="submit">Register</button>
     </form>
     <div class="login-link">
-      <a href="login.html">Already have an account? Login here</a>
+      <a href="/login">Already have an account? Login here</a>
     </div>
   </div>
-
-  <script>
-    // Function to handle form submission
-      function registerUser() {
-        var firstName = document.getElementById("firstName").value;
-        var lastName = document.getElementById("lastName").value;
-        var email = document.getElementById("email").value;
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-
-        var userData = {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          username: username,
-          password: password
-        };
-
-        db.registeredusers.insertOne({
-          name: firstName + lastName,
-          email: email,
-          username: username,
-          password: password
-        });
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/register", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("User registered successfully!");
-          }
-        };
-        xhr.send(JSON.stringify(userData));
-      }
-  </script>
 
 </body>
 

@@ -11,6 +11,8 @@ app.use(express.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
 
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
 
     res.render("login");
@@ -35,6 +37,13 @@ app.post("/registration", async (req, res) => {
     const userdata = await collection.insertMany(data);
     console.log(userdata);
 })
-app.listen(process.env.PORT, () => {
+
+app.listen( process.env.PORT, () => {
     console.log('Server is running...');
 });
+ 
+
+app.listen( process.env.PORT, () => {
+    console.log('Server is running...');
+});
+
