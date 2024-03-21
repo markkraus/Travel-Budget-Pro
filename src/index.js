@@ -11,7 +11,6 @@ app.use(express.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
 
-res.set('Content-Type', 'text/html');
 
 app.use(express.static("public"));
 
@@ -40,12 +39,7 @@ app.post("/registration", async (req, res) => {
     console.log(userdata);
 })
 
-app.listen( process.env.PORT, () => {
-    console.log('Server is running...');
-});
- 
 
 app.listen( process.env.PORT, () => {
     console.log('Server is running...');
 });
-
