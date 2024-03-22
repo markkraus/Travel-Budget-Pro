@@ -11,7 +11,7 @@
 [UML Diagrams](https://lucid.app/lucidchart/384a6b0b-4091-4ff8-afcc-241bd85cca15/edit?viewport_loc=-1933%2C-1025%2C2988%2C1660%2C0_0&invitationId=inv_6caa6a88-0067-4431-a453-9d6c825077ea) <br>
 [SRS Document](https://1drv.ms/w/s!AkJ1OcSfKKliixtpA1iiXtBMwvKP)<br>
 [Live Website](https://travelbudgetpro.net/login.html) <br>
-[Heroku] (https://dashboard.heroku.com/apps/travel-budget-pro/activity) <br>
+[Heroku](https://dashboard.heroku.com/apps/travel-budget-pro/activity) <br>
 
 
 <br>
