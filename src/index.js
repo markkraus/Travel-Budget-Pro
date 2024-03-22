@@ -17,10 +17,6 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 // Pulls html/ejs file for default site (no extension)
-app.get("/", (req, res) => {
-
-    res.render("login");
-});
 
 // Pulls login page
 app.get("/login", (req, res) => {
