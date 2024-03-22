@@ -94,6 +94,6 @@ app.post("/login", async (req, res) => {
 //-------------------------------------------------------------------
 
 // Website is being hosted either on localhost or server
-app.listen( process.env.PORT, () => {
+app.listen( process.env.PORT || 3000, () => {
     console.log('Server is running...');
 });

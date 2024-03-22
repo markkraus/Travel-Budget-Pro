@@ -6,7 +6,7 @@
     "npm": "10.5.0"
   },
   "scripts": {
-    "start": "index.js"
+    "start": "node src/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

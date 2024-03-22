@@ -3,8 +3,8 @@
 // Importing the mongoose library 
 const mongoose = require("mongoose");
 
-// URI to connect to the MongoDB database      <username>  <password>
-const connect = mongoose.connect("mongodb+srv://heu5:AgDsYabct7p56ksI@cluster0.o58ssex.mongodb.net/logindata");
+// URI (heroku config var) to connect to the MongoDB database   
+const connect = mongoose.connect(process.env.MONGODB_URI);
 
 connect.then(() => {
   // Connection was successful
