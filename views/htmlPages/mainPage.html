@@ -87,6 +87,12 @@
       margin-left: 330px;
     }
 
+    .display {
+      margin-top: 300px; /* Adjust the margin to leave space for the header */
+      flex: 1;
+      background-color: grey;
+    }
+
     .content {
       background-color: red;
       padding: 20px;
@@ -107,16 +113,6 @@
 </head>
 
 <body>
-  <div id="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="budgetPage.html">Create New Budget</a></li> <!-- Update this line with your budget page filename -->
-      <li><a href="#">View Existing Budgets</a></li>
-      <li><a href="#">Create Report</a></li>
-      <li><a href="#">View Existing Reports</a></li>
-      <li><a href="#">Edit Settings</a></li>
-    </ul>
-  </div>
 
   <header>
     <button id="logout-button">Logout</button>
@@ -126,8 +122,21 @@
     </div>
   </header>
 
-  <div class="content">
-    <!-- Content loaded dynamically based on button clicks -->
+  <div id="display">
+    <div id="sidebar">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="budgetPage.html">Create New Budget</a></li> <!-- Update this line with your budget page filename -->
+        <li><a href="#">View Existing Budgets</a></li>
+        <li><a href="#">Create Report</a></li>
+        <li><a href="#">View Existing Reports</a></li>
+        <li><a href="#">Edit Settings</a></li>
+      </ul>
+    </div>
+  
+    <div class="content">
+      <!-- Content loaded dynamically based on button clicks -->
+    </div>
   </div>
 
   <footer>
