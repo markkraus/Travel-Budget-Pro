@@ -83,14 +83,15 @@
       cursor: pointer;
     }
 
-    /* .header-text-container {
-      text-align: left; 
-      margin-left: 330px;
-    } */
+    .header-text-container {
+      text-align: center; 
+      /* margin-left: 330px; */
+    }
 
     .display {
       margin-top: 150px; /* Adjust the margin to leave space for the header */
       flex: 1;
+      flex-direction: column;
       background-color: grey;
     }
 
@@ -98,6 +99,7 @@
       background-color: red;
       padding: 20px;
       flex: 1;
+      flex-direction: column;
       position: relative;
       left: 290px; /* Adjusted to start where sidebar ends */
       width: calc(100% - 330px); /* Adjusted for sidebar width */
@@ -124,7 +126,7 @@
   </header>
 
   <div id="display" class="display">
-    <div id="sidebar">
+    <nav id="sidebar">
       <h2>Menu</h2>
       <ul>
         <li><a href="budgetPage.html">Create New Budget</a></li> <!-- Update this line with your budget page filename -->
@@ -133,7 +135,7 @@
         <li><a href="#">View Existing Reports</a></li>
         <li><a href="#">Edit Settings</a></li>
       </ul>
-    </div>
+    </nav>
   
     <div class="content">
       <!-- Content loaded dynamically based on button clicks -->
