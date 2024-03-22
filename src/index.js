@@ -68,23 +68,6 @@ app.post("/registration", async (req, res) => {
 //-------------------------------------------------------------------
 //                            User Login
 //-------------------------------------------------------------------
-/*app.post("/login", async (req, res) => {
-    try{
-        const check = await collection.findOne({username: req.body.username});
-        if(!check){
-            res.send("Username does not exist");
-        }
-        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if(isPasswordMatch){
-            //Load main page
-            res.render("mainPage");
-        }else{
-            req.send("wrong password");
-        }
-    }catch{
-        res.send("wrong details");
-    }
-})*/
 
 app.post("/login", async (req, res) => {
     try {
@@ -111,7 +94,6 @@ app.post("/login", async (req, res) => {
 //-------------------------------------------------------------------
 
 // Website is being hosted either on localhost or server
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server running on Port: ${port}`);
-})
+app.listen( process.env.PORT, () => {
+    console.log('Server is running...');
+});
