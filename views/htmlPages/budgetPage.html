@@ -1,99 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Budget Pro - Budget Page</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Ensure this path is correct -->
+  <title>Travel Expenses</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-
-    #sidebar {
-      background-color: #333;
-      color: #fff;
-      width: 250px;
       padding: 20px;
-      border-right: 2px solid #ccc;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
     }
 
-    #sidebar h2 {
+    .expense-table {
+      margin-bottom: 30px;
+    }
+
+    .expense-table h2 {
       margin-top: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
       margin-bottom: 20px;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 10px;
+      border: 1px solid #000;
     }
 
-    #sidebar ul {
-      list-style-type: none;
-      padding: 0;
-      flex-grow: 1;
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
     }
 
-    #sidebar li {
+    th {
+      background-color: #f2f2f2;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    form input,
+    form select {
       margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    #sidebar a {
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 15px;
+    form button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
       border-radius: 5px;
-      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #45a049;
+    }
+
+    .add-expense,
+    .add-category {
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .category-inputs {
+      display: none;
+    }
+
+    .category-inputs.visible {
       display: block;
     }
 
-    #sidebar a:hover {
-      background-color: #555;
-    }
-
-    .content {
-      background-color: #fff; /* Change as needed */
-      padding: 20px;
-      flex: 1;
-      margin-left: 250px; /* Adjusted to start where sidebar ends */
+    .category-inputs input {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
     }
   </style>
 </head>
+
 <body>
-  <div id="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="#">Create New Budget</a></li>
-      <li><a href="#">View Existing Budgets</a></li>
-      <li><a href="#">Create Report</a></li>
-      <li><a href="#">View Existing Reports</a></li>
-      <li><a href="#">Edit Settings</a></li>
-    </ul>
+  <div class="expense-table" id="expense-table-1">
+    <h2>Transportation Expenses</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Currency</th>
+        </tr>
+      </thead>
+      <tbody class="expense-list" data-table="1">
+        <!-- Expenses will be dynamically added here -->
+      </tbody>
+    </table>
+    <div class="add-expense" data-table="1">+</div>
   </div>
 
-  <div class="content">
-    <!-- Place your budget content here -->
-    <div class="expense-table" id="expense-table-1">
-      <h2>Transportation Expenses</h2>
-      <!-- Transportation expenses table and content -->
-    </div>
-    <div class="expense-table" id="expense-table-2">
-      <h2>Accommodation Expenses</h2>
-      <!-- Accommodation expenses table and content -->
-    </div>
-    <div class="expense-table" id="category-table">
-      <h2>Expense Categories</h2>
-      <!-- Expense categories content -->
-    </div>
-    <!-- Add more content as needed -->
+  <div class="expense-table" id="expense-table-2">
+    <h2>Accommodation Expenses</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Currency</th>
+        </tr>
+      </thead>
+      <tbody class="expense-list" data-table="2">
+        <!-- Expenses will be dynamically added here -->
+      </tbody>
+    </table>
+    <div class="add-expense" data-table="2">+</div>
   </div>
 
-  <script src="../JavaScript/main.js"></script> <!-- Ensure this path is correct -->
+  <div class="expense-table" id="category-table">
+    <h2>Expense Categories</h2>
+    <div class="category-inputs">
+      <input type="text" placeholder="Enter category name">
+      <button class="add-category">Add Category</button>
+    </div>
+    <div class="add-category">+</div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Add expense row
+      document.querySelectorAll('.add-expense').forEach(function (button) {
+        button.addEventListener('click', function () {
+          const tableId = this.getAttribute('data-table');
+          const expenseList = document.querySelector(`.expense-list[data-table="${tableId}"]`);
+
+          // Create a new row
+          const newRow = document.createElement('tr');
+
+          // Populate the row with form fields
+          newRow.innerHTML = `
+            <td><input type="date" name="date" required></td>
+            <td><input type="number" name="amount" required></td>
+            <td><input type="text" name="description" required></td>
+            <td><select name="currency" required>
+              <option value="">Select Currency</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <!-- Add more currencies as needed -->
+            </select></td>
+          `;
+
+          // Append the new row to the expense list
+          expenseList.appendChild(newRow);
+        });
+      });
+
+      // Add category input fields
+      document.querySelectorAll('.add-category').forEach(function (button) {
+        button.addEventListener('click', function () {
+          const categoryInputs = document.querySelector('.category-inputs');
+          categoryInputs.classList.toggle('visible');
+        });
+      });
+    });
+  </script>
+  
 </body>
+
 </html>
