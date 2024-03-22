@@ -59,6 +59,7 @@ app.post("/registration", async (req, res) => {
         //Add user info to database
         const userdata = await collection.insertMany(data);
         console.log(userdata);
+        return res.render("login");
     }
 })
 //-------------------------------------------------------------------
@@ -94,15 +95,14 @@ app.post("/login", async (req, res) => {
 //-------------------------------------------------------------------
 //-------------------------------------------------------------------
 
-// Website is being hosted either on localhost or server
+/* Website is being hosted either on localhost or server
 app.listen( process.env.PORT || 3000, () => {
     console.log('Server is running...');
 });
 //*/
 
 
-/*const port = 3000;
+const port = 3000;
 app.listen(port, () => {
     console.log(`Server running on Port: ${port}`);
 })
-*/
