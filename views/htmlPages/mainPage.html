@@ -21,12 +21,15 @@
       background-color: #333;
       color: #fff;
       width: 250px;
+      max-width: 250px;
+      min-height: calc(100vh - 60px); /* Adjusted for header and footer height */
       padding: 20px;
       border-right: 2px solid #ccc;
       flex: 1; /* Occupy full height */
       display: flex;
       flex-direction: column; /* Arrange content vertically */
     }
+
 
     #sidebar h2 {
       margin-top: 0;
@@ -91,8 +94,11 @@
     .display {
       display: flex;
       margin-top: 150px; /* Adjust the margin to leave space for the header */
+      height: 100vh;
       flex: 1;
-      flex-direction: column;
+      flex-direction: row;
+      position: relative;
+      overflow-y: auto;
       background-color: grey;
     }
 
@@ -102,8 +108,9 @@
       flex: 1;
       flex-direction: column;
       position: relative;
-      left: 290px; /* Adjusted to start where sidebar ends */
-      width: calc(100% - 330px); /* Adjusted for sidebar width */
+      /*left: 290px; /* Adjusted to start where sidebar ends */
+      /*width: calc(100% - 330px); /* Adjusted for sidebar width */
+      width: 100%;
     }
 
     footer {
