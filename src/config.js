@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 // URI (heroku config var) to connect to the MongoDB database   
 const connect = mongoose.connect(process.env.MONGODB_URI);
 
+// URI for local testing
+//const connect = mongoose.connect(mongodb+srv://heu5:AgDsYabct7p56ksI@cluster0.o58ssex.mongodb.net/);
+
 connect.then(() => {
   // Connection was successful
   console.log("it worked");
