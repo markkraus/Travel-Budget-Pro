@@ -21,12 +21,15 @@
       background-color: #333;
       color: #fff;
       width: 250px;
+      max-width: 250px;
+      min-height: calc(100vh - 300px); /* Adjusted for header and footer height */
       padding: 20px;
       border-right: 2px solid #ccc;
       flex: 1; /* Occupy full height */
       display: flex;
       flex-direction: column; /* Arrange content vertically */
     }
+
 
     #sidebar h2 {
       margin-top: 0;
@@ -62,8 +65,9 @@
       background-color: #333;
       color: #fff;
       padding: 20px;
-      margin-left: 290px; /* Adjusted to start where sidebar ends */
-      width: calc(100% - 250px); /* Adjusted for sidebar width */
+      /* margin-left: 290px; /* Adjusted to start where sidebar ends */ 
+      /* width: calc(100% - 250px); /* Adjusted for sidebar width */ 
+      
       position: fixed;
       top: 0;
       width: 100%;
@@ -83,17 +87,30 @@
     }
 
     .header-text-container {
-      text-align: left; /* Align the text to the left */
-      margin-left: 330px;
+      text-align: center; 
+      /* margin-left: 330px; */
+    }
+
+    .display {
+      display: flex;
+      margin-top: 150px; /* Adjust the margin to leave space for the header */
+      height: 100vh;
+      flex: 1;
+      flex-direction: row;
+      position: relative;
+      overflow-y: auto;
+      background-color: grey;
     }
 
     .content {
       background-color: red;
       padding: 20px;
       flex: 1;
+      flex-direction: column;
       position: relative;
-      left: 290px; /* Adjusted to start where sidebar ends */
-      width: calc(100% - 330px); /* Adjusted for sidebar width */
+      /*left: 290px; /* Adjusted to start where sidebar ends */
+      /*width: calc(100% - 330px); /* Adjusted for sidebar width */
+      width: 100%;
     }
 
     footer {
@@ -107,16 +124,6 @@
 </head>
 
 <body>
-  <div id="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="#">Create New Budget</a></li>
-      <li><a href="#">View Existing Budgets</a></li>
-      <li><a href="#">Create Report</a></li>
-      <li><a href="#">View Existing Reports</a></li>
-      <li><a href="#">Edit Settings</a></li>
-    </ul>
-  </div>
 
   <header>
     <button id="logout-button">Logout</button>
@@ -126,8 +133,21 @@
     </div>
   </header>
 
-  <div class="content">
-    <!-- Content loaded dynamically based on button clicks -->
+  <div id="display" class="display">
+    <nav id="sidebar">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="budgetPage.html">Create New Budget</a></li> <!-- Update this line with your budget page filename -->
+        <li><a href="viewBudgets.html">View Existing Budgets</a></li>
+        <li><a href="createReport.html">Create Report</a></li>
+        <li><a href="viewReports.html">View Existing Reports</a></li>
+        <li><a href="#">Edit Settings</a></li>
+      </ul>
+    </nav>
+  
+    <div class="content">
+      <!-- Content loaded dynamically based on button clicks -->
+    </div>
   </div>
 
   <footer>
@@ -135,6 +155,8 @@
   </footer>
 
   <script src="../JavaScript/main.js"></script> <!-- Link to JS program -->
+
+
 </body>
 
 </html>
