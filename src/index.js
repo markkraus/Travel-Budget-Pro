@@ -52,9 +52,9 @@ app.post("/registration", async (req, res) => {
         res.send("User already exists. Please choose a different username.");
     }else{
         //Hash password 
-        const saltRounts = 10;
-        const hashedPassword = await bcrypt.hash(data.password, saltRounts);
-        data.password = hashedPassword;
+        //const saltRounts = 10;
+        //const hashedPassword = await bcrypt.hash(data.password, saltRounts);
+        //data.password = hashedPassword;
         
         //Add user info to database
         const userdata = await collection.insertMany(data);
@@ -76,8 +76,9 @@ app.post("/login", async (req, res) => {
             // Display error modal for username not found
             return res.render("login", { error: "Username does not exist" });
         }
-        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if (isPasswordMatch) {
+        //const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+        //if (isPasswordMatch) {
+        if (req.body.password == check.password) {
             // Load main page
             return res.render("mainPage");
         } else {
