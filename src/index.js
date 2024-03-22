@@ -1,7 +1,7 @@
 // Pulling libraries and dependencies
 const express = require('express');
 const paths = require("path");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 const collection = require("./config");
 
 //  Creating an instance of the Express server
