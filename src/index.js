@@ -2,12 +2,12 @@
 const express = require('express');
 const paths = require("path");
 const bcrypt = require("bcrypt");
-const userCollection = require("./config");
+const collection = require("./config");
 
 //  Creating an instance of the Express server
 const app = express();
 
-// 
+// convert data into json format
 app.use(express.json());
 
 app.use(express.urlencoded({extended: false}));
@@ -34,8 +34,9 @@ app.get("/registration", (req, res) => {
     res.render("registration");
 });
 
-
-// User get added to MongoDB database
+//-------------------------------------------------------------------
+//            User gets added to MongoDB database
+//-------------------------------------------------------------------
 app.post("/registration", async (req, res) => {
     const data = {
         firstname: req.body.firstName,
@@ -44,10 +45,70 @@ app.post("/registration", async (req, res) => {
         username: req.body.username,
         password: req.body.password
     }
+    //search database for username
+    const existingUser = await collection.findOne({username: data.username })
 
-    const userdata = await userCollection.insertMany(data); // Call to add the user
-    console.log(userdata);
+    if(existingUser){
+        res.send("User already exists. Please choose a different username.");
+    }else{
+        //Hash password 
+        const saltRounts = 10;
+        const hashedPassword = await bcrypt.hash(data.password, saltRounts);
+        data.password = hashedPassword;
+        
+        //Add user info to database
+        const userdata = await collection.insertMany(data);
+        console.log(userdata);
+    }
 })
+//-------------------------------------------------------------------
+//-------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------
+//                            User Login
+//-------------------------------------------------------------------
+/*app.post("/login", async (req, res) => {
+    try{
+        const check = await collection.findOne({username: req.body.username});
+        if(!check){
+            res.send("Username does not exist");
+        }
+        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+        if(isPasswordMatch){
+            //Load main page
+            res.render("mainPage");
+        }else{
+            req.send("wrong password");
+        }
+    }catch{
+        res.send("wrong details");
+    }
+})*/
+
+app.post("/login", async (req, res) => {
+    try {
+        const check = await collection.findOne({ username: req.body.username });
+        if (!check) {
+            // Display error modal for username not found
+            return res.render("login", { error: "Username does not exist" });
+        }
+        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+        if (isPasswordMatch) {
+            // Load main page
+            return res.render("mainPage");
+        } else {
+            // Display error modal for wrong password
+            return res.render("login", { error: "Wrong password" });
+        }
+    } catch (error) {
+        // Display error modal for wrong details
+        return res.render("login", { error: "Wrong details" });
+    }
+});
+
+//-------------------------------------------------------------------
+//-------------------------------------------------------------------
 
 // Website is being hosted either on localhost or server
 const port = 3000;
