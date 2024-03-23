@@ -1,14 +1,7 @@
-<!--        login.html
+<!--        
+  UI for user to enter login credentials
 
-        (Author: Mark Kraus)
-        
-  Overview:
-    Allows existing users to access 
-    the dashboard of their account.
-    
-  Functionality:
-    1. Login to access their dashboard
-    2. Access account registration
+  Author: Mark Kraus
 -->
 
 <!DOCTYPE html>
@@ -106,6 +99,51 @@
             <a href="/registration">New user? Register here</a>
         </div>
     </div>
+    <script>
+      // Function to handle form submission when Enter key is pressed
+      function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault(); // Prevent default form submission behavior
+          document.getElementById('loginForm').submit(); // Submit the form
+        }
+      }
+
+      // Attach event listeners to form fields for "keypress" event
+      document.querySelectorAll('#loginForm input').forEach(input => {
+        input.addEventListener('keypress', handleKeyPress);
+      });
+
+      // Function to handle form submission
+      function handleFormSubmit(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        const form = event.target; // Get the form element
+
+        // Perform additional validation if needed
+
+        // Submit the form using AJAX
+        fetch(form.action, {
+          method: form.method,
+          body: new FormData(form)
+        })
+          .then(response => {
+            if (response.redirected) {
+              // If redirected, navigate to the redirected URL
+              window.location.href = response.url;
+            } else {
+              // If not redirected, handle the response accordingly (e.g., display error message)
+              // You may need to implement this based on your server's response
+              console.log('Login successful');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+
+      // Attach event listener to form submission
+      document.getElementById('loginForm').addEventListener('submit', handleFormSubmit);
+    </script>
+
 </body>
 </html>
 
