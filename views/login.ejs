@@ -1,6 +1,9 @@
 <!--        
   UI for user to enter login credentials
 
+  Dependencies:
+   - AJAX
+
   Author: Mark Kraus
 -->
 
@@ -100,11 +103,12 @@
         </div>
     </div>
     <script>
-      // Function to handle form submission when Enter key is pressed
+      // Handles when Enter key is pressed
       function handleKeyPress(event) {
         if (event.key === 'Enter') {
+          // Submit the form
           event.preventDefault(); // Prevent default form submission behavior
-          document.getElementById('loginForm').submit(); // Submit the form
+          document.getElementById('loginForm').submit();
         }
       }
 
@@ -113,12 +117,10 @@
         input.addEventListener('keypress', handleKeyPress);
       });
 
-      // Function to handle form submission
+      // Handles form submission
       function handleFormSubmit(event) {
         event.preventDefault(); // Prevent default form submission behavior
         const form = event.target; // Get the form element
-
-        // Perform additional validation if needed
 
         // Submit the form using AJAX
         fetch(form.action, {
@@ -127,15 +129,15 @@
         })
           .then(response => {
             if (response.redirected) {
-              // If redirected, navigate to the redirected URL
+              // Redirected - navigate to the redirected URL
               window.location.href = response.url;
             } else {
-              // If not redirected, handle the response accordingly (e.g., display error message)
-              // You may need to implement this based on your server's response
+              // Not redirected - handle the response accordingly (e.g., display error message)
               console.log('Login successful');
             }
           })
           .catch(error => {
+            // Catch other errors that may occur
             console.error('Error:', error);
           });
       }
