@@ -1,10 +1,24 @@
-/** Manages  */
+/** 
+ * Manages user registration in a MongoDB database
+ * 
+ * Features:
+ *  - Establishes connection to the MongoDB database using Mongoose.
+ *  - Defines Mongoose Schemas for expected user input data.
+ *  - Creates and exports a mongoose model (collection) to be used elsewhere in the program.
+ * 
+ * Dependencies:
+ *  - Mongoose
+ *  - MongoDB
+ * 
+ * Author: Henry Uz & Mark Kraus
+  */
 
-// Importing the mongoose library 
+//-------------------------------------------------------------------
+//            Configuration
+//-------------------------------------------------------------------
+
+// Import the mongoose library 
 const mongoose = require("mongoose");
-
-// URI (heroku config var) to connect to the MongoDB database   
-//const connect = mongoose.connect(process.env.MONGODB_URI);
 
 // URI for local testing
 const connect = mongoose.connect("mongodb+srv://heu5:AgDsYabct7p56ksI@cluster0.o58ssex.mongodb.net/");
@@ -17,6 +31,10 @@ connect.then(() => {
   // Connection was unsuccessful
   console.log("it didnt worked");
 })
+
+//-------------------------------------------------------------------
+//            Schemas
+//-------------------------------------------------------------------
 
 // Blueprint for expected user input data to be pulled from the registration page
 const RegistrationSchema = new mongoose.Schema({
@@ -45,8 +63,11 @@ const RegistrationSchema = new mongoose.Schema({
   }
 });
 
+//-------------------------------------------------------------------
+//            Mongoose Model
+//-------------------------------------------------------------------
 
-// Create a Mongoose collection to interact with MongoDB database
+// Create a Mongoose model to interact with MongoDB database
 const collection = new mongoose.model("registeredusers", RegistrationSchema);
 
 // Allows the collection to be accessible in other parts of the program
