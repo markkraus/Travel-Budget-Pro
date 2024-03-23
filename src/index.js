@@ -1,22 +1,67 @@
+/**
+ * Handles HTTP requests and responses for the web application.
+ * Implements a Node.js server script using the Express.js framework.
+ * 
+ * Features:
+ *  - Express.js middleware for parsing JSON and URL-encoded data.
+ *  - Routing for rendering *.ejs pages.
+ *  - Password hashing using bcrypt.
+ * 
+ * Dependencies:
+ *  - Express.js
+ *  - Bcrypt
+ *  - MongoDB
+ * 
+ * Author: Henry Uz & Mark Kraus
+ */
+
+//-------------------------------------------------------------------
+//            Configuration
+//-------------------------------------------------------------------
+
 // Pulling libraries and dependencies
 const express = require('express');
 const paths = require("path");
 const bcrypt = require('bcrypt');
 const collection = require("./config");
 
-//  Creating an instance of the Express server
+// Create an instance of the Express server
 const app = express();
 
-// convert data into json format
+// Convert user input data into JSON format
 app.use(express.json());
 
+// Set up middleware to parse user input data
 app.use(express.urlencoded({extended: false}));
 
+// Use EJS to render the UI pages
 app.set('view engine', 'ejs');
 
+// Configure Express to send files (HTML, JavaScript, etc.) directly to the client
 app.use(express.static("public"));
 
-// Pulls html/ejs file for default site (no extension)
+//-------------------------------------------------------------------
+//            PORT Configuration
+//-------------------------------------------------------------------
+
+// Server host
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server is running...');
+});
+
+// Local host
+/*
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Server running on Port: ${port}`);
+})
+*/
+
+//-------------------------------------------------------------------
+//            Route Handlers
+//-------------------------------------------------------------------
+
+// Pulls login.ejs file for default site (no extension)
 app.get("/", (req, res) => {
 
     res.render("login");
@@ -35,7 +80,7 @@ app.get("/registration", (req, res) => {
 });
 
 //-------------------------------------------------------------------
-//            User gets added to MongoDB database
+//            Add user to MongoDB database
 //-------------------------------------------------------------------
 app.post("/registration", async (req, res) => {
     const data = {
@@ -62,9 +107,6 @@ app.post("/registration", async (req, res) => {
         return res.render("login");
     }
 })
-//-------------------------------------------------------------------
-//-------------------------------------------------------------------
-
 
 //-------------------------------------------------------------------
 //                            User Login
@@ -91,20 +133,3 @@ app.post("/login", async (req, res) => {
         return res.render("login", { error: "Wrong details" });
     }
 });
-
-//-------------------------------------------------------------------
-//-------------------------------------------------------------------
-
-//Website is being hosted either on localhost or server
-app.listen( process.env.PORT || 3000, () => {
-    console.log('Server is running...');
-});
-///*
-
-/*
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server running on Port: ${port}`);
-})
-*/
-
