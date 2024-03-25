@@ -124,39 +124,42 @@
 </head>
 
 <body>
+
   <header>
     <div class="logout-button">
       <a href="/login">
           <button id="logout-button">Logout</button>
       </a>
-  </div>
+    </div>
     <div class="header-text-container"> <!-- Text container for independent positioning -->
       <h1>Travel Budget Pro</h1>
       <p>Stay up-to-date on your travel expenses</p>
     </div>
   </header>
-  
-  <div id ="surface"> 
-    <div id="sidebar">
+
+  <div id="display" class="display">
+    <nav id="sidebar">
       <h2>Menu</h2>
       <ul>
-        <li><a href="#">Create New Budget</a></li>
-        <li><a href="#">View Existing Budgets</a></li>
-        <li><a href="#">Create Report</a></li>
-        <li><a href="#">View Existing Reports</a></li>
+        <li><a href="createBudget.html">Create New Budget</a></li> <!-- Update this line with your budget page filename -->
+        <li><a href="viewBudgets.html">View Existing Budgets</a></li>
+        <li><a href="createReport.html">Create Report</a></li>
+        <li><a href="viewReports.html">View Existing Reports</a></li>
         <li><a href="#">Edit Settings</a></li>
       </ul>
-    </div>
-
+    </nav>
+  
     <div class="content">
       <!-- Content loaded dynamically based on button clicks -->
     </div>
-  </div> 
-  
+  </div>
 
   <footer>
     &copy; 2024 Travel Budget Pro
   </footer>
+
+  <script src="../JavaScript/main.js"></script> <!-- Link to JS program -->
+
 
 </body>
 
