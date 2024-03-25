@@ -126,7 +126,7 @@ app.post("/registration", async (req, res) => {
 //-------------------------------------------------------------------
 //                            User Login
 //-------------------------------------------------------------------
-app.post("/login", async (req, res) => {
+app.post("/home", async (req, res) => {
     try {
       // Search the database for a username
       const check = await collection.findOne({ username: req.body.username });
