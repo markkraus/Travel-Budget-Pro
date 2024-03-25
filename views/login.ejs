@@ -4,7 +4,7 @@
   Dependencies:
    - AJAX
 
-  Author: Mark Kraus
+  Author: Mark Kraus & Henry Uz
 -->
 
 <!DOCTYPE html>
@@ -15,10 +15,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Budget Pro - Login</title>
   <style>
+    
     body {
       font-family: Arial, sans-serif;
-      background-size: cover;
-      background-repeat: no-repeat;
       margin: 0;
       padding: 0;
       display: flex;
@@ -98,12 +97,20 @@
         </form>
         <!--
           error message in notes goes here
-      -->
+        -->
         <div class="register-link">
             <a href="/registration">New user? Register here</a>
         </div>
     </div>
     <script>
+
+    //----------------Randomize Background Pic------------------
+    var randomImageNumber = Math.floor(Math.random() * 23) + 1;
+    var body = document.querySelector('body');
+    body.style.backgroundImage = 'url("cities/' + randomImageNumber + '.jpg")';
+    body.style.backgroundSize = 'cover';
+    //----------------------------------------------------------
+
       // Handles when Enter key is pressed
       function handleKeyPress(event) {
         if (event.key === 'Enter') {
@@ -120,6 +127,8 @@
 
       // Handles form submission
       function handleFormSubmit(event) {
+        console.log('Login successful');
+
         event.preventDefault(); // Prevent default form submission behavior
         const form = event.target; // Get the form element
 
@@ -145,20 +154,6 @@
 
       // Attach event listener to form submission
       document.getElementById('loginForm').addEventListener('submit', handleFormSubmit);
-
-      function changeBackground() {
-      var randomNumber = getRandomInt(1, 22); // Generate a random number between 1 and 22
-      var imageUrl = 'cities/' + randomNumber + '.jpg'; // Construct the image URL
-      document.body.style.backgroundImage = 'url("' + imageUrl + '")'; // Set the background image
-    }
-
-    // Call the function to change background when the page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      changeBackground();
-    });
     </script>
-
 </body>
-</html>
-
 </html>

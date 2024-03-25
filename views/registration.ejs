@@ -1,6 +1,6 @@
 <!--    registration.html
 
-        (Author: Mark Kraus)
+        Author: Mark Kraus & Henry Uz
 
   Overview:
     Allows new users to register an
@@ -20,6 +20,7 @@
   <title>Travel Budget Pro - Register</title>
   <link rel="stylesheet" href="/styles.css">
   <style>
+    
     .container {
       width: 100%;
       max-width: 400px;
@@ -28,6 +29,16 @@
       border-radius: 10px;
       background-color: #ffffff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     h1 {
@@ -88,6 +99,14 @@
 </head>
 
 <body>
+  <script>
+  //----------------Randomize Background Pic------------------
+  var randomImageNumber = Math.floor(Math.random() * 23) + 1;
+  var body = document.querySelector('body');
+  body.style.backgroundImage = 'url("cities/' + randomImageNumber + '.jpg")';
+  body.style.backgroundSize = 'cover';
+  //----------------------------------------------------------
+</script>
 
   <div class="container">
     <h1>Register An Account</h1>

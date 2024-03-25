@@ -44,13 +44,13 @@ app.use(express.static("public"));
 //            PORT Configuration
 //-------------------------------------------------------------------
 
-// Server host
+//Server host
 app.listen(process.env.PORT || 3000, () => {
   console.log('Server is running...');
 });
 
-// Local host
 /*
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server running on Port: ${port}`);
@@ -63,19 +63,7 @@ app.listen(port, () => {
 
 // Pulls login.ejs file for default site (no extension)
 app.get("/", (req, res) => {
-
   res.render("login");
-    // Generate a random number between 1 and 22
-    var randomNumber = Math.floor(Math.random() * 22) + 1;
-  
-    // Construct the image URL based on the random number
-    var imageUrl = 'cities/' + randomNumber + '.jpg';
-  
-    // Set the background image of the body
-    document.body.style.backgroundImage = 'url("' + imageUrl + '")';
-    document.body.style.backgroundSize = 'cover'; // Adjust background size to cover the entire viewport
-    document.body.style.backgroundRepeat = 'no-repeat'; // Ensure background image is not repeated
-
 });
 
 // Pulls login page
