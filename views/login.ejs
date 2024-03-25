@@ -17,7 +17,6 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('cities/1.jpg'); 
       background-size: cover;
       background-repeat: no-repeat;
       margin: 0;
@@ -146,6 +145,15 @@
 
       // Attach event listener to form submission
       document.getElementById('loginForm').addEventListener('submit', handleFormSubmit);
+
+    function changeBackground() {
+      var randomNumber = getRandomInt(1, 22); // Generate a random number between 1 and 22
+      var imageUrl = 'cities/' + randomNumber + '.jpg'; // Construct the image URL
+      document.body.style.backgroundImage = 'url("' + imageUrl + '")'; // Set the background image
+    }
+
+    // Call the function to change background when the page loads
+    changeBackground();
     </script>
 
 </body>
