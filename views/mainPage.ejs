@@ -21,12 +21,15 @@
       background-color: #333;
       color: #fff;
       width: 250px;
+      max-width: 250px;
+      min-height: calc(100vh - 300px); /* Adjusted for header and footer height */
       padding: 20px;
       border-right: 2px solid #ccc;
       flex: 1; /* Occupy full height */
       display: flex;
       flex-direction: column; /* Arrange content vertically */
     }
+
 
     #sidebar h2 {
       margin-top: 0;
@@ -62,8 +65,9 @@
       background-color: #333;
       color: #fff;
       padding: 20px;
-      margin-left: 290px; /* Adjusted to start where sidebar ends */
-      width: calc(100% - 250px); /* Adjusted for sidebar width */
+      /* margin-left: 290px; /* Adjusted to start where sidebar ends */ 
+      /* width: calc(100% - 250px); /* Adjusted for sidebar width */ 
+      
       position: fixed;
       top: 0;
       width: 100%;
@@ -83,27 +87,30 @@
     }
 
     .header-text-container {
-      text-align: left; /* Align the text to the left */
-      margin-left: 330px;
+      text-align: center; 
+      /* margin-left: 330px; */
     }
 
-    .surface {
-      max-width: 100% !important;
-      height: auto !important;
-      box-shadow: none !important;
+    .display {
+      display: flex;
+      margin-top: 150px; /* Adjust the margin to leave space for the header */
+      height: 100vh;
+      flex: 1;
+      flex-direction: row;
       position: relative;
-      top: 60px; /* This will move the surface div down by the height of the header */
-      margin-bottom: 20px;
-      background-color: aqua;
+      overflow-y: auto;
+      background-color: grey;
     }
 
     .content {
       background-color: red;
       padding: 20px;
       flex: 1;
+      flex-direction: column;
       position: relative;
-      left: 290px; /* Adjusted to start where sidebar ends */
-      width: calc(100% - 330px); /* Adjusted for sidebar width */
+      /*left: 290px; /* Adjusted to start where sidebar ends */
+      /*width: calc(100% - 330px); /* Adjusted for sidebar width */
+      width: 100%;
     }
 
     footer {
