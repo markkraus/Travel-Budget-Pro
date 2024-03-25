@@ -78,6 +78,18 @@ app.get("/registration", (req, res) => {
     res.render("registration");
 });
 
+// Pulls home page
+app.get("/home", (req, res) => {
+
+  res.render("home");
+});
+
+// Pulls settings page
+app.get("/setting", (req, res) => {
+
+  res.render("settings");
+});
+
 //-------------------------------------------------------------------
 //            User Registration
 //-------------------------------------------------------------------
@@ -127,7 +139,7 @@ app.post("/login", async (req, res) => {
       const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
       if (isPasswordMatch) {
             // Correct password - redirect to dashboard
-            return res.render("mainPage");
+            return res.render("home");
         } else {
             // Incorrect passward - indicate to the user
             return res.render("login", { error: "Wrong password" });
