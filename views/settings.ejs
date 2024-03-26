@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <!--        settings.ejs
 
         (Author: Henry Uz)
@@ -11,110 +13,273 @@
     2. Change how budget data is displayed (graph type & color)
 -->
 
+>>>>>>> b608507475206e67f4c169f1dac3a3244c785e8c
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings</title>
-  <link rel="stylesheet" href="/styles.css">
+  <title>Travel Budget Pro</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    .button-container {
-      text-align: center; /* Center the buttons container horizontally */
-      padding: 10px;
-    }
-
-    .graph-button {
-      padding: 10px 20px; /* Add padding inside the buttons */
-      font-size: 16px; /* Increase the font size for better readability */
-      cursor: pointer; /* Change cursor to pointer on hover over the buttons */
+    header {
       background-color: #333;
       color: #fff;
-      transition: background-color 0.3s ease;
-      border: none;
-      border-radius: 5px;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 109px;
+      border-bottom: 2px solid #ccc;
+      align-items: center;
+    } 
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      min-height: 100vh; /* Set minimum height to full viewport height */
+      flex-direction: column; /* Make sure content stretches vertically */
     }
 
-    .graph-button:hover {
+    #sidebar {
+      background-color: #333;
+      color: #fff;
+      width: 200px;
+      max-width: 200px;
+      min-height: calc(100vh - 300px); /* Adjusted for header and footer height */
+      padding: 20px;
+      border-right: 2px solid #ccc;
+      flex: 1; /* Occupy full height */
+      display: flex;
+      flex-direction: column; /* Arrange content vertically */
+    }
+
+
+    #sidebar h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    #sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      flex-grow: 1; /* Grow to fill available space */
+    }
+
+    #sidebar li {
+      margin-bottom: 10px;
+    }
+
+    #sidebar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+    }
+
+    #sidebar cur {
+      color: #555;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+      background-color: #fff;
+      font-weight: bold;
+    }
+
+    #sidebar a:hover {
       background-color: #555;
     }
 
-    /* Additional styles to ensure content is centered */
-    #main-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+    .welcome-message {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      max-width: 300px;
+      color: #fff;
+      padding: 10px 20px;
+      text-wrap: normal;
     }
 
-    .description {
-      font-size: 18px; /* Slightly larger font size for the description */
-      margin-bottom: 5px; /* Space before the buttons */
+    #logout-button {
+      position: absolute;
+      top: 20px;
+      left: 90%;
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    
-    #dropdown-container {
-      max-height: 200px; /* Adjust based on your preference */
-      overflow-y: auto; /* Enables vertical scrolling */
-      width: 100%; /* Adjust width as needed */
+
+    .header-text-container {
+      text-align: center; 
+      /* margin-left: 330px; */
+    }
+
+    .display {
+      display: flex;
+      margin-top: 150px; /* Adjust the margin to leave space for the header */
+      height: 100vh;
+      flex: 1;
+      flex-direction: row;
+      position: relative;
+      overflow-y: auto;
+      background-color: grey;
+    }
+
+    .content {
+      background-color: #264042;
+      padding: 20px;
+      flex: 1;
+      flex-direction: column;
+      position: relative;
+      /*left: 290px; /* Adjusted to start where sidebar ends */
+      /*width: calc(100% - 330px); /* Adjusted for sidebar width */
+      width: 100%;
+    }
+
+    .budgets-header {
       align-items: center;
-      padding: 10px;
+      color: var(--ds-text-subtle, #fff);
+      display: flex;
+      flex: 1;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+      margin: 20px 30px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
-    select {
-      width: 100%; /* Makes the select box fill its container */
-      max-height: 180px; /* Limits the visible area, requiring scrolling */
-      overflow-y: scroll; /* Enables vertical scrolling within the select box */
+
+    .budget-selection-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .budget-selection-item {
+      margin: 0 2% 2% 0;
+      padding: 0;
+      transform: translate(0);
+      width: 23.5%;
+      /* 
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer; */
+    }
+
+    .budget-selection-create-new {
+      margin: 0 2% 2% 0;
+      padding: 0;
+      transform: translate(0);
+      /* width: 23.5%;
+      background-color: green;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer; */
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+      margin-top: auto; /* Push footer to bottom */
     }
   </style>
 </head>
 
 <body>
+
   <header>
-    <h1>Settings</h1>
+    <div class="welcome-message">
+      <h2>Welcome Conner Gyatt</h2>
+    </div>
+    <div class="logout-button">
+      <a href="/login">
+          <button id="logout-button">Logout</button>
+      </a>
+    </div>
+    <div class="header-text-container"> <!-- Text container for independent positioning -->
+      <h1>Travel Budget Pro</h1>
+      <p>Stay up-to-date on your travel expenses</p>
+    </div>
   </header>
 
-  <section id="main-content">
-    <p class="description">Select graph type:</p>
-    <div class="button-container">
-      <button class="graph-button" onclick="selectGraphType('line')">Line Graph</button>
-      <button class="graph-button" onclick="selectGraphType('bar')">Bar Graph</button>
-      <button class="graph-button" onclick="selectGraphType('pie')">Pie Chart</button>
+  <div id="display" class="display">
+    <nav id="sidebar">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/createBudget">Create New Budget</a></li>
+        <li><a href="/createReport">Create Report</a></li>
+        <li><a href="/viewReports">View Existing Reports</a></li>
+        <li><cur>Settings</cur></li> 
+      </ul>
+    </nav>
+  
+    <div class="content">
+      <!-- Content loaded dynamically based on button clicks -->
+      <p class="description">Select graph type:</p>
+      <div class="button-container">
+        <button class="graph-button" onclick="selectGraphType('line')">Line Graph</button>
+        <button class="graph-button" onclick="selectGraphType('bar')">Bar Graph</button>
+        <button class="graph-button" onclick="selectGraphType('pie')">Pie Chart</button>
+      </div>
+      <div id="dropdown-container">
+        <p class="description">Select currency:</p>
+        <select id="currency-select" name="currency">
+          <option value="">--Please choose an option--</option>
+          <option value="USD">USD - United States Dollar</option>
+          <option value="EUR">EUR - Euro</option>
+          <option value="GBP">GBP - British Pound</option>
+          <option value="JPY">JPY - Japanese Yen</option>
+          <option value="CNY">CNY - Chinese Yuan</option>
+          <option value="INR">INR - Indian Rupee</option>
+          <option value="AUD">AUD - Australian Dollar</option>
+          <option value="CAD">CAD - Canadian Dollar</option>
+          <option value="SGD">SGD - Singapore Dollar</option>
+          <option value="CHF">CHF - Swiss Franc</option>
+          <option value="MYR">MYR - Malaysian Ringgit</option>
+          <option value="NZD">NZD - New Zealand Dollar</option>
+          <option value="THB">THB - Thai Baht</option>
+          <option value="RUB">RUB - Russian Ruble</option>
+          <option value="ZAR">ZAR - South African Rand</option>
+          <option value="BRL">BRL - Brazilian Real</option>
+          <option value="PHP">PHP - Philippine Peso</option>
+          <option value="IDR">IDR - Indonesian Rupiah</option>
+          <option value="TRY">TRY - Turkish Lira</option>
+          <option value="KRW">KRW - South Korean Won</option>
+          <option value="MXN">MXN - Mexican Peso</option>
+          <option value="NOK">NOK - Norwegian Krone</option>
+        </select>
+      </div>
     </div>
-    
-    <!-- Currency Selector Dropdown -->
-    <div id="dropdown-container">
-      <p class="description">Select currency:</p>
-      <select id="currency-select" name="currency">
-        <option value="">--Please choose an option--</option>
-        <option value="USD">USD - United States Dollar</option>
-        <option value="EUR">EUR - Euro</option>
-        <option value="GBP">GBP - British Pound</option>
-        <option value="JPY">JPY - Japanese Yen</option>
-        <option value="CNY">CNY - Chinese Yuan</option>
-        <option value="INR">INR - Indian Rupee</option>
-        <option value="AUD">AUD - Australian Dollar</option>
-        <option value="CAD">CAD - Canadian Dollar</option>
-        <option value="SGD">SGD - Singapore Dollar</option>
-        <option value="CHF">CHF - Swiss Franc</option>
-        <option value="MYR">MYR - Malaysian Ringgit</option>
-        <option value="NZD">NZD - New Zealand Dollar</option>
-        <option value="THB">THB - Thai Baht</option>
-        <option value="RUB">RUB - Russian Ruble</option>
-        <option value="ZAR">ZAR - South African Rand</option>
-        <option value="BRL">BRL - Brazilian Real</option>
-        <option value="PHP">PHP - Philippine Peso</option>
-        <option value="IDR">IDR - Indonesian Rupiah</option>
-        <option value="TRY">TRY - Turkish Lira</option>
-        <option value="KRW">KRW - South Korean Won</option>
-        <option value="MXN">MXN - Mexican Peso</option>
-        <option value="NOK">NOK - Norwegian Krone</option>
-      </select>
-    </div>
-  </section>
+  </div>
 
   <footer>
-    <p>&copy; 2024 Scrum Team 6 - CS 1530</p>
+    &copy; 2024 Travel Budget Pro
   </footer>
+
+  <script src="../JavaScript/main.js"></script> <!-- Link to JS program -->
+
+
 </body>
 
 </html>
