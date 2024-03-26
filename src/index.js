@@ -85,7 +85,7 @@ app.get("/home", (req, res) => {
 });
 
 // Pulls settings page
-app.get("/setting", (req, res) => {
+app.get("/settings", (req, res) => {
 
   res.render("settings");
 });
