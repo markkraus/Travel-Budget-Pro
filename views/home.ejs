@@ -57,6 +57,17 @@
       display: block;
     }
 
+    #sidebar cur {
+      color: #555;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+      background-color: #fff;
+      font-weight: bold;
+    }
+
     #sidebar a:hover {
       background-color: #555;
     }
@@ -77,7 +88,7 @@
     #logout-button {
       position: absolute;
       top: 20px;
-      left: 20px;
+      right: 60px;
       background-color: #d9534f;
       color: #fff;
       border: none;
@@ -141,11 +152,11 @@
     <nav id="sidebar">
       <h2>Menu</h2>
       <ul>
-        <li><a href="createBudget.html">Create New Budget</a></li> <!-- Update this line with your budget page filename -->
-        <li><a href="viewBudgets.html">View Existing Budgets</a></li>
-        <li><a href="createReport.html">Create Report</a></li>
-        <li><a href="viewReports.html">View Existing Reports</a></li>
-        <li><a href="#">Edit Settings</a></li>
+        <li><cur>Home</cur></li> 
+        <li><a href="/createBudget">Create New Budget</a></li>
+        <li><a href="/createReport">Create Report</a></li>
+        <li><a href="/viewReports">View Existing Reports</a></li>
+        <li><a href="/settings">Edit Settings</a></li>
       </ul>
     </nav>
   
