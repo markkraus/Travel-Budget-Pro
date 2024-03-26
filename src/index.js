@@ -44,18 +44,18 @@ app.use(express.static("public"));
 //            PORT Configuration
 //-------------------------------------------------------------------
 
-//Server host
+/*Server host
 app.listen(process.env.PORT || 3000, () => {
   console.log('Server is running...');
 });
+*/
 
 
-/*
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server running on Port: ${port}`);
 })
-*/
+
 
 //-------------------------------------------------------------------
 //            Route Handlers
@@ -88,6 +88,26 @@ app.get("/home", (req, res) => {
 app.get("/settings", (req, res) => {
 
   res.render("settings");
+});
+
+app.get("/createBudget", (req, res) => {
+
+  res.render("createBudget");
+});
+
+app.get("/createReport", (req, res) => {
+
+  res.render("createReport");
+});
+
+app.get("/existingReports", (req, res) => {
+
+  res.render("existingReports");
+});
+
+app.get("/viewReports", (req, res) => {
+
+  res.render("existingReports");
 });
 
 //-------------------------------------------------------------------
