@@ -1,3 +1,16 @@
+<!--        home.html
+
+        (Author: Connor Gramling)
+
+  Overview:
+    Allows existing users to access the rest of the website
+    and see their existing budgets as well as create new one.
+    
+  Functionality:
+    1. Logout
+    2. 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,7 +89,7 @@
       position: absolute;
       top: 20px;
       left: 20px;
-      max-width: 300px;
+      max-width: 20%;
       color: #fff;
       padding: 10px 20px;
       text-wrap: normal;
@@ -85,7 +98,7 @@
     #logout-button {
       position: absolute;
       top: 20px;
-      left: 90%;
+      right: 60px;
       background-color: #d9534f;
       color: #fff;
       border: none;
@@ -138,40 +151,55 @@
     .budget-selection-list {
       display: flex;
       flex-wrap: wrap;
+      flex-direction: row;
       justify-content: flex-start;
+      padding: 0;
     }
 
     .budget-selection-item {
-      margin: 0 2% 2% 0;
+      background-color: #d9534f;
+      border-radius: 5px;
+      margin: 0 5% 5% 0; /* Spreads out the tiles */
       padding: 0;
       transform: translate(0);
-      width: 23.5%;
-      /* 
-      background-color: #d9534f;
+      width: 25%;
+      
+    }
+
+    .budget-tile {
+      background-size: cover;
       color: #fff;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
-      cursor: pointer; */
+      text-align: center;
+      cursor: pointer;
     }
 
     .budget-selection-create-new {
-      margin: 0 2% 2% 0;
+      background-color: #278d2e;
+      border-radius: 5px;
+      margin: 0 5% 5% 0; /* Spreads out the tiles */
       padding: 0;
       transform: translate(0);
-      /* width: 23.5%;
-      background-color: green;
+      width: 23.5%;
+    }
+
+    .create-budget-tile {
+      background-size: cover;
       color: #fff;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
-      cursor: pointer; */
+      text-align: center;
+      cursor: pointer;
     }
 
     footer {
       background-color: #333;
       color: #fff;
       padding: 10px 20px;
+      border-top: 2px solid #ccc;
       text-align: center;
       margin-top: auto; /* Push footer to bottom */
     }
@@ -199,8 +227,8 @@
     <nav id="sidebar">
       <h2>Menu</h2>
       <ul>
+        <li><a href="home.html">Home</a></li>
         <li><a href="createBudget.html">Create New Budget</a></li> <!-- Update this line with your budget page filename -->
-        <li><a href="viewBudgets.html">View Existing Budgets</a></li>
         <li><a href="createReport.html">Create Report</a></li>
         <li><a href="viewReports.html">View Existing Reports</a></li>
         <li><a href="#">Edit Settings</a></li>
@@ -214,10 +242,10 @@
       </h3>
       <ul class="budget-selection-list">
         <li class="budget-selection-item">
-          <a class="budget-tile" href=""></a>Budget 1
+          <a class="budget-tile" href="">Budget 1</a>
         </li>
         <li class="budget-selection-create-new">
-          <a class = "create-budget-tile" href=""></a>Create New Budget
+          <a class = "create-budget-tile" href="">Create New Budget</a>
         </li>
       </ul>
     </div>
