@@ -69,14 +69,13 @@ app.listen(port, () => {
 //            Route Handlers
 //-------------------------------------------------------------------
 
-// Define middleware function to retrieve user's first name from session
+// Middleware function to retrieve user's first name from session
 const retrieveFirstName = (req, res, next) => {
-  // Check if the first name is stored in the session
   if (req.session.firstName) {
-    // If the first name exists in the session, make it available in locals
+    // first name exists in the session - make it available in locals
     res.locals.firstName = req.session.firstName;
   }
-  next(); // Call next to proceed to the next middleware or route handler
+  next(); // next route handler
 };
 
 // Apply to all routese
