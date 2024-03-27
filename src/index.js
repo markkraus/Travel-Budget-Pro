@@ -32,7 +32,7 @@ const app = express();
 app.use(express.json());
 
 // Set up middleware to parse user input data
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // Use EJS to render the UI pages
 app.set('view engine', 'ejs');
@@ -69,13 +69,13 @@ app.get("/", (req, res) => {
 // Pulls login page
 app.get("/login", (req, res) => {
 
-    res.render("login");
+  res.render("login");
 });
 
 // Pulls registration page
 app.get("/registration", (req, res) => {
 
-    res.render("registration");
+  res.render("registration");
 });
 
 // Pulls home page
@@ -123,9 +123,9 @@ app.post("/registration", async (req, res) => {
   }
 
   // Search database for username
-  const existingUser = await collection.findOne({username: data.username })
+  const existingUser = await collection.findOne({ username: data.username })
 
-  if(existingUser) {
+  if (existingUser) {
     // User selected a username that has already been chosen
     res.send("User already exists. Please choose a different username.");
   } else {
@@ -133,7 +133,7 @@ app.post("/registration", async (req, res) => {
     const saltRounts = 10;
     const hashedPassword = await bcrypt.hash(data.password, saltRounts);
     data.password = hashedPassword;
-    
+
     // Add them to database
     const userdata = await collection.insertMany(data);
     console.log(userdata);
@@ -147,25 +147,26 @@ app.post("/registration", async (req, res) => {
 //                            User Login
 //-------------------------------------------------------------------
 app.post("/home", async (req, res) => {
-    try {
-      // Search the database for a username
-      const check = await collection.findOne({ username: req.body.username });
-      if (!check) {
-        // Username does not exist - indicate to the user
-        return res.render("login", { error: "Username does not exist" });
-      }
-
-      // Username exists - check passward
-      const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-      if (isPasswordMatch) {
-            // Correct password - redirect to dashboard
-            return res.render("home");
-        } else {
-            // Incorrect passward - indicate to the user
-            return res.render("login", { error: "Wrong password" });
-        }
-    } catch (error) {
-        // Login credentials do not exist
-        return res.render("login", { error: "Wrong details" });
+  try {
+    // Search the database for a username
+    const check = await collection.findOne({ username: req.body.username });
+    if (!check) {
+      // Username does not exist - indicate to the user
+      return res.render("login", { error: "Username does not exist" });
     }
+
+    // Username exists - check passward
+    const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+    if (isPasswordMatch) {
+      // Correct password - redirect to dashboard
+      const firstName = check.firstname;
+      return res.render("home", { firstName: check.firstname});
+    } else {
+      // Incorrect passward - indicate to the user
+      return res.render("login", { error: "Wrong password" });
+    }
+  } catch (error) {
+    // Login credentials do not exist
+    return res.render("login", { error: "Wrong details" });
+  }
 });

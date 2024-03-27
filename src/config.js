@@ -63,6 +63,13 @@ const RegistrationSchema = new mongoose.Schema({
   }
 });
 
+const LoginSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true
+  }
+})
+
 //-------------------------------------------------------------------
 //            Mongoose Model
 //-------------------------------------------------------------------
