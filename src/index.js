@@ -60,6 +60,14 @@ const retrieveFirstName = (req, res, next) => {
 // Apply to all routes
 app.use(retrieveFirstName);
 
+const setError = (errorMessage) => (req, res, next) => {
+  res.locals.error = errorMessage;
+  next(); // next route handler
+};
+
+// Use setError middleware with an initial error message
+app.use(setError("")); // Initialize error as empty string
+
 //-------------------------------------------------------------------
 //            PORT Configuration
 //-------------------------------------------------------------------
@@ -119,6 +127,7 @@ app.get("/createReport", (req, res) => {
 
   res.render("createReport");
 });
+
 
 
 //-------------------------------------------------------------------
