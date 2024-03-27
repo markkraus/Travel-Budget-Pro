@@ -40,6 +40,14 @@ app.set('view engine', 'ejs');
 // Configure Express to send files (HTML, JavaScript, etc.) directly to the client
 app.use(express.static("public"));
 
+const session = require('express-session');
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
+
+
 //-------------------------------------------------------------------
 //            PORT Configuration
 //-------------------------------------------------------------------
@@ -60,6 +68,19 @@ app.listen(port, () => {
 //-------------------------------------------------------------------
 //            Route Handlers
 //-------------------------------------------------------------------
+
+// Define middleware function to retrieve user's first name from session
+const retrieveFirstName = (req, res, next) => {
+  // Check if the first name is stored in the session
+  if (req.session.firstName) {
+    // If the first name exists in the session, make it available in locals
+    res.locals.firstName = req.session.firstName;
+  }
+  next(); // Call next to proceed to the next middleware or route handler
+};
+
+// Apply to all routese
+app.use(retrieveFirstName);
 
 // Pulls login.ejs file for default site (no extension)
 app.get("/", (req, res) => {
@@ -100,15 +121,6 @@ app.get("/createReport", (req, res) => {
   res.render("createReport");
 });
 
-app.get("/existingReports", (req, res) => {
-
-  res.render("existingReports");
-});
-
-app.get("/viewReports", (req, res) => {
-
-  res.render("existingReports");
-});
 
 //-------------------------------------------------------------------
 //            User Registration
@@ -160,6 +172,10 @@ app.post("/home", async (req, res) => {
     if (isPasswordMatch) {
       // Correct password - redirect to dashboard
       const firstName = check.firstname;
+
+      // Store the user's first name for the entire session
+      req.session.firstName = firstName;
+
       return res.render("home", { firstName: check.firstname});
     } else {
       // Incorrect passward - indicate to the user
