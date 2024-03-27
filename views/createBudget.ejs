@@ -1,6 +1,6 @@
 <!--        home.html
 
-        (Author: Connor Gramling)
+        (Author: Mark Kraus & Connor Gramling)
 
   Overview:
     Allows existing users to access the rest of the website
@@ -19,6 +19,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Include Handsontable CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
   <style>
     header {
       background-color: #333;
@@ -248,8 +250,9 @@
   
     <div class="content">
       <!-- Content loaded dynamically based on button clicks -->
+      <div id="handsontable-container">
 
-      
+      </div>
     </div>
   </div>
 
@@ -257,7 +260,11 @@
     &copy; 2024 Travel Budget Pro
   </footer>
 
-  <script src="../JavaScript/main.js"></script> <!-- Link to JS program -->
+    <!-- Include Handsontable JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <!-- Include your spreadsheet.js file here -->
+    <script src="spreadsheet.js"></script>
+
 
 
 </body>

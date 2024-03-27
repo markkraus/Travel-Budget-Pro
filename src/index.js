@@ -38,7 +38,8 @@ app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
 // Configure Express to send files (HTML, JavaScript, etc.) directly to the client
-app.use(express.static("public"));
+app.use(express.static('public'));
+
 
 const session = require('express-session');
 app.use(session({
@@ -47,6 +48,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// Middleware function to retrieve user's first name from session
+const retrieveFirstName = (req, res, next) => {
+  if (req.session.firstName) {
+    // first name exists in the session - make it available in locals
+    res.locals.firstName = req.session.firstName;
+  }
+  next(); // next route handler
+};
+
+// Apply to all routes
+app.use(retrieveFirstName);
 
 //-------------------------------------------------------------------
 //            PORT Configuration
@@ -68,18 +80,6 @@ app.listen(port, () => {
 //-------------------------------------------------------------------
 //            Route Handlers
 //-------------------------------------------------------------------
-
-// Middleware function to retrieve user's first name from session
-const retrieveFirstName = (req, res, next) => {
-  if (req.session.firstName) {
-    // first name exists in the session - make it available in locals
-    res.locals.firstName = req.session.firstName;
-  }
-  next(); // next route handler
-};
-
-// Apply to all routese
-app.use(retrieveFirstName);
 
 // Pulls login.ejs file for default site (no extension)
 app.get("/", (req, res) => {
