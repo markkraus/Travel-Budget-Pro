@@ -17,11 +17,12 @@ function main() {
 
   // Define options for Handsontable
   const options = {
-    data: data,
     rowHeaders: true,
     colHeaders: true,
     contextMenu: true,
-    licenseKey: 'non-commercial-and-evaluation'
+    licenseKey: 'non-commercial-and-evaluation',
+    startRows: 100, // Adjust the number of initial rows
+    startCols: 26, // Adjust the number of initial columns
   };
 
   // Initialize Handsontable
