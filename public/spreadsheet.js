@@ -8,7 +8,7 @@ function main() {
   // Get the container element where spreadsheet will be displayed in
   const container = document.getElementById('handsontable-container');
 
-  const data = [];
+  //const data = [];
 
   // Options for spreadsheet
   const options ={
@@ -16,10 +16,10 @@ function main() {
     rowHeaders: true, // if you want row headers
     colHeaders: ['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // Column headers
     colWidths: [200, 100, 120, 150, 100, 100], // Sets specific widths for each column
-    columns: [
+    //columns: [
       // Column settings here
 
-    ],
+    //],
     contextMenu: true,
     licenseKey: 'non-commercial-and-evaluation',
     startRows: 100, // Number of initial rows
