@@ -8,7 +8,7 @@ function main() {
   // Get the container element where spreadsheet will be displayed in
   const container = document.getElementById('handsontable-container');
 
-  //var data = [];
+  var data = [];
 
   // Options for spreadsheet
   const options ={
