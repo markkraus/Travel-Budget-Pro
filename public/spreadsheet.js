@@ -16,7 +16,7 @@ function main() {
     /* data: data, */
     rowHeaders: true, // if you want row headers
     colHeaders: ['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // column headers
-    colWidths: true, //[200, 100, 120, 150, 100, 100], // Sets specific widths for each column
+    colWidths: [200, 200, 200, 200, 200, 200], // Sets specific widths for each column
     /* columns: [
       // Column settings here
 
