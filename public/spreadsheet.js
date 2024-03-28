@@ -8,13 +8,13 @@ function main() {
 
   
   // Get the container element
-  var container = document.getElementById('handsontable-container');
+  const container = document.getElementById('handsontable-container');
 
   // Define data for the spreadsheet
-  var data = [];
+  const data = [];
 
   // Define options for Handsontable
-  var options ={
+  const options ={
 
     data: data,
     rowHeaders: true, // if you want row headers
