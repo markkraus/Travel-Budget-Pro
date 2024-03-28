@@ -5,10 +5,10 @@
 // Define the main function
 function main() {
   // Get the container element
-  const container = document.getElementById('handsontable-container');
+  var container = document.getElementById('handsontable-container');
 
   // Define data for the spreadsheet
-  const data = [
+  var data = [
     ['', 'Ford', 'Volvo', 'Toyota', 'Honda'],
     ['2019', 10, 11, 12, 13],
     ['2020', 20, 11, 14, 13],
@@ -22,7 +22,7 @@ function main() {
     contextMenu: true,
     licenseKey: 'non-commercial-and-evaluation',
     startRows: 100, // Adjust the number of initial rows
-    startCols: 26, // Adjust the number of initial columns
+    startCols: 6, // Adjust the number of initial columns
   };
 
   // Initialize Handsontable
