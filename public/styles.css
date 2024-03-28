@@ -213,19 +213,3 @@ footer {
   border-radius: 3px;
 }
 
-
-/* Additional CSS for Handsontable column headers */
-.htCore .htColHeader .htColHeader.htHeader {
-  height: 60px; /* Or adjust to fit content */
-  white-space: nowrap; /* Prevent text from wrapping onto multiple lines */
-  line-height: 60px; /* Center the text vertically */
-  font-size: 16px; /* Or adjust to fit content, and for visibility */
-  background-color: #333; /* To match the color theme of your header */
-  color: white; /* To match the text color of your header */
-}
-
-/* Ensure the header cells do not cut off overflowed text */
-.htCore .htColHeader .htColHeader.htHeader .relative {
-  white-space: normal;
-  height: auto;
-}

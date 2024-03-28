@@ -16,12 +16,14 @@ function main() {
   // Define options for Handsontable
   var options ={
     autoColumnSize: true, // This will automatically adjust the column size
-    
+
     data: data,
     rowHeaders: true, // if you want row headers
     colHeaders: ['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // column headers
+    colWidths: [200, 100, 120, 150, 100, 100], // Sets specific widths for each column
     columns: [
       // Column settings here
+
     ],
     contextMenu: true,
     licenseKey: 'non-commercial-and-evaluation',
@@ -37,5 +39,3 @@ function main() {
 
 // Call the main function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', main);
-
-
