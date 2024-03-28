@@ -16,14 +16,14 @@ function main() {
   // Define options for Handsontable
   const options ={
 
-    data: data,
+    /* data: data, */
     rowHeaders: true, // if you want row headers
     colHeaders: ['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // column headers
     colWidths: [200, 100, 120, 150, 100, 100], // Sets specific widths for each column
-    columns: [
+    /* columns: [
       // Column settings here
 
-    ],
+    ], */
     contextMenu: true,
     licenseKey: 'non-commercial-and-evaluation',
     startRows: 100, // Adjust the number of initial rows
