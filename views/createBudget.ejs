@@ -22,138 +22,9 @@
   <!-- Include Handsontable CSS -->
   <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
   <style>
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      position: fixed;
-      top: 0;
+    #handsontable-container {
+      height: 100%;
       width: 100%;
-      height: 109px;
-      border-bottom: 2px solid #ccc;
-      align-items: center;
-    } 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      display: flex;
-      max-height: 850px; /* Set minimum height to full viewport height */
-      /*overflow: hidden; /* Prevent scrolling if content overflows */
-      flex-direction: column; /* Make sure content stretches vertically */
-    }
-
-    #sidebar {
-      
-      background-color: #333;
-      color: #fff;
-      width: 200px;
-      max-width: 200px;
-      min-height: calc(100vh - 300px); /* Adjusted for header and footer height */
-      padding: 20px;
-      border-right: 2px solid #ccc;
-      flex: 1; /* Occupy full height */
-      display: flex;
-      flex-direction: column; /* Arrange content vertically */
-    }
-
-
-    #sidebar h2 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 10px;
-    }
-
-    #sidebar ul {
-      list-style-type: none;
-      padding: 0;
-      flex-grow: 1; /* Grow to fill available space */
-    }
-
-    #sidebar li {
-      margin-bottom: 10px;
-    }
-
-    #sidebar a {
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      display: block;
-    }
-
-    #sidebar cur {
-      color: #555;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      display: block;
-      background-color: #fff;
-      font-weight: bold;
-    }
-
-    #sidebar a:hover {
-      background-color: #555;
-    }
-
-    .welcome-message {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      max-width: 20%;
-      color: #fff;
-      padding: 10px 20px;
-      text-wrap: normal;
-    }
-
-    #logout-button {
-      position: absolute;
-      top: 20px;
-      right: 60px;
-      background-color: #d9534f;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .header-text-container {
-      text-align: center; 
-    }
-
-    .display {
-      display: flex;
-      margin-top: 150px; /* Adjust the margin to leave space for the header */
-      height: 100vh;
-      flex: 1;
-      flex-direction: row;
-      position: relative;
-      overflow-y: auto;
-      background-color: #264042;
-    }
-
-    .content {
-      background-color: #264042;
-      padding: 30px;
-      flex: 1;
-      flex-direction: column;
-      position: relative;
-      width: calc(100% - 305px); /* Makes sidebar same width as other pages */
-      fill: #264042;
-    }
-
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      border-top: 2px solid #ccc;
-      text-align: center;
-      margin-top: auto; /* Push footer to bottom */
     }
   </style>
 </head>
@@ -193,6 +64,8 @@
       <div id="handsontable-container">
 
       </div>
+      <button id="add-row-button" onclick="addRow();">Add Expense</button> <!-- Button to increment rows -->
+
     </div>
   </div>
 

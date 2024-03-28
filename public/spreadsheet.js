@@ -1,6 +1,7 @@
 /**
  * @author Mark Kraus
  * @author Ben Mullin
+ * @author Connor Gramling
  */
 
 function main() {
@@ -67,12 +68,17 @@ function main() {
     ],
     contextMenu: true,
     licenseKey: 'non-commercial-and-evaluation',
-    startRows: 100, // Adjust the number of initial rows
+    startRows: 5, // Adjust the number of initial rows
     startCols: 6, // Adjust the number of initial columns
   };
 
   // Initialize the spreadsheet
   const hot = new Handsontable(container, options);
+
+  // Add event listener to the "Add Row" button
+  function addRow(){
+    hot.alter('insert_row', hot.countRows()); // Insert a row at the end of the table
+  }
 
 }
 
