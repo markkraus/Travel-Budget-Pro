@@ -14,12 +14,12 @@ function main() {
   const options ={
     data: data,
     rowHeaders: true, // if you want row headers
-    colHeaders: ['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // Column headers
+    colHeaders: true, //['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // Column headers
     //colWidths: [2000, 1000, 1200, 1500, 1000, 1000], // Sets specific widths for each column
-    contextMenu: true,
-    licenseKey: 'non-commercial-and-evaluation',
-    startRows: 100, // Number of initial rows
-    startCols: 6, // Number of initial columns
+    // contextMenu: true,
+    // licenseKey: 'non-commercial-and-evaluation',
+    // startRows: 100, // Number of initial rows
+    // startCols: 6, // Number of initial columns
   };
 
   // Initialize the spreadsheet
