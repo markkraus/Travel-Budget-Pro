@@ -98,7 +98,7 @@ h1{
 #logout-button {
   position: absolute;
   top: 20px;
-  left: 90%;
+  right: 60px;
   background-color: #d9534f;
   color: #fff;
   border: none;
