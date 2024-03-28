@@ -15,7 +15,6 @@ function main() {
 
   // Define options for Handsontable
   var options ={
-    autoColumnSize: true, // This will automatically adjust the column size
 
     data: data,
     rowHeaders: true, // if you want row headers
