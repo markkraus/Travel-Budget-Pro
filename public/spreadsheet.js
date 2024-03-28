@@ -3,18 +3,16 @@
  * @author Ben Mullin
  */
 
-// Define the main function
 function main() {
 
-  
-  // Get the container element
+  // Get the container element where spreadsheet will be displayed in
   const container = document.getElementById('handsontable-container');
 
-  // Define data for the spreadsheet
-  const data = [];
+  var data = [];
 
-  // Define options for Handsontable
+  // Options for spreadsheet
   const options ={
+<<<<<<< HEAD
 
     /* data: data, */
     rowHeaders: true, // if you want row headers
@@ -28,13 +26,21 @@ function main() {
     licenseKey: 'non-commercial-and-evaluation',
     startRows: 100, // Adjust the number of initial rows
     startCols: 6, // Adjust the number of initial columns
+=======
+    data: data,
+    rowHeaders: true, // if you want row headers
+    colHeaders: true, //['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // Column headers
+    //colWidths: [2000, 1000, 1200, 1500, 1000, 1000], // Sets specific widths for each column
+    // contextMenu: true,
+    // licenseKey: 'non-commercial-and-evaluation',
+    // startRows: 100, // Number of initial rows
+    // startCols: 6, // Number of initial columns
+>>>>>>> 4ce96b9d886ba2603f7677a7f3dd9ccd65ed1522
   };
 
-  // Initialize Handsontable
+  // Initialize the spreadsheet
   const hot = new Handsontable(container, options);
-
-}//end main
-
+}
 
 // Call the main function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', main);

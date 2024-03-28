@@ -11,8 +11,9 @@
  *  - Express.js
  *  - Bcrypt
  *  - MongoDB
+ *  - Express Session
  * 
- * Author: Henry Uz & Mark Kraus
+ * @author: Henry Uz & Mark Kraus
  */
 
 //-------------------------------------------------------------------
