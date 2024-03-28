@@ -1,24 +1,26 @@
 /**
  * @author Mark Kraus
+ * @author Ben Mullin
  */
 
 // Define the main function
 function main() {
+
+  
   // Get the container element
   var container = document.getElementById('handsontable-container');
 
   // Define data for the spreadsheet
-  var data = [
-    ['', 'Ford', 'Volvo', 'Toyota', 'Honda'],
-    ['2019', 10, 11, 12, 13],
-    ['2020', 20, 11, 14, 13],
-    ['2021', 30, 15, 12, 13]
-  ];
+  var data = [];
 
   // Define options for Handsontable
-  const options = {
-    rowHeaders: true,
-    colHeaders: true,
+  var options ={
+    data: data,
+    rowHeaders: true, // if you want row headers
+    colHeaders: ['Expense Category', 'Currency', '$Amount', 'Location', 'Date', 'Time'], // column headers
+    columns: [
+      // Column settings here
+    ],
     contextMenu: true,
     licenseKey: 'non-commercial-and-evaluation',
     startRows: 100, // Adjust the number of initial rows
@@ -27,7 +29,11 @@ function main() {
 
   // Initialize Handsontable
   const hot = new Handsontable(container, options);
-}
+
+}//end main
+
 
 // Call the main function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', main);
+
+
