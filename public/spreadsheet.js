@@ -7,7 +7,7 @@
 function main() {
   
   // Get the container element where spreadsheet will be displayed in
-  const container = document.getElementById('handsontable-container');
+  var container = document.getElementById('handsontable-container');
 
   var data = [];
 
@@ -73,12 +73,13 @@ function main() {
   };
 
   // Initialize the spreadsheet
-  const hot = new Handsontable(container, options);
+  var hot = new Handsontable(container, options);
 
   // Add event listener to the "Add Row" button
-  function addRow(){
+  var addRowButton = document.getElementById("add-row-button"); 
+  addRowButton.addEventListener("click", function() { 
     hot.alter('insert_row', hot.countRows()); // Insert a row at the end of the table
-  }
+  }); 
 
 }
 

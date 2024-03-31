@@ -22,10 +22,26 @@
   <!-- Include Handsontable CSS -->
   <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
   <style>
+
+    /* Table styles */
     #handsontable-container {
-      height: 100%;
-      width: 100%;
+      height: 100% !important;
+      width: 100% !important;
+      overflow: hidden;
+      flex: 1;
     }
+    /* .handsontable{
+      max-height: 550px;
+      max-width: 440px;
+    }
+    .wtholder{
+      max-height: 550px;
+      max-width: 440px;
+    }
+
+    #add-row-button {
+      cursor:zoom-in;
+    } */
   </style>
 </head>
 
@@ -61,10 +77,9 @@
   
     <div class="content">
       <!-- Content loaded dynamically based on button clicks -->
-      <div id="handsontable-container">
+      <div id="handsontable-container" class="hot"></div>
 
-      </div>
-      <button id="add-row-button" onclick="addRow();">Add Expense</button> <!-- Button to increment rows -->
+      <button id="add-row-button">Add Expense</button> <!-- Button to increment rows -->
 
     </div>
   </div>
