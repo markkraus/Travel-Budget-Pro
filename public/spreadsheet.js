@@ -75,11 +75,20 @@ function main() {
   // Initialize the spreadsheet
   var hot = new Handsontable(container, options);
 
-  // Add event listener to the "Add Row" button
+  /* // Add event listener to the "Add Row" button
   var addRowButton = document.getElementById("add-row-button"); 
   addRowButton.addEventListener("click", function() { 
     hot.alter('insert_row', hot.countRows()); // Insert a row at the end of the table
-  }); 
+  });  */
+
+  function savetoCSV() {
+    var csvContent = "data:text/csv;charset=utf-8,"; //not sure if correct
+    var data = hot.getData();
+    data.forEach(function(rowArray) {
+    var row = rowArray.join(",");
+    csvContent += row + "\r\n";
+    });
+  }
 
 }
 
