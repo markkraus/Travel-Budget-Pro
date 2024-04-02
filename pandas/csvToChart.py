@@ -89,5 +89,5 @@ else:
     print("Invalid input! Please enter 'pie', 'bar', or 'line'.")
 
 # Save the HTML code to a file
-with open('expense_chart.html', 'w') as f:
+with open('expense_chart.ejs', 'w') as f:
     f.write(html_code)
