@@ -4,14 +4,20 @@ import matplotlib.pyplot as plt
 # Read the CSV file into a DataFrame
 df = pd.read_csv('example.csv')     #TEMPORARY UNTIL DATABASE IS FULLY IMPLEMENTED
 
+# Group by 'Expense Category' and sum the '$Amount' for each category
+expense_group = df.groupby('Expense Category')['$Amount'].sum()
+
 # Convert 'Date' column to datetime format
 df['Date'] = pd.to_datetime(df['Date'])
 
 # Group by 'Date' and sum the '$Amount' for each date
 total_spent_over_time = df.groupby('Date')['$Amount'].sum()
 
+# Calculate cumulative sum of expenses over time
+cumulative_expenses = total_spent_over_time.cumsum()
+
 # Ask the user for their preferred type of graph
-graph_type = input("Enter 'pie' for a pie chart, 'bar' for a bar graph, or 'line' for a line graph: ") #TEMPORARY UNTIL DATABASE IS FULLY IMPLEMENTED
+graph_type = input("Enter 'pie' for a pie chart, 'bar' for a bar graph, or 'line' for a line graph: ")  #TEMPORARY UNTIL DATABASE IS FULLY IMPLEMENTED
 
 # Plot the selected type of graph
 if graph_type == 'pie':
@@ -59,23 +65,23 @@ elif graph_type == 'bar':
 elif graph_type == 'line':
     # Plot line chart for money spent over time
     plt.figure(figsize=(10, 6))
-    total_spent_over_time.plot(kind='line', marker='o')
-    plt.title('Money Spent Over Time')
+    cumulative_expenses.plot(kind='line', marker='o')
+    plt.title('Cumulative Money Spent Over Time')
     plt.xlabel('Date')
     plt.ylabel('Total Amount ($)')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig('money_over_time_chart.png')
+    plt.savefig('line_chart.png')
     plt.close()
     html_code = f"""
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Money Spent Over Time</title>
+        <title>Cumulative Money Spent Over Time</title>
     </head>
     <body>
-        <h1>Money Spent Over Time</h1>
-        <img src="money_over_time_chart.png" alt="Line Chart">
+        <h1>Cumulative Money Spent Over Time</h1>
+        <img src="line_chart.png" alt="Line Chart">
     </body>
     </html>
     """
