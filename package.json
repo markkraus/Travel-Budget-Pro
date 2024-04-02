@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
@@ -19,5 +20,10 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  },
+  "description": "[CS1530-Project](#cs1530-project)   * [Project Proposal](#project-proposal)   * [Functional Requirements](#functional-requirements)   * [Nonfunctional Requirements](#nonfunctional-requirements)   * [Software Interfaces](#software-interfaces)   * [Use Case List](#use-case-list)   * [Classes and Objects](#classes-and-objects)",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

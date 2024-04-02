@@ -1,6 +1,6 @@
 <!--        home.html
 
-        (Author: Mark Kraus & Connor Gramling)
+        (Author: Mark Kraus, Connor Gramling, & Ben Mullin )
 
   Overview:
     Allows existing users to access the rest of the website
@@ -24,15 +24,145 @@
   <style>
 
     /* Table styles */
-    #handsontable-container {
+    /* #handsontable-container {
       height: 100% !important;
       width: 100% !important;
       overflow: hidden;
       flex: 1;
+    } */
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 109px;
+      border-bottom: 2px solid #ccc;
+      align-items: center;
+    } 
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      max-height: 850px; /* Set minimum height to full viewport height */
+      /*overflow: hidden; /* Prevent scrolling if content overflows */
+      flex-direction: column; /* Make sure content stretches vertically */
     }
 
-    #add-row-button {
+    #sidebar {
+      
+      background-color: #333;
+      color: #fff;
+      width: 200px;
+      max-width: 200px;
+      min-height: calc(100vh - 300px); /* Adjusted for header and footer height */
+      padding: 20px;
+      border-right: 2px solid #ccc;
+      flex: 1; /* Occupy full height */
+      display: flex;
+      flex-direction: column; /* Arrange content vertically */
+    }
+
+
+    #sidebar h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    #sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      flex-grow: 1; /* Grow to fill available space */
+    }
+
+    #sidebar li {
+      margin-bottom: 10px;
+    }
+
+    #sidebar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+    }
+
+    #sidebar cur {
+      color: #555;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+      background-color: #fff;
+      font-weight: bold;
+    }
+
+    #sidebar a:hover {
+      background-color: #555;
+    }
+
+    .welcome-message {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      max-width: 20%;
+      color: #fff;
+      padding: 10px 20px;
+      text-wrap: normal;
+    }
+
+    #logout-button {
+      position: absolute;
+      top: 20px;
+      left: 90%;
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
       cursor: pointer;
+    }
+
+    .header-text-container {
+      text-align: center; 
+    }
+
+    .display {
+      display: flex;
+      margin-top: 150px; /* Adjust the margin to leave space for the header */
+      height: 100vh;
+      flex: 1;
+      flex-direction: row;
+      position: relative;
+      overflow-y: auto;
+      background-color: #264042;
+    }
+
+    .content {
+      background-color: #264042;
+      padding: 30px;
+      flex: 1;
+      flex-direction: column;
+      position: relative;
+      width: calc(100% - 305px); /* Makes sidebar same width as other pages */
+      fill: #264042;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border-top: 2px solid #ccc;
+      text-align: center;
+      margin-top: auto; /* Push footer to bottom */
     }
   </style>
 </head>
@@ -68,10 +198,18 @@
     </nav>
   
     <div class="content">
-      <!-- Content loaded dynamically based on button clicks -->
-      <div id="handsontable-container" class="hot"></div>
 
+      <!-- Button to save the budget as CSV file to mango-->
+      <button id="save-budget-btn" style="margin-bottom: 10px;">Save Budget</button>
+
+      <!-- add row dynamically -->
       <button id="add-row-button">Add Expense</button> <!-- Button to increment rows -->
+
+
+
+      <!-- Content loaded dynamically based on button clicks -->
+      <div id="handsontable-container">
+        <!-- Handsontable grid will be inserted here -->
 
     </div>
   </div>
@@ -80,10 +218,36 @@
     &copy; 2024 Travel Budget Pro
   </footer>
 
+
+
+
     <!-- Includes Handsontable JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+
     <!-- Includes spreadsheet  -->
     <script src="spreadsheet.js"></script>
+
+    <!-- client side script to save file using save budget button -->
+    <script src="budgetActions.js"></script>
+
+
+    <!-- script to load save data into file -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const urlParams = new URLSearchParams(window.location.search);
+          const budgetId = urlParams.get('budgetId');
+          
+          if (budgetId) {
+              fetch(`/fetch-budget/${budgetId}`)
+                  .then(response => response.json())
+                  .then(data => {
+                      // Ensure 'hot' is defined and accessible
+                      hot.loadData(data.items); // Adjust 'data.items' based on how your data is structured
+                  })
+                  .catch(error => console.error('Failed to load budget:', error));
+          }
+      });
+      </script>
 
 </body>
 
