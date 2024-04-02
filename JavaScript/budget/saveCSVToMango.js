@@ -5,7 +5,7 @@
 const express = require('express');
 const router = express.Router();
 const { MongoClient, ObjectId } = require('mongodb');
-const uri = "your_mongodb_connection_uri"; // Ensure this is your actual MongoDB URI
+const uri = "mongodb+srv://mrk133:ovlP6h4epIrWyDcq@cluster0.o58ssex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Our mongodb URI
 const client = new MongoClient(uri);
 
 // Route to save budget data
