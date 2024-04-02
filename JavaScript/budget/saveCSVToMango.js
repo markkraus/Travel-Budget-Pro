@@ -4,9 +4,15 @@
 
 const express = require('express');
 const router = express.Router();
+<<<<<<< HEAD
 const { ObjectId } = require('mongodb');
 const { client } = require('./db_connect'); // Make sure this path is correct
 
+=======
+const { MongoClient, ObjectId } = require('mongodb');
+const uri = "mongodb+srv://mrk133:ovlP6h4epIrWyDcq@cluster0.o58ssex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Our mongodb URI
+const client = new MongoClient(uri);
+>>>>>>> c5c55972843ece02410504cbf04c3e46de31114b
 
 // Route to save budget data
 router.post('/save-budget', async (req, res) => {
