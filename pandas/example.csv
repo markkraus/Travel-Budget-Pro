@@ -1,0 +1,6 @@
+Expense Category,Currency,$Amount,Location,Date,Time
+Food,USD,20.50,New York,2024-04-02,12:30 PM
+Transportation,EUR,35.75,Paris,2024-04-01,09:45 AM
+Entertainment,GBP,15.20,London,2024-03-30,08:00 PM
+Shopping,JPY,5000.00,Tokyo,2024-03-29,03:15 PM
+Accommodation,CAD,150.00,Toronto,2024-03-28,11:00 AM
