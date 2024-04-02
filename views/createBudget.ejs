@@ -230,24 +230,7 @@
     <!-- client side script to save file using save budget button -->
     <script src="budgetActions.js"></script>
 
-
-    <!-- script to load save data into file -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-          const urlParams = new URLSearchParams(window.location.search);
-          const budgetId = urlParams.get('budgetId');
-          
-          if (budgetId) {
-              fetch(`/fetch-budget/${budgetId}`)
-                  .then(response => response.json())
-                  .then(data => {
-                      // Ensure 'hot' is defined and accessible
-                      hot.loadData(data.items); // Adjust 'data.items' based on how your data is structured
-                  })
-                  .catch(error => console.error('Failed to load budget:', error));
-          }
-      });
-      </script>
+    <script src="/js/loadBudgetData.js"></script>
 
 </body>
 

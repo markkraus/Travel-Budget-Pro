@@ -4,9 +4,9 @@
 
 const express = require('express');
 const router = express.Router();
-const { MongoClient, ObjectId } = require('mongodb');
-const uri = "your_mongodb_connection_uri"; // Ensure this is your actual MongoDB URI
-const client = new MongoClient(uri);
+const { ObjectId } = require('mongodb');
+const { client } = require('./db_connect'); // Make sure this path is correct
+
 
 // Route to save budget data
 router.post('/save-budget', async (req, res) => {
