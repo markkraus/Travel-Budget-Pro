@@ -232,6 +232,36 @@
 
     <script src="/js/loadBudgetData.js"></script>
 
+    <!-- Client-side script for exporting to CSV and saving to MongoDB -->
+    <script>
+      // Function to export Handsontable data to CSV format and save to MongoDB
+      function exportAndSaveToMongo() {
+          const hot = Handsontable.getInstance('handsontable-container'); // Get reference to your Handsontable instance
+          const csvData = hot.getPlugin('exportFile').exportAsString('csv', {
+              bom: true, // Add BOM character for better compatibility
+          });
+      
+          // Send CSV data to backend server
+          fetch('/api/saveCSVToMongo', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'text/csv', // Set content type to CSV
+              },
+              body: csvData,
+          })
+          .then(response => {
+              if (response.ok) {
+                  console.log('CSV data successfully saved to MongoDB');
+              } else {
+                  console.error('Failed to save CSV data to MongoDB');
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+      }
+      </script>
+
 </body>
 
 </html>
