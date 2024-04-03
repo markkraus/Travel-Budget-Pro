@@ -75,22 +75,58 @@ function main() {
   // Initialize the spreadsheet
   var hot = new Handsontable(container, options);
 
+  document.getElementById("save-budget-btn").addEventListener("click", function() {
+    saveToCSV(hot);
+  });
+
   /* // Add event listener to the "Add Row" button
   var addRowButton = document.getElementById("add-row-button"); 
   addRowButton.addEventListener("click", function() { 
     hot.alter('insert_row', hot.countRows()); // Insert a row at the end of the table
   });  */
 
-  function savetoCSV() {
-    var csvContent = "data:text/csv;charset=utf-8,"; //not sure if correct
+  function saveToCSV() {
+    console.log("saveToCSV function triggered");//test line
+
+
+    var csvContent = "data:text/csv;charset=utf-8,"; 
     var data = hot.getData();
     data.forEach(function(rowArray) {
     var row = rowArray.join(",");
     csvContent += row + "\r\n";
     });
+  
+
+  // Remove the first part ('data:text/csv;charset=utf-8,') as it's for data URI scheme
+  csvContent = csvContent.replace("data:text/csv;charset=utf-8,", "");
+
+  postCSVData(csvContent); // Call the function to post CSV data to the server.
+  }
+  
+  function postCSVData(csvData) {
+    fetch('/api/saveCSVToMongo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/csv',
+      },
+      body: csvData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log('CSV data successfully saved to MongoDB');
+        // Add any success notification or redirection you want here.
+      } else {
+        console.error('Failed to save CSV data to MongoDB');
+        // Add error handling notification here.
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Add error handling notification here.
+    });
   }
 
 }
-
-// Call the main function when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', main);
+  // The DOMContentLoaded event listener should be outside the main function
+  document.addEventListener('DOMContentLoaded', main);
