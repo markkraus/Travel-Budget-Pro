@@ -35,7 +35,7 @@ if graph_type == 'pie':
     </head>
     <body>
         <h1>Expense Distribution by Category</h1>
-        <img src="pie_chart.png" alt="Pie Chart">
+        <img src="reportCharts/pie_chart.png" alt="Pie Chart">
     </body>
     </html>
     """
@@ -58,7 +58,7 @@ elif graph_type == 'bar':
     </head>
     <body>
         <h1>Expense Distribution by Category</h1>
-        <img src="bar_chart.png" alt="Bar Chart">
+        <img src="reportCharts/bar_chart.png" alt="Bar Chart">
     </body>
     </html>
     """
@@ -81,7 +81,7 @@ elif graph_type == 'line':
     </head>
     <body>
         <h1>Cumulative Money Spent Over Time</h1>
-        <img src="line_chart.png" alt="Line Chart">
+        <img src="reportCharts/line_chart.png" alt="Line Chart">
     </body>
     </html>
     """
@@ -89,5 +89,5 @@ else:
     print("Invalid input! Please enter 'pie', 'bar', or 'line'.")
 
 # Save the HTML code to a file
-with open('expense_chart.ejs', 'w') as f:
+with open('../public/expense_chart.html', 'w') as f:
     f.write(html_code)
