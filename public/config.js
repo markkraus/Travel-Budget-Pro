@@ -70,6 +70,33 @@ const LoginSchema = new mongoose.Schema({
   }
 })
 
+const BudgetSchema = new mongoose.Schema({
+  username: {
+    type: String, 
+    required: true
+  },
+  category: {
+    type: String, 
+    required: true
+  },
+
+  description: {
+    type: String, 
+    required: true
+  },
+
+  currency: {
+    type: String, 
+    required: true
+  },
+
+  cost: {
+    type: String, 
+    required: true
+  },
+});
+
+
 //-------------------------------------------------------------------
 //            Mongoose Model
 //-------------------------------------------------------------------
@@ -78,4 +105,12 @@ const LoginSchema = new mongoose.Schema({
 const collection = new mongoose.model("registeredusers", RegistrationSchema);
 
 // Allows the collection to be accessible in other parts of the program
-module.exports = collection;
+//module.exports = collection;
+
+const collection1 = new mongoose.model("budgets", BudgetSchema);
+//module.exports = collection1;
+
+module.exports = {
+  collection : collection,
+  collection1 : collection1
+};

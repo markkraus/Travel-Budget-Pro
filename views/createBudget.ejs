@@ -193,18 +193,19 @@
         <li><a href="/createReport">Create Report</a></li>
         <li><a href="/settings">Edit Settings</a></li>
 
-
       </ul>
     </nav>
   
     <div class="content">
 
-      <!-- Button to save the budget as CSV file to mango-->
-      <button id="save-budget-btn" style="margin-bottom: 10px;">Save Budget</button>
+       <!-- ROGA-->
+       <form id="save-budget-form" action="#" method="post">
+
+        <button id="save-budget-btn" style="margin-bottom: 10px;">Save Budget</button>
+      </form>
 
       <!-- add row dynamically -->
       <button id="add-row-button">Add Expense</button> <!-- Button to increment rows -->
-
 
       <!-- Content loaded dynamically based on button clicks -->
       <div id="handsontable-container">
@@ -217,24 +218,12 @@
     &copy; 2024 Travel Budget Pro
   </footer>
 
-
-
-
     <!-- Includes Handsontable JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
 
     <!-- Includes spreadsheet  -->
     <script src="spreadsheet.js"></script>
-
-    
-    <!-- Client-side script for exporting to CSV and saving to MongoDB -->
-    <script src="saveCSVToMongo.js"></script>
-
-   
-
-
-
-
+  
 </body>
 
 </html>

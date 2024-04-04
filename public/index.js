@@ -22,9 +22,21 @@
 
 // Pulling libraries and dependencies
 const express = require('express');
-const paths = require("path");
+const fs = require('fs');
+const paths = require('path' );
 const bcrypt = require('bcrypt');
-const collection = require("./config"); // 'collection' is pulled from config.js
+const {collection, collection1} = require("./config"); // 'collection' is pulled from config.js
+
+let dataArray = [
+  ['Expense Category', 'Description', 'Currency', 'Cost'],
+  ['DIDNT', 'WORK', 'USD', '50'],
+  ['DIDNT', 'WORK', 'USD', '50'],
+  ['DIDNT', 'WORK', 'USD', '50']
+];
+//const dataArray = require('./spreadsheet');
+//const budgetFileFunction = require('./spreadsheet');
+//const budgetdata = require("./spreadsheet");
+
 
 // Create an instance of the Express server
 const app = express();
@@ -120,9 +132,9 @@ app.get("/settings", (req, res) => {
 });
 
 app.get("/createBudget", (req, res) => {
-
   res.render("createBudget");
 });
+
 
 app.get("/createReport", (req, res) => {
 
@@ -195,3 +207,28 @@ app.post("/home", async (req, res) => {
     return res.render("login", { error: "Wrong details" });
   }
 });
+
+//-------------------------------------------------------------------
+//            Budget Creation
+//-------------------------------------------------------------------
+
+app.post("/createBudget", async (req, res) => {
+  const data = {
+    username: "JOE ROGA",
+    category: dataArray[1][0],
+    description: dataArray[1][1],
+    currency: dataArray[1][2],
+    cost: dataArray[1][3]
+  }
+
+    // Add them to database
+    const budget = await collection1.insertMany(data);
+    console.log(budget);
+
+    // Redirect them to the login page
+    return res.render("createBudget");
+})
+
+module.exports = {
+  dataArray: dataArray
+};
