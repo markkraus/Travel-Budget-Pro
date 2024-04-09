@@ -153,6 +153,7 @@
       flex-direction: column;
       position: relative;
       width: calc(100% - 305px); /* Makes sidebar same width as other pages */
+      max-height: calc(100vh - 109px - 10px - 20px - 2px); /* Adjusted for header, footer, padding, and border */
       fill: #264042;
     }
 
@@ -197,32 +198,105 @@
     </nav>
   
     <div class="content">
-
-       <!-- ROGA-->
-       <form id="save-budget-form" action="#" method="post">
-
-        <button id="save-budget-btn" style="margin-bottom: 10px;">Save Budget</button>
-      </form>
-
-      <!-- add row dynamically -->
-      <button id="add-row-button">Add Expense</button> <!-- Button to increment rows -->
-
-      <!-- Content loaded dynamically based on button clicks -->
-      <div id="handsontable-container">
-        <!-- Handsontable grid will be inserted here -->
-
+      <button id="load" class="button button--primary button--blue">Load data</button> 
+      <button id="save" class="button button--primary button--blue">Save data</button>
+      <label>
+        <input type="checkbox" name="autosave" id="autosave" />
+        Autosave
+      </label>
+      <div id="handsontable-container"></div>
     </div>
-  </div>
 
   <footer>
     &copy; 2024 Travel Budget Pro
   </footer>
 
-    <!-- Includes Handsontable JavaScript -->
+    <!-- Includes Handsontable -->
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
 
     <!-- Includes spreadsheet  -->
     <script src="spreadsheet.js"></script>
+
+    <script>
+       // Get the container element where the spreadsheet will be displayed
+        var container = document.getElementById('handsontable-container');
+        var save = document.getElementById('save');
+        var load = document.getElementById('load');
+
+        // Initialize the Handsontable instance
+        const hot = new Handsontable(container, {
+          startRows: 8,
+          startCols: 5,
+          rowHeaders: true,
+          colHeaders: ['Expense Category', 'Currency', 'Cost', 'Description'],
+          colWidths: [150, 150, 150, 150],
+          height: 'auto',
+          licenseKey: 'non-commercial-and-evaluation',
+          columns: [
+            // Expense Category settings
+            {
+              data: 'expenseCategory',
+              type: 'dropdown',
+              source: [
+                "",
+                "Food",
+                "Transportation",
+                "Entertainment",
+                "Lodging",
+              ],
+              strict: false,
+            },
+            // Currency settings
+            {
+              data: 'Currency',
+              type: 'dropdown',
+              source: [
+                "",
+                "USD - United States Dollar",
+                "EUR - Euro",
+                "GBP - British Pound",
+                "JPY - Japanese Yen",
+                "CNY - Chinese Yuan",
+                "INR - Indian Rupee",
+                "AUD - Australian Dollar",
+                "CAD - Canadian Dollar",
+                "SGD - Singapore Dollar",
+                "CHF - Swiss Franc",
+                "MYR - Malaysian Ringgit",
+                "NZD - New Zealand Dollar",
+                "THB - Thai Baht",
+                "RUB - Russian Ruble",
+                "ZAR - South African Rand",
+                "BRL - Brazilian Real",
+                "PHP - Philippine Peso",
+                "IDR - Indonesian Rupiah",
+                "TRY - Turkish Lira",
+                "KRW - South Korean Won",
+                "MXN - Mexican Peso",
+                "NOK - Norwegian Krone",
+              ],
+              strict: true,
+              allowInvalid: false,
+            },
+            // Cost settings
+            {
+              data: 'cost',
+              type: 'numeric',
+            },
+            // Description settings
+            {}
+          ]
+        });
+
+        // Attach event listener to the save button
+        save.addEventListener('click', function () {
+          // Retrieve the data from the Handsontable instance
+          const data = hot.getData();
+          // Log the data to the console
+          console.log('Handsontable data:', data);
+        });
+    </script>
   
 </body>
 

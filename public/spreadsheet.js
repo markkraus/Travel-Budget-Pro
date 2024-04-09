@@ -1,27 +1,39 @@
-//const { dataArray } = require("./index");
-
 function main() {
   
   // Get the container element where spreadsheet will be displayed in
   var container = document.getElementById('handsontable-container');
+  var save = document.getElementById('save');
+  var load = document.getElementById('load');
 
-  // Options for spreadsheet
-  const options ={
+  // Init table to show up in createBudget.ejs
+  const hot = new Handsontable(container, {
+    startRows: 8,
+    startCols: 5,
     rowHeaders: true, // if you want row headers
     colHeaders: ['Expense Category', 'Currency', 'Cost', 'Description'], // column headers
-    colWidths: [150, 150, 150, 150, ], // Sets specific widths for each column
-
-    // Column settings here
+    colWidths: [150, 150, 150, 150,], // Sets specific widths for each column
+    height: 'auto',
+    licenseKey: 'non-commercial-and-evaluation',
     columns: [
-
+      // Expense Category settings
       {
-      data: 'expenseCategory', // this should correspond to the property in your data objects
-      },
-
-      {
+        data: 'expenseCategory',
         type: 'dropdown',
-        data: 'currency', // this should correspond to the property in your data objects
         source: [
+          "",
+          "Food",
+          "Transportation",
+          "Entertainment",
+          "Lodging",
+        ],
+        strict: false,
+      },
+      // Currency settings
+      {
+        data: 'Currency',
+        type: 'dropdown',
+        source: [
+          "",
           "USD - United States Dollar",
           "EUR - Euro",
           "GBP - British Pound",
@@ -44,48 +56,17 @@ function main() {
           "KRW - South Korean Won",
           "MXN - Mexican Peso",
           "NOK - Norwegian Krone",
-        ], 
-        strict: true, // Set to true if you want to prevent users from entering values not on the list
+        ],
+        strict: true, // Prevents users from entering values not on the list
         allowInvalid: false, // Prevents users from entering invalid values
       },
-
+      // Cost settings
       {
-      data: 'cost', // this should correspond to the property in your data objects
-      type: 'numeric',
+        data: 'cost',
+        type: 'numeric',
       },
-
-      {},
-
-    ],
-    contextMenu: true,
-    licenseKey: 'non-commercial-and-evaluation',
-    startRows: 5, // Adjust the number of initial rows
-    startCols: 4, // Adjust the number of initial columns
-  };
-
-  // Initialize the spreadsheet
-  var hot = new Handsontable(container, options);
-
-
-// Function to check for data in Handsontable cells and update the array
-function updateDataArray() {
-  // Get the data from the Handsontable instance
-  var data = hot.getData();
-  
-  // Check each cell for data and update the array
-
-  dataArray[1][2] = 'I CHANGED IT';
-  data.forEach(function(row) {
-    row.forEach(function(cell) {
-      if (cell !== null && cell !== undefined && cell !== '') {
-        dataArray.push(cell);
-      }
-    });
+      // Description settings
+      {}
+    ]
   });
 }
-
-// Set an interval to periodically check for data and update the array
-setInterval(updateDataArray, 1000);
-}
-  // The DOMContentLoaded event listener should be outside the main function
-  document.addEventListener('DOMContentLoaded', main);

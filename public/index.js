@@ -25,18 +25,8 @@ const express = require('express');
 const fs = require('fs');
 const paths = require('path' );
 const bcrypt = require('bcrypt');
-const {collection, collection1} = require("./config"); // 'collection' is pulled from config.js
-
-let dataArray = [
-  ['Expense Category', 'Description', 'Currency', 'Cost'],
-  ['DIDNT', 'WORK', 'USD', '50'],
-  ['DIDNT', 'WORK', 'USD', '50'],
-  ['DIDNT', 'WORK', 'USD', '50']
-];
-//const dataArray = require('./spreadsheet');
-//const budgetFileFunction = require('./spreadsheet');
-//const budgetdata = require("./spreadsheet");
-
+const {users, budgets} = require("./config"); // 'collection' is pulled from config.js
+const hot = require('./spreadsheet'); // Import the Handsontable instance
 
 // Create an instance of the Express server
 const app = express();
@@ -53,7 +43,7 @@ app.set('view engine', 'ejs');
 // Configure Express to send files (HTML, JavaScript, etc.) directly to the client
 app.use(express.static('public'));
 
-
+// Make variables last until users log out
 const session = require('express-session');
 app.use(session({
   secret: 'your-secret-key',
@@ -156,7 +146,7 @@ app.post("/registration", async (req, res) => {
   }
 
   // Search database for username
-  const existingUser = await collection.findOne({ username: data.username })
+  const existingUser = await users.findOne({ username: data.username })
 
   if (existingUser) {
     // User selected a username that has already been chosen
@@ -168,13 +158,13 @@ app.post("/registration", async (req, res) => {
     data.password = hashedPassword;
 
     // Add them to database
-    const userdata = await collection.insertMany(data);
+    const userdata = await users.insertMany(data);
     console.log(userdata);
 
     // Redirect them to the login page
     return res.render("login");
   }
-})
+});
 
 //-------------------------------------------------------------------
 //                            User Login
@@ -182,7 +172,7 @@ app.post("/registration", async (req, res) => {
 app.post("/home", async (req, res) => {
   try {
     // Search the database for a username
-    const check = await collection.findOne({ username: req.body.username });
+    const check = await users.findOne({ username: req.body.username });
     if (!check) {
       // Username does not exist - indicate to the user
       return res.render("login", { error: "Username does not exist" });
@@ -211,24 +201,3 @@ app.post("/home", async (req, res) => {
 //-------------------------------------------------------------------
 //            Budget Creation
 //-------------------------------------------------------------------
-
-app.post("/createBudget", async (req, res) => {
-  const data = {
-    username: "JOE ROGA",
-    category: dataArray[1][0],
-    description: dataArray[1][1],
-    currency: dataArray[1][2],
-    cost: dataArray[1][3]
-  }
-
-    // Add them to database
-    const budget = await collection1.insertMany(data);
-    console.log(budget);
-
-    // Redirect them to the login page
-    return res.render("createBudget");
-})
-
-module.exports = {
-  dataArray: dataArray
-};
