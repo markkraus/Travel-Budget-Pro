@@ -64,28 +64,23 @@ const RegistrationSchema = new mongoose.Schema({
 });
 
 const BudgetSchema = new mongoose.Schema({
-  username: {
-    type: String, 
+  expenseCategories: {
+    type: [String], 
     required: true
   },
 
-  category: {
-    type: String, 
+  currencies: {
+    type: [String],
     required: true
   },
 
-  currency: {
-    type: String,
+  costs: {
+    type: [Number],
     required: true
   },
 
-  cost: {
-    type: String,
-    required: true
-  },
-
-  description: {
-    type: String, 
+  descriptions: {
+    type: [String], 
     required: true
   }
 });

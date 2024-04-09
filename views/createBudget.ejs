@@ -200,13 +200,11 @@
   
     <div class="content">
 
-       <!-- ROGA-->
-       <form id="save-budget-form" action="#" method="post">
-
-        <button id="save-budget-btn" style="margin-bottom: 10px;">Save Budget</button>
+      <form id="save-budget-form" action="/save-budget" method="post">
+        <input type="hidden" id="budget-data" name="budgetData">
+        <button id="save-budget-btn" type="submit" style="margin-bottom: 10px;">Save Budget</button>
       </form>
 
-      <!-- add row dynamically -->
       <button id="add-row-button">Add Expense</button> <!-- Button to increment rows -->
 
       <!-- Content loaded dynamically based on button clicks -->
@@ -223,9 +221,6 @@
     <!-- Includes Handsontable -->
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
-
-    <!-- Includes spreadsheet  -->
-    <script src="spreadsheet.js"></script>
 
     <script>
        // Get the container element where the spreadsheet will be displayed
@@ -298,13 +293,29 @@
           ]
         });
 
-        // Attach event listener to the save button
-        save.addEventListener('click', function () {
-          // Retrieve the data from the Handsontable instance
-          const data = hot.getData();
-          // Log the data to the console
-          console.log('Handsontable data:', data);
+       // Add event listener to the form submission
+        document.getElementById('save-budget-form').addEventListener('submit', function (event) {
+          // Extract data from specific columns
+          var expenseCategories = hot.getDataAtCol(0); // Column index 0
+          var currencies = hot.getDataAtCol(1);       // Column index 1
+          var costs = hot.getDataAtCol(2);            // Column index 2
+          var descriptions = hot.getDataAtCol(3);      // Column index 3
+
+          // Create an object to store the column data
+          var columnData = {
+            expenseCategories: expenseCategories,
+            currencies: currencies,
+            costs: costs,
+            descriptions: descriptions
+          };
+
+          // Serialize the column data
+          var serializedData = JSON.stringify(columnData);
+
+          // Assign serialized data to the hidden input field
+          document.getElementById('budget-data').value = serializedData;
         });
+
     </script>
   
 </body>

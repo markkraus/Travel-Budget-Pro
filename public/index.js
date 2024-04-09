@@ -201,3 +201,27 @@ app.post("/home", async (req, res) => {
 //-------------------------------------------------------------------
 //            Budget Creation
 //-------------------------------------------------------------------
+// Route handler to save budget data to 'budgets' collection
+app.post("/save-budget", async (req, res) => {
+  try {
+    // Retrieve the budget data from the request body
+    const budgetData = JSON.parse(req.body.budgetData);
+
+    // Create an object with the four categories
+    const budgetObject = {
+      expenseCategories: budgetData.expenseCategories,
+      currencies: budgetData.currencies,
+      costs: budgetData.costs,
+      descriptions: budgetData.descriptions
+    };
+
+    // Save budget data to the 'budgets' collection
+    const result = await budgets.insertMany(budgetObject);
+    console.log("Budget data object:", budgetObject);
+
+  } catch (error) {
+    // Handle errors
+    console.error("Error saving budget data:", error);
+    res.status(500).send("Internal server error");
+  }
+});
