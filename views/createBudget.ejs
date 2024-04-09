@@ -24,9 +24,9 @@
   <style>
 
     /* Table styles */
-    /* #handsontable-container {
-      height: 100% !important;
-      width: 100% !important;
+    #handsontable-container {
+      height: 90% !important;
+      width: 90% !important;
       overflow: hidden;
       flex: 1;
     } */
@@ -153,7 +153,6 @@
       flex-direction: column;
       position: relative;
       width: calc(100% - 305px); /* Makes sidebar same width as other pages */
-      max-height: calc(100vh - 109px - 10px - 20px - 2px); /* Adjusted for header, footer, padding, and border */
       fill: #264042;
     }
 
@@ -165,6 +164,8 @@
       text-align: center;
       margin-top: auto; /* Push footer to bottom */
     }
+
+    
   </style>
 </head>
 
@@ -198,14 +199,22 @@
     </nav>
   
     <div class="content">
-      <button id="load" class="button button--primary button--blue">Load data</button> 
-      <button id="save" class="button button--primary button--blue">Save data</button>
-      <label>
-        <input type="checkbox" name="autosave" id="autosave" />
-        Autosave
-      </label>
-      <div id="handsontable-container"></div>
+
+       <!-- ROGA-->
+       <form id="save-budget-form" action="#" method="post">
+
+        <button id="save-budget-btn" style="margin-bottom: 10px;">Save Budget</button>
+      </form>
+
+      <!-- add row dynamically -->
+      <button id="add-row-button">Add Expense</button> <!-- Button to increment rows -->
+
+      <!-- Content loaded dynamically based on button clicks -->
+      <div id="handsontable-container">
+        <!-- Handsontable grid will be inserted here -->
+
     </div>
+  </div>
 
   <footer>
     &copy; 2024 Travel Budget Pro
