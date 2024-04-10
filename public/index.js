@@ -26,7 +26,6 @@ const fs = require('fs');
 const paths = require('path' );
 const bcrypt = require('bcrypt');
 const {users, budgets} = require("./config"); // 'collection' is pulled from config.js
-const hot = require('./spreadsheet'); // Import the Handsontable instance
 
 // Create an instance of the Express server
 const app = express();
