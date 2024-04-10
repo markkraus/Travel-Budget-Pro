@@ -51,16 +51,16 @@ app.use(session({
 }));
 
 // Middleware function to retrieve user's first name from session
-const retrieveFirstName = (req, res, next) => {
+const retrieveAttributes = (req, res, next) => {
   if (req.session.firstName) {
     // first name exists in the session - make it available in locals
     res.locals.firstName = req.session.firstName;
+    res.locals.budgets = req.session.budgets;
   }
   next(); // next route handler
 };
 
-// Apply to all routes
-app.use(retrieveFirstName);
+app.use(retrieveAttributes);
 
 const setError = (errorMessage) => (req, res, next) => {
   res.locals.error = errorMessage;
@@ -162,34 +162,48 @@ app.post("/registration", async (req, res) => {
 //                            User Login
 //-------------------------------------------------------------------
 app.post("/home", async (req, res) => {
-  try {
-    // Search the database for the username in the username input box
-    const check = await users.findOne({ username: req.body.username });
-    if (!check) {
-      // Username does not exist - indicate to the user
-      return res.render("login", { error: "Username does not exist" });
+  // Search the database for the username in the username input box
+  const check = await users.findOne({ username: req.body.username });
+  if (!check) {
+    // Username does not exist - indicate to the user
+    return res.render("login", { error: "Username does not exist" });
+  }
+
+  // Username exists - check password in password input box
+  const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+  if (isPasswordMatch) {
+    // Correct password - redirect to dashboard
+
+    // Store first name and username for the entire session
+    req.session.firstName = check.firstname;
+    req.session.username = check.username;
+
+    // Query the database to find budgets associated with the logged-in user
+    const userBudgetsCursor = await budgets.find({ username: check.username });
+
+    try {
+      // Check if any budgets were found
+      if (userBudgetsCursor.length === 0) {
+        // No budgets found
+        req.session.budgets = [];
+      } else {
+        // Convert cursor to array of budgets
+        req.session.budgets = userBudgetsCursor;
+      }
+
+      // Pass the budgets to the home template for rendering
+      return res.render("home", { firstName: req.session.firstName, budgets: req.session.budgets });
+    } catch (error) {
+      console.error("Error iterating over cursor:", error);
+      return res.status(500).send("Internal server error");
     }
-
-    // Username exists - check passward in password input box
-    const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-    if (isPasswordMatch) {
-      // Correct password - redirect to dashboard
-
-      // Store first name and username for entire session
-      req.session.firstName = check.firstname;
-      req.session.username = check.username;
-
-      // Pass in first name to dynamically greet the user
-      return res.render("home", { firstName: check.firstname });
-    } else {
-      // Incorrect passward - indicate to the user
-      return res.render("login", { error: "Wrong password" });
-    }
-  } catch (error) {
-    // Login credentials do not exist
-    return res.render("login", { error: "Wrong details" });
+  } else {
+    // Incorrect password - indicate to the user
+    return res.render("login", { error: "Wrong password" });
   }
 });
+
+
 
 //-------------------------------------------------------------------
 //           Save a budget
