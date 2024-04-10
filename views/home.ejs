@@ -6,27 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Add your CSS styles here */
-
-    /* Styles for budget boxes */
-    .budget-box {
-      background-color: #d9534f;
-      color: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 10px;
-      width: 200px;
-      /* Adjust as needed */
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .budget-box:hover {
-      background-color: #c9302c;
-      /* Darker shade of red on hover */
-    }
-  </style>
 </head>
 
 <body>
@@ -64,19 +43,14 @@
       </h3>
 
       <div class="budget-selection-list">
+        <!-- Dynamically generate budget boxes -->
         <% budgets.forEach(budget=> { %>
-          <!-- Dynamically generate budget boxes -->
           <div class="budget-box">
             <a href="/budget?id=<%= budget._id %>">
               <%= budget.budgetName %>
             </a>
           </div>
           <% }); %>
-
-            <!-- Create New Budget box -->
-            <div class="budget-box">
-              <a class="create-budget-tile" href="/createBudget">Create New Budget</a>
-            </div>
       </div>
     </div>
   </div>
