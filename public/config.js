@@ -25,11 +25,11 @@ const connect = mongoose.connect("mongodb+srv://heu5:AgDsYabct7p56ksI@cluster0.o
 
 connect.then(() => {
   // Connection was successful
-  console.log("Mongo worked");
+  console.log("Mongo worked.");
 })
 .catch(() =>{
   // Connection was unsuccessful
-  console.log("Mongo didnt worked");
+  console.log("Mongo did not worked.");
 })
 
 //-------------------------------------------------------------------

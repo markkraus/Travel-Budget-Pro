@@ -22,10 +22,10 @@
 
 // Pulling libraries and dependencies
 const express = require('express');
-const fs = require('fs');
-const paths = require('path' );
+require('fs');
+require('path' );
 const bcrypt = require('bcrypt');
-const {users, budgets} = require("./config"); // 'collection' is pulled from config.js
+const {users, budgets} = require("./config"); // Mongo collections are pulled from config.js
 
 // Create an instance of the Express server
 const app = express();
@@ -74,18 +74,14 @@ app.use(setError("")); // Initialize error as empty string
 //            PORT Configuration
 //-------------------------------------------------------------------
 
-//Server host
 app.listen(process.env.PORT || 3000, () => {
-  console.log('Server is running...');
+  try {
+    console.log('Server worked.');
+  } catch {
+    console.error('Server did not work.')
+  }
+  
 });
-
-/*
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server running on Port: ${port}`);
-})
-*/
-
 
 //-------------------------------------------------------------------
 //            Route Handlers
@@ -129,8 +125,6 @@ app.get("/createReport", (req, res) => {
 
   res.render("createReport");
 });
-
-
 
 //-------------------------------------------------------------------
 //            User Registration
