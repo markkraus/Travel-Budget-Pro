@@ -65,10 +65,43 @@
 
     // Initialize the Handsontable instance
     const hot = new Handsontable(container, {
-      startRows: 4,
+      startRows: 1,
       startCols: 5,
-      manualColumnResize: true, // Enable manual column resizing
-      manualRowResize: true, // Enable manual row resizing
+      contextMenu: {
+        items: {
+          // Remove row only when there is more than 1 row in the spreadsheet
+          remove_row: {
+            name: 'Remove row',
+            callback: function () {
+              hot.alter('remove_row');
+            },
+            disabled: function () {
+              // Disable remove_row when there's only one row
+              return hot.countRows() <= 1;
+            }
+          },
+          // Undo and Redo
+          undo: { name: 'Undo', disabled: function () { return !hot.isUndoAvailable(); } },
+          redo: { name: 'Redo', disabled: function () { return !hot.isRedoAvailable(); } },
+          // Alignment options
+          alignment: {
+            name: 'Alignment',
+            submenu: {
+              items: [
+                { name: 'Left', key: 'alignment:left' },
+                { name: 'Center', key: 'alignment:center' },
+                { name: 'Right', key: 'alignment:right' }
+              ]
+            }
+          },
+          // Copy, Paste, Cut
+          copy: { name: 'Copy' },
+          paste: { name: 'Paste' },
+          cut: { name: 'Cut' }
+        }
+      },
+      allowInsertRow: false, // Disable inserting rows
+      allowInsertColumn: false, // Disable inserting columns
       rowHeaders: true,
       colHeaders: ['Expense Category', 'Currency', 'Cost', 'Description'],
       colWidths: [150, 150, 150, 150],
@@ -78,7 +111,8 @@
         // Expense Category settings
         {
           data: 'expenseCategory',
-          type: 'autocomplete',
+          type: 'dropdown',
+          trimWhitespace: false,
           source: [
             "",
             "Food",
@@ -162,6 +196,12 @@
         document.getElementById('budget-data').value = serializedData;
       }
     });
+
+    hot.addHook('afterRemoveRow', function () {
+        hot.updateSettings({
+          contextMenu: hot.getSettings().contextMenu
+        });
+      });
   </script>
 
   <!-- Adds a row of cells when the "Add Expense" button is clicked. -->
