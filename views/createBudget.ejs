@@ -54,125 +54,115 @@
     &copy; 2024 Travel Budget Pro
   </footer>
 
+  <!-- Includes Handsontable -->
+  <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+  <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
 
+  <!-- Saves a spreadsheet into a hidden input field when the save button is clicked -->
+  <script>
+    var container = document.getElementById('handsontable-container'); // Container where spreadsheet is displayed
+    var save = document.getElementById('save'); // Save button
 
-
-
-    <!-- Includes Handsontable -->
-    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
-    <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
-
-    <!-- Saves a spreadsheet into a hidden input field when the save button is clicked -->
-    <script>
-      var container = document.getElementById('handsontable-container'); // Container where spreadsheet is displayed
-      var save = document.getElementById('save'); // Save button
-
-      // Initialize the Handsontable instance
-      const hot = new Handsontable(container, {
-          startRows: 4,
-          startCols: 5,
-          manualColumnResize: true, // Enable manual column resizing
-          manualRowResize: true, // Enable manual row resizing
-          rowHeaders: true,
-          colHeaders: ['Expense Category', 'Currency', 'Cost', 'Description'],
-          colWidths: [150, 150, 150, 150],
-          height: 'auto',
-          licenseKey: 'non-commercial-and-evaluation',
-          columns: [
-            // Expense Category settings
-            {
-              data: 'expenseCategory',
-              type: 'autocomplete',
-              source: [
-                "",
-                "Food",
-                "Transportation",
-                "Entertainment",
-                "Lodging",
-              ],
-              strict: false,
-            },
-            // Currency settings
-            {
-              data: 'Currency',
-              type: 'dropdown',
-              source: [
-                "",
-                "USD - United States Dollar",
-                "EUR - Euro",
-                "GBP - British Pound",
-                "JPY - Japanese Yen",
-                "CNY - Chinese Yuan",
-                "INR - Indian Rupee",
-                "AUD - Australian Dollar",
-                "CAD - Canadian Dollar",
-                "SGD - Singapore Dollar",
-                "CHF - Swiss Franc",
-                "MYR - Malaysian Ringgit",
-                "NZD - New Zealand Dollar",
-                "THB - Thai Baht",
-                "RUB - Russian Ruble",
-                "ZAR - South African Rand",
-                "BRL - Brazilian Real",
-                "PHP - Philippine Peso",
-                "IDR - Indonesian Rupiah",
-                "TRY - Turkish Lira",
-                "KRW - South Korean Won",
-                "MXN - Mexican Peso",
-                "NOK - Norwegian Krone",
-              ],
-              strict: true,
-              allowInvalid: false,
-            },
-            // Cost settings
-            {
-              data: 'cost',
-              type: 'numeric',
-            },
-            // Description settings
-            {}
+    // Initialize the Handsontable instance
+    const hot = new Handsontable(container, {
+      startRows: 4,
+      startCols: 5,
+      manualColumnResize: true, // Enable manual column resizing
+      manualRowResize: true, // Enable manual row resizing
+      rowHeaders: true,
+      colHeaders: ['Expense Category', 'Currency', 'Cost', 'Description'],
+      colWidths: [150, 150, 150, 150],
+      height: 'auto',
+      licenseKey: 'non-commercial-and-evaluation',
+      columns: [
+        // Expense Category settings
+        {
+          data: 'expenseCategory',
+          type: 'autocomplete',
+          source: [
+            "",
+            "Food",
+            "Transportation",
+            "Entertainment",
+            "Lodging",
           ],
-
-          contextMenu: {
-          menu: {
-            overflow: 'visible'
-          }
+          strict: false,
         },
-      });
+        // Currency settings
+        {
+          data: 'Currency',
+          type: 'dropdown',
+          source: [
+            "",
+            "USD - United States Dollar",
+            "EUR - Euro",
+            "GBP - British Pound",
+            "JPY - Japanese Yen",
+            "CNY - Chinese Yuan",
+            "INR - Indian Rupee",
+            "AUD - Australian Dollar",
+            "CAD - Canadian Dollar",
+            "SGD - Singapore Dollar",
+            "CHF - Swiss Franc",
+            "MYR - Malaysian Ringgit",
+            "NZD - New Zealand Dollar",
+            "THB - Thai Baht",
+            "RUB - Russian Ruble",
+            "ZAR - South African Rand",
+            "BRL - Brazilian Real",
+            "PHP - Philippine Peso",
+            "IDR - Indonesian Rupiah",
+            "TRY - Turkish Lira",
+            "KRW - South Korean Won",
+            "MXN - Mexican Peso",
+            "NOK - Norwegian Krone",
+          ],
+          strict: true,
+          allowInvalid: false,
+        },
+        // Cost settings
+        {
+          data: 'cost',
+          type: 'numeric',
+        },
+        // Description settings
+        {}
+      ],
+    });
 
-      // Add event listener to the save button form submission
-      document.getElementById('save-budget-form').addEventListener('submit', function (event) {
-        // Store data in variables by columns
-        var col1 = hot.getDataAtCol(0);
-        var col2 = hot.getDataAtCol(1);
-        var col3 = hot.getDataAtCol(2);
-        var col4 = hot.getDataAtCol(3);
+    // Add event listener to the save button form submission
+    document.getElementById('save-budget-form').addEventListener('submit', function (event) {
+      // Store data in variables by columns
+      var col1 = hot.getDataAtCol(0);
+      var col2 = hot.getDataAtCol(1);
+      var col3 = hot.getDataAtCol(2);
+      var col4 = hot.getDataAtCol(3);
 
-        // Check if any cell is empty
-        if (col1.some(cell => cell === null || cell === "") ||
-          col2.some(cell => cell === null || cell === "") ||
-          col3.some(cell => cell === null || cell === "") ||
-          col4.some(cell => cell === null || cell === "")) {
-          // Display pop-up message if any cell is empty
-          alert("Please fill out all cells before saving.");
-          event.preventDefault(); // Prevent form submission
-        } else {
-          // Store the column data
-          var columnData = {
-            expenseCategory: col1,
-            currency: col2,
-            cost: col3,
-            description: col4
-          };
+      // Check if any cell is empty
+      if (col1.some(cell => cell === null || cell === "") ||
+        col2.some(cell => cell === null || cell === "") ||
+        col3.some(cell => cell === null || cell === "") ||
+        col4.some(cell => cell === null || cell === "")) {
+        // Display pop-up message if any cell is empty
+        alert("Please fill out all cells before saving.");
+        event.preventDefault(); // Prevent form submission
+      } else {
+        // Store the column data
+        var columnData = {
+          expenseCategory: col1,
+          currency: col2,
+          cost: col3,
+          description: col4
+        };
 
-          // Serialize the column data
-          var serializedData = JSON.stringify(columnData);
+        // Serialize the column data
+        var serializedData = JSON.stringify(columnData);
 
-          // Assign serialized data to the hidden input field
-          document.getElementById('budget-data').value = serializedData;
-        }
-      });
-    </script>
+        // Assign serialized data to the hidden input field
+        document.getElementById('budget-data').value = serializedData;
+      }
+    });
+  </script>
 
   <!-- Adds a row of cells when the "Add Expense" button is clicked. -->
   <script>

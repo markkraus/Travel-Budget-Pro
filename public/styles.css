@@ -19,7 +19,6 @@ body {
   height: 100vh; /* Set the height to occupy 25% of the viewport height */
   overflow: hidden; /* Prevent scrolling if content overflows */
   flex-direction: column;
-  /* Make sure content stretches vertically */
 }
 
 h1{
@@ -52,7 +51,6 @@ h1{
   list-style-type: none;
   padding: 0;
   flex-grow: 1;
-  /* Grow to fill available space */
 }
 
 #sidebar li {
@@ -107,13 +105,11 @@ h1{
 
 .header-text-container {
   text-align: center;
-  /* margin-left: 330px; */
 }
 
 .display {
   display: flex;
   margin-top: 150px;
-  /* Adjust the margin to leave space for the header */
   height: 100vh;
   flex: 1;
   flex-direction: row;
@@ -128,8 +124,6 @@ h1{
   flex: 1;
   flex-direction: column;
   position: relative;
-  /*left: 290px; /* Adjusted to start where sidebar ends */
-  /*width: calc(100% - 330px); /* Adjusted for sidebar width */
   width: 100%;
 }
 
@@ -140,13 +134,7 @@ footer {
   border-top: 2px solid #ccc;
   text-align: center;
   margin-top: auto;
-  /* Push footer to bottom */
 }
-
-
-
-
-
 
 .form-container {
   width: 300px;
