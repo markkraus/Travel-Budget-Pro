@@ -225,8 +225,9 @@ app.post("/createBudget", async (req, res) => {
       description: budgetData.description
     };
 
-    // Save to the 'budgets' collection
-    await budgets.insertMany(budgetObject);
+    // Save to the 'budgets' collection & session budgets
+    const newBudget = await budgets.insertMany(budgetObject);
+    req.session.budgets = req.session.budgets.concat(newBudget);
 
     res.redirect("/home");
   } catch (error) {
