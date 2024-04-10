@@ -214,6 +214,7 @@ app.post("/createBudget", async (req, res) => {
     // Save to the 'budgets' collection
     await budgets.insertMany(budgetObject);
 
+    res.redirect("/home");
   } catch (error) {
     // Handle errors
     console.error("Error saving budget data:", error);
