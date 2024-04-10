@@ -38,14 +38,24 @@
     </nav>
   
     <div class="content">
+      <!-- Box to name a budget -->
+      <div class="title-box">
+        <label class="white-label" for="budget-title">Budget Title:</label>
+        <input type="text" id="budget-title" name="budgetTitle" placeholder="Enter budget title" class="input-box">
+      </div>
+
       <form id="save-budget-form" action="/createBudget" method="post">
-        <!-- Hidden input field to store spreadsheet data for index.js to find-->
+        <!-- Hidden input field to store spreadsheet data for index.js to find -->
         <input type="hidden" id="budget-data" name="budgetData">
+        <!-- Button to save a budget-->
         <button id="save-budget-btn" type="submit" style="margin-bottom: 10px;">Save Budget</button>
       </form>
+
+      <!-- Buttons for adding/deleting rows -->
       <button id="add-row-button">Add Expense</button> 
       <button id="delete-row-button">Delete Last Expense</button>
-      <!-- Handsontable grid will be inserted here -->
+
+      <!-- Handsontable grid -->
       <div id="handsontable-container"></div>
     </div>
   </div>
@@ -54,7 +64,7 @@
     &copy; 2024 Travel Budget Pro
   </footer>
 
-  <!-- Includes Handsontable -->
+  <!-- Includes Handsontable API -->
   <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
   <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
 
@@ -67,6 +77,7 @@
     const hot = new Handsontable(container, {
       startRows: 1,
       startCols: 5,
+      fillHandle: true,
       contextMenu: {
         items: {
           // Remove row only when there is more than 1 row in the spreadsheet
@@ -166,23 +177,28 @@
 
     // Add event listener to the save button form submission
     document.getElementById('save-budget-form').addEventListener('submit', function (event) {
+      // Store the budget title
+      var budgetTitle = document.getElementById('budget-title').value;
+
       // Store data in variables by columns
       var col1 = hot.getDataAtCol(0);
       var col2 = hot.getDataAtCol(1);
       var col3 = hot.getDataAtCol(2);
       var col4 = hot.getDataAtCol(3);
 
-      // Check if any cell is empty
+      // Check if any cell is empty or there's no budget name
       if (col1.some(cell => cell === null || cell === "") ||
         col2.some(cell => cell === null || cell === "") ||
         col3.some(cell => cell === null || cell === "") ||
-        col4.some(cell => cell === null || cell === "")) {
+        col4.some(cell => cell === null || cell === "") ||
+        budgetTitle.trim() === "") {
         // Display pop-up message if any cell is empty
         alert("Please fill out all cells before saving.");
         event.preventDefault(); // Prevent form submission
       } else {
         // Store the column data
         var columnData = {
+          budgetName: budgetTitle,
           expenseCategory: col1,
           currency: col2,
           cost: col3,

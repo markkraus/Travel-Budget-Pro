@@ -154,6 +154,11 @@ footer {
   margin-bottom: 5px;
 }
 
+.white-label {
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
 .form-group input {
   width: 100%;
   padding: 8px;
@@ -162,7 +167,11 @@ footer {
   border-radius: 3px;
 }
 
-.handsontableEditor.htAutocompleteEditor {
-  z-index: 9999;
-  /* Adjust the z-index to make sure it appears above other elements */
+.input-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 25%;
+  box-sizing: border-box;
 }

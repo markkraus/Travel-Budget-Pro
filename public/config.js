@@ -68,6 +68,11 @@ const BudgetSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
+  budgetName: {
+    type: String,
+    required: true
+  },
   
   expenseCategory: {
     type: [String], 

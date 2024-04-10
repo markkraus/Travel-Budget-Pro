@@ -204,6 +204,7 @@ app.post("/createBudget", async (req, res) => {
     // Create a new object to store the spreadsheet data
     const budgetObject = {
       username: user,
+      budgetName: budgetData.budgetName,
       expenseCategory: budgetData.expenseCategory,
       currency: budgetData.currency,
       cost: budgetData.cost,
