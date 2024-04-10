@@ -199,18 +199,14 @@
     </nav>
   
     <div class="content">
-
-      <form id="save-budget-form" action="/save-budget" method="post">
+      <form id="save-budget-form" action="/createBudget" method="post">
+        <!-- Hidden input field to store spreadsheet data for index.js to find-->
         <input type="hidden" id="budget-data" name="budgetData">
         <button id="save-budget-btn" type="submit" style="margin-bottom: 10px;">Save Budget</button>
       </form>
-
-      <button id="add-row-button">Add Expense</button> <!-- Button to increment rows -->
-
-      <!-- Content loaded dynamically based on button clicks -->
+      <button id="add-row-button">Add Expense</button> 
+      <!-- Handsontable grid will be inserted here -->
       <div id="handsontable-container">
-        <!-- Handsontable grid will be inserted here -->
-
     </div>
   </div>
 
@@ -222,11 +218,10 @@
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
 
+    <!-- Saves a spreadsheet into a hidden input field when the save button is clicked -->
     <script>
-       // Get the container element where the spreadsheet will be displayed
-        var container = document.getElementById('handsontable-container');
-        var save = document.getElementById('save');
-        var load = document.getElementById('load');
+        var container = document.getElementById('handsontable-container'); // Container where spreadsheet is displayed
+        var save = document.getElementById('save'); // Save button
 
         // Initialize the Handsontable instance
         const hot = new Handsontable(container, {
@@ -293,20 +288,20 @@
           ]
         });
 
-       // Add event listener to the form submission
+       // Do something when the save button is clicked
         document.getElementById('save-budget-form').addEventListener('submit', function (event) {
-          // Extract data from specific columns
-          var expenseCategories = hot.getDataAtCol(0); // Column index 0
-          var currencies = hot.getDataAtCol(1);       // Column index 1
-          var costs = hot.getDataAtCol(2);            // Column index 2
-          var descriptions = hot.getDataAtCol(3);      // Column index 3
+          // Store data in variables by columns
+          var col1 = hot.getDataAtCol(0);
+          var col2 = hot.getDataAtCol(1);
+          var col3 = hot.getDataAtCol(2);
+          var col4 = hot.getDataAtCol(3);
 
-          // Create an object to store the column data
+          // Object to store the column data
           var columnData = {
-            expenseCategories: expenseCategories,
-            currencies: currencies,
-            costs: costs,
-            descriptions: descriptions
+            expenseCategory: col1,
+            currency: col2,
+            cost: col3,
+            description: col4
           };
 
           // Serialize the column data
@@ -315,7 +310,6 @@
           // Assign serialized data to the hidden input field
           document.getElementById('budget-data').value = serializedData;
         });
-
     </script>
   
 </body>

@@ -158,8 +158,7 @@ app.post("/registration", async (req, res) => {
     data.password = hashedPassword;
 
     // Add them to database
-    const userdata = await users.insertMany(data);
-    console.log(userdata);
+    await users.insertMany(data);
 
     // Redirect them to the login page
     return res.render("login");
@@ -171,23 +170,24 @@ app.post("/registration", async (req, res) => {
 //-------------------------------------------------------------------
 app.post("/home", async (req, res) => {
   try {
-    // Search the database for a username
+    // Search the database for the username in the username input box
     const check = await users.findOne({ username: req.body.username });
     if (!check) {
       // Username does not exist - indicate to the user
       return res.render("login", { error: "Username does not exist" });
     }
 
-    // Username exists - check passward
+    // Username exists - check passward in password input box
     const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
     if (isPasswordMatch) {
       // Correct password - redirect to dashboard
-      const firstName = check.firstname;
 
-      // Store the user's first name for the entire session
-      req.session.firstName = firstName;
+      // Store first name and username for entire session
+      req.session.firstName = check.firstname;
+      req.session.username = check.username;
 
-      return res.render("home", { firstName: check.firstname});
+      // Pass in first name to dynamically greet the user
+      return res.render("home", { firstName: check.firstname });
     } else {
       // Incorrect passward - indicate to the user
       return res.render("login", { error: "Wrong password" });
@@ -199,25 +199,26 @@ app.post("/home", async (req, res) => {
 });
 
 //-------------------------------------------------------------------
-//            Budget Creation
+//           Save a budget
 //-------------------------------------------------------------------
-// Route handler to save budget data to 'budgets' collection
-app.post("/save-budget", async (req, res) => {
+app.post("/createBudget", async (req, res) => {
   try {
-    // Retrieve the budget data from the request body
+    const user = req.session.username;
+
+    // Deserialize the budget data from the hidden input field
     const budgetData = JSON.parse(req.body.budgetData);
 
-    // Create an object with the four categories
+    // Create a new object to store the spreadsheet data
     const budgetObject = {
-      expenseCategories: budgetData.expenseCategories,
-      currencies: budgetData.currencies,
-      costs: budgetData.costs,
-      descriptions: budgetData.descriptions
+      username: user,
+      expenseCategory: budgetData.expenseCategory,
+      currency: budgetData.currency,
+      cost: budgetData.cost,
+      description: budgetData.description
     };
 
-    // Save budget data to the 'budgets' collection
-    const result = await budgets.insertMany(budgetObject);
-    console.log("Budget data object:", budgetObject);
+    // Save to the 'budgets' collection
+    await budgets.insertMany(budgetObject);
 
   } catch (error) {
     // Handle errors
@@ -225,3 +226,7 @@ app.post("/save-budget", async (req, res) => {
     res.status(500).send("Internal server error");
   }
 });
+
+//-------------------------------------------------------------------
+//           Load a budget
+//-------------------------------------------------------------------
