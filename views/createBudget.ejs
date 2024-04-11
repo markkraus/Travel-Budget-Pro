@@ -10,6 +10,45 @@
   <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
 </head>
 
+<style>
+  .content {
+    color: #fff;
+    background-color: #264042;
+    padding: 20px;
+    flex: 1;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
+  /* Table styles */
+  #handsontable-container {
+    height: 80% !important;
+    width: 100% !important;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .ht_master {
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .wtHolder {
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-top: 2px solid #ccc;
+    text-align: center;
+    margin-top: auto; /* Push footer to bottom */
+  }
+  
+</style>
+
 <body>
   <header>
     <div class="welcome-message">
