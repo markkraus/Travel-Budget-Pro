@@ -17,6 +17,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
+  <script>
+    //----------------Randomize Background Pic------------------
+    var randomImageNumber = Math.floor(Math.random() * 23) + 1;
+    var li = document.querySelector('li');
+    li.style.backgroundImage = 'url("cities/' + randomImageNumber + '.jpg")';
+    li.style.backgroundSize = 'cover';
+    //----------------------------------------------------------
+
+  </script>
   <style>
     .budgets-header {
       align-items: center;
@@ -36,19 +45,19 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
+      padding-left: 30px;
     }
 
     .budget-selection-item {
       margin: 0 2% 2% 0;
       padding: 0;
       transform: translate(0);
-      width: 23.5%;
-      height: 23.5%;
       background-color: #d9534f;
       color: #fff;
       border: none;
-      padding: 10px 20px;
+      padding: 20px 20px;
       border-radius: 5px;
+      display: block;
       cursor: pointer;
     }
 
@@ -56,6 +65,7 @@
       margin: 0 2% 2% 0;
       padding: 0;
       transform: translate(0);
+      display: block;
       /* width: 23.5%;
       background-color: green;
       color: #fff;
@@ -64,6 +74,7 @@
       border-radius: 5px;
       cursor: pointer; */
     }
+    
   </style>
 </head>
 
