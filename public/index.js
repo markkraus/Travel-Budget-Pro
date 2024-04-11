@@ -22,21 +22,10 @@
 
 // Pulling libraries and dependencies
 const express = require('express');
-const fs = require('fs');
-const paths = require('path' );
+require('fs');
+require('path' );
 const bcrypt = require('bcrypt');
-const {collection, collection1} = require("./config"); // 'collection' is pulled from config.js
-
-let dataArray = [
-  ['Expense Category', 'Description', 'Currency', 'Cost'],
-  ['DIDNT', 'WORK', 'USD', '50'],
-  ['DIDNT', 'WORK', 'USD', '50'],
-  ['DIDNT', 'WORK', 'USD', '50']
-];
-//const dataArray = require('./spreadsheet');
-//const budgetFileFunction = require('./spreadsheet');
-//const budgetdata = require("./spreadsheet");
-
+const {users, budgets} = require("./config"); // Mongo collections are pulled from config.js
 
 // Create an instance of the Express server
 const app = express();
@@ -53,7 +42,7 @@ app.set('view engine', 'ejs');
 // Configure Express to send files (HTML, JavaScript, etc.) directly to the client
 app.use(express.static('public'));
 
-
+// Make variables last until users log out
 const session = require('express-session');
 app.use(session({
   secret: 'your-secret-key',
@@ -62,16 +51,16 @@ app.use(session({
 }));
 
 // Middleware function to retrieve user's first name from session
-const retrieveFirstName = (req, res, next) => {
+const retrieveAttributes = (req, res, next) => {
   if (req.session.firstName) {
     // first name exists in the session - make it available in locals
     res.locals.firstName = req.session.firstName;
+    res.locals.budgets = req.session.budgets;
   }
   next(); // next route handler
 };
 
-// Apply to all routes
-app.use(retrieveFirstName);
+app.use(retrieveAttributes);
 
 const setError = (errorMessage) => (req, res, next) => {
   res.locals.error = errorMessage;
@@ -85,18 +74,14 @@ app.use(setError("")); // Initialize error as empty string
 //            PORT Configuration
 //-------------------------------------------------------------------
 
-//Server host
 app.listen(process.env.PORT || 3000, () => {
-  console.log('Server is running...');
+  try {
+    console.log('Server worked.');
+  } catch {
+    console.error('Server did not work.')
+  }
+  
 });
-
-/*
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server running on Port: ${port}`);
-})
-*/
-
 
 //-------------------------------------------------------------------
 //            Route Handlers
@@ -141,8 +126,6 @@ app.get("/createReport", (req, res) => {
   res.render("createReport");
 });
 
-
-
 //-------------------------------------------------------------------
 //            User Registration
 //-------------------------------------------------------------------
@@ -156,7 +139,7 @@ app.post("/registration", async (req, res) => {
   }
 
   // Search database for username
-  const existingUser = await collection.findOne({ username: data.username })
+  const existingUser = await users.findOne({ username: data.username })
 
   if (existingUser) {
     // User selected a username that has already been chosen
@@ -168,67 +151,92 @@ app.post("/registration", async (req, res) => {
     data.password = hashedPassword;
 
     // Add them to database
-    const userdata = await collection.insertMany(data);
-    console.log(userdata);
+    await users.insertMany(data);
 
     // Redirect them to the login page
     return res.render("login");
   }
-})
+});
 
 //-------------------------------------------------------------------
 //                            User Login
 //-------------------------------------------------------------------
 app.post("/home", async (req, res) => {
+  // Search the database for the username in the username input box
+  const check = await users.findOne({ username: req.body.username });
+  if (!check) {
+    // Username does not exist - indicate to the user
+    return res.render("login", { error: "Username does not exist" });
+  }
+
+  // Username exists - check password in password input box
+  const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+  if (isPasswordMatch) {
+    // Correct password - redirect to dashboard
+
+    // Store first name and username for the entire session
+    req.session.firstName = check.firstname;
+    req.session.username = check.username;
+
+    // Query the database to find budgets associated with the logged-in user
+    const userBudgetsCursor = await budgets.find({ username: check.username });
+
+    try {
+      // Check if any budgets were found
+      if (userBudgetsCursor.length === 0) {
+        // No budgets found
+        req.session.budgets = [];
+      } else {
+        // Convert cursor to array of budgets
+        req.session.budgets = userBudgetsCursor;
+      }
+
+      // Pass the budgets to the home template for rendering
+      return res.render("home", { firstName: req.session.firstName, budgets: req.session.budgets });
+    } catch (error) {
+      console.error("Error iterating over cursor:", error);
+      return res.status(500).send("Internal server error");
+    }
+  } else {
+    // Incorrect password - indicate to the user
+    return res.render("login", { error: "Wrong password" });
+  }
+});
+
+
+
+//-------------------------------------------------------------------
+//           Save a budget
+//-------------------------------------------------------------------
+app.post("/createBudget", async (req, res) => {
   try {
-    // Search the database for a username
-    const check = await collection.findOne({ username: req.body.username });
-    if (!check) {
-      // Username does not exist - indicate to the user
-      return res.render("login", { error: "Username does not exist" });
-    }
+    const user = req.session.username;
 
-    // Username exists - check passward
-    const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-    if (isPasswordMatch) {
-      // Correct password - redirect to dashboard
-      const firstName = check.firstname;
+    // Deserialize the budget data from the hidden input field
+    const budgetData = JSON.parse(req.body.budgetData);
 
-      // Store the user's first name for the entire session
-      req.session.firstName = firstName;
+    // Create a new object to store the spreadsheet data
+    const budgetObject = {
+      username: user,
+      budgetName: budgetData.budgetName,
+      expenseCategory: budgetData.expenseCategory,
+      currency: budgetData.currency,
+      cost: budgetData.cost,
+      description: budgetData.description
+    };
 
-      return res.render("home", { firstName: check.firstname});
-    } else {
-      // Incorrect passward - indicate to the user
-      return res.render("login", { error: "Wrong password" });
-    }
+    // Save to the 'budgets' collection & session budgets
+    const newBudget = await budgets.insertMany(budgetObject);
+    req.session.budgets = req.session.budgets.concat(newBudget);
+
+    res.redirect("/home");
   } catch (error) {
-    // Login credentials do not exist
-    return res.render("login", { error: "Wrong details" });
+    // Handle errors
+    console.error("Error saving budget data:", error);
+    res.status(500).send("Internal server error");
   }
 });
 
 //-------------------------------------------------------------------
-//            Budget Creation
+//           Load a budget
 //-------------------------------------------------------------------
-
-app.post("/createBudget", async (req, res) => {
-  const data = {
-    username: "JOE ROGA",
-    category: dataArray[1][0],
-    description: dataArray[1][1],
-    currency: dataArray[1][2],
-    cost: dataArray[1][3]
-  }
-
-    // Add them to database
-    const budget = await collection1.insertMany(data);
-    console.log(budget);
-
-    // Redirect them to the login page
-    return res.render("createBudget");
-})
-
-module.exports = {
-  dataArray: dataArray
-};

@@ -1,14 +1,3 @@
-<!--        home.html
-        (Author: Mark Kraus & Connor Gramling)
-  Overview:
-    Allows existing users to access the rest of the website
-    and see their existing budgets as well as create new one.
-    
-  Functionality:
-    1. Logout
-    2. 
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,15 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
-  <script>
-    //----------------Randomize Background Pic------------------
-    var randomImageNumber = Math.floor(Math.random() * 23) + 1;
-    var li = document.querySelector('li');
-    li.style.backgroundImage = 'url("cities/' + randomImageNumber + '.jpg")';
-    li.style.backgroundSize = 'cover';
-    //----------------------------------------------------------
-
-  </script>
   <style>
     .budgets-header {
       align-items: center;
@@ -45,19 +25,19 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
-      padding-left: 30px;
     }
 
     .budget-selection-item {
       margin: 0 2% 2% 0;
       padding: 0;
       transform: translate(0);
+      width: 23.5%;
+      height: 23.5%;
       background-color: #d9534f;
       color: #fff;
       border: none;
-      padding: 20px 20px;
+      padding: 10px 20px;
       border-radius: 5px;
-      display: block;
       cursor: pointer;
     }
 
@@ -65,7 +45,6 @@
       margin: 0 2% 2% 0;
       padding: 0;
       transform: translate(0);
-      display: block;
       /* width: 23.5%;
       background-color: green;
       color: #fff;
@@ -74,15 +53,14 @@
       border-radius: 5px;
       cursor: pointer; */
     }
-    
   </style>
 </head>
 
 <body>
-
   <header>
     <div class="welcome-message">
-      <h2>Welcome, <%= firstName %></h2> <!-- Dynamic greeting: This is not a bug! -->
+      <h2>Welcome, <%= firstName %>
+      </h2> <!-- Dynamic greeting: This is not a bug! -->
     </div>
     <div class="logout-button">
       <a href="/login">
@@ -96,6 +74,7 @@
   </header>
 
   <div id="display" class="display">
+    <!-- Sidebar content -->
     <nav id="sidebar">
       <h2>Menu</h2>
       <ul>
@@ -112,22 +91,27 @@
       <h3 class="budgets-header">
         YOUR BUDGETS
       </h3>
-      <ul class="budget-selection-list">
-        <li class="budget-selection-item">
-          <!-- make sure budget tag for mango is correct below -->
-          <a class="budget-tile" href="/createBudget?budgetId=12345">Budget 1</a> 
-        </li>
-        <li class="budget-selection-create-new">
-          <a class="create-budget-tile" href="">Create New Budget</a>
-        </li>
-      </ul>
+
+      <div class="budget-selection-list">
+        <% if (budgets.length===0) { %>
+          <p>You have no saved budgets yet.</p>
+          <% } else { %>
+            <!-- Dynamically generate budget boxes -->
+            <% budgets.forEach(budget=> { %>
+              <div class="budget-box">
+                <a href="/budget?id=<%= budget._id %>">
+                  <%= budget.budgetName %>
+                </a>
+              </div>
+              <% }); %>
+                <% } %>
+      </div>
     </div>
   </div>
 
   <footer>
     &copy; 2024 Travel Budget Pro
   </footer>
-
 
 </body>
 

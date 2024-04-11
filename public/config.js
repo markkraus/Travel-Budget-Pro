@@ -25,11 +25,11 @@ const connect = mongoose.connect("mongodb+srv://heu5:AgDsYabct7p56ksI@cluster0.o
 
 connect.then(() => {
   // Connection was successful
-  console.log("it worked");
+  console.log("Mongo worked.");
 })
 .catch(() =>{
   // Connection was unsuccessful
-  console.log("it didnt worked");
+  console.log("Mongo did not worked.");
 })
 
 //-------------------------------------------------------------------
@@ -63,37 +63,36 @@ const RegistrationSchema = new mongoose.Schema({
   }
 });
 
-const LoginSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true
-  }
-})
-
 const BudgetSchema = new mongoose.Schema({
   username: {
-    type: String, 
-    required: true
-  },
-  category: {
-    type: String, 
+    type: String,
     required: true
   },
 
-  description: {
-    type: String, 
+  budgetName: {
+    type: String,
+    required: true
+  },
+  
+  expenseCategory: {
+    type: [String], 
     required: true
   },
 
   currency: {
-    type: String, 
+    type: [String],
     required: true
   },
 
   cost: {
-    type: String, 
+    type: [Number],
     required: true
   },
+
+  description: {
+    type: [String], 
+    required: true
+  }
 });
 
 
@@ -102,15 +101,11 @@ const BudgetSchema = new mongoose.Schema({
 //-------------------------------------------------------------------
 
 // Create a Mongoose model to interact with MongoDB database
-const collection = new mongoose.model("registeredusers", RegistrationSchema);
+const usersCollection = new mongoose.model("registeredusers", RegistrationSchema);
+const budgetsCollection = new mongoose.model("budgets", BudgetSchema);
 
-// Allows the collection to be accessible in other parts of the program
-//module.exports = collection;
-
-const collection1 = new mongoose.model("budgets", BudgetSchema);
-//module.exports = collection1;
-
+// Allows the collections to be accessible in other parts of the program
 module.exports = {
-  collection : collection,
-  collection1 : collection1
+  users : usersCollection,
+  budgets : budgetsCollection
 };
