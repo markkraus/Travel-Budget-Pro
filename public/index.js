@@ -120,8 +120,35 @@ app.get("/createBudget", (req, res) => {
   res.render("createBudget", { budgetData: null });
 });
 
-//-------------new code-----------------------------
-//Gets database object id from button name
+//-------------------------------------------------------------------
+//        Deletes budget and returns to home page
+//-------------------------------------------------------------------
+app.post("/deleteBudget", async (req, res) => {
+  const user = req.session.username;
+  const budgetID = req.body.budgetID1;
+
+  try {
+      const existingBudget = await budgets.findOne({ _id: budgetID });
+      if (existingBudget) {
+          // If the budget exists, delete it
+          const result = await budgets.deleteOne({ _id: budgetID });
+          console.log(`${result.deletedCount} budget(s) deleted.`);
+      } 
+      // Update the session by filtering out the deleted budget
+      if (req.session.budgets && Array.isArray(req.session.budgets)) {
+        req.session.budgets = req.session.budgets.filter(budget => budget._id.toString() !== budgetID);
+      }
+
+      res.redirect("/home");  // Redirect to the home page 
+  } catch (error) {
+      console.error("Error in deleting budget:", error);
+      res.status(500).send("Error deleting budget");
+  }
+});
+
+//-------------------------------------------------------------------
+// Loads budget data on create budget page when button is clicked
+//-------------------------------------------------------------------
 app.get('/budget', async (req, res) => {
   const budgetId = req.query.id;
 
@@ -141,8 +168,8 @@ app.get('/budget', async (req, res) => {
   res.status(500).send('Error retrieving budget');
 }
 
-});
-//------------------------------------------
+});  
+//-----------Conner Gyatt, write this \/-------------------------------
 
 app.get("/createReport", (req, res) => {
 
@@ -226,8 +253,6 @@ app.post("/home", async (req, res) => {
   }
 });
 
-
-
 //-------------------------------------------------------------------
 //           Save a budget
 //-------------------------------------------------------------------
@@ -278,3 +303,4 @@ app.post("/createBudget", async (req, res) => {
     res.status(500).send("Internal server error");
   }
 });
+
