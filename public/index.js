@@ -117,9 +117,32 @@ app.get("/settings", (req, res) => {
 });
 
 app.get("/createBudget", (req, res) => {
-  res.render("createBudget");
+  res.render("createBudget", { budgetData: null });
 });
 
+//-------------new code-----------------------------
+//Gets database object id from button name
+app.get('/budget', async (req, res) => {
+  const budgetId = req.query.id;
+
+  try {
+    // Assuming Budget is your model and budgetId is coming correctly formatted
+    const budgetData = await budgets.findById(budgetId);
+    if (!budgetData) {
+      res.status(404).send('Budget not found');
+      return;
+    }
+    // Print the retrieved budget data to the console for debugging
+    console.log('Retrieved budget data:', budgetData);
+    res.render("createBudget", { budgetData: budgetData });
+
+} catch (error) {
+  console.error('Database error:', error);
+  res.status(500).send('Error retrieving budget');
+}
+
+});
+//------------------------------------------
 
 app.get("/createReport", (req, res) => {
 
@@ -225,9 +248,23 @@ app.post("/createBudget", async (req, res) => {
       description: budgetData.description
     };
 
-    // Save to the 'budgets' collection & session budgets
-    const newBudget = await budgets.insertMany(budgetObject);
-    req.session.budgets = req.session.budgets.concat(newBudget);
+    //Search for existing budget
+    const existingBudget = await budgets.findOne({
+      username: user,
+      budgetName: budgetData.budgetName
+    });
+
+    if (existingBudget) {
+      // Update the existing budget
+      await budgets.updateOne(
+        { _id: existingBudget._id }, 
+        { $set: budgetObject }
+      );
+    } else {
+      // Save to the 'budgets' collection & session budgets
+      const newBudget = await budgets.insertMany(budgetObject);
+      req.session.budgets = req.session.budgets.concat(newBudget);
+    }
 
     res.redirect("/home");
   } catch (error) {
@@ -236,7 +273,3 @@ app.post("/createBudget", async (req, res) => {
     res.status(500).send("Internal server error");
   }
 });
-
-//-------------------------------------------------------------------
-//           Load a budget
-//-------------------------------------------------------------------

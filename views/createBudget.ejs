@@ -93,7 +93,6 @@
       <!-- Buttons for adding/deleting rows -->
       <button id="add-row-button">Add Expense</button> 
       <button id="delete-row-button">Delete Last Expense</button>
-
       <!-- Handsontable grid -->
       <div id="handsontable-container"></div>
     </div>
@@ -106,26 +105,47 @@
   <!-- Includes Handsontable API -->
   <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
   <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
-
   <script>
+    var stringBudgetData = '<%- JSON.stringify(budgetData || {}) %>';
+  </script>
+  
+  <script>
+    
     // Allows expenses tabs to be seen when table is shorter than tab list
     window.onload = function() {
       var container = document.getElementById('handsontable-container');
       if (container) {
         container.style.overflow = 'visible';
       }
+
+      //Loads budget name into box if user clicked on an existing budget
+      if(stringBudgetData != '{}'){
+        const budget = JSON.parse(stringBudgetData);
+        document.getElementById('budget-title').value = budget.budgetName;
+        
+      }  
     };
+    
   </script>
   
 
   <!-- Saves a spreadsheet into a hidden input field when the save button is clicked -->
   <script>
+    
     var container = document.getElementById('handsontable-container'); // Container where spreadsheet is displayed
     var save = document.getElementById('save'); // Save button
+ 
+    //Trying to get length of array to set table size
+    if(stringBudgetData.length > 2){
+          const arraySize = budget.expenseCategory.length;
+          rowCount = arraySize; 
+        } else{
+          rowCount = 1;
+        }
 
     // Initialize the Handsontable instance
-    const hot = new Handsontable(container, {
-      startRows: 1,
+      const hot = new Handsontable(container, {
+      startRows: rowCount,
       startCols: 5,
       fillHandle: true,
       contextMenu: {
@@ -224,6 +244,8 @@
         {}
       ],
     });
+
+
 
     // Add event listener to the save button form submission
     document.getElementById('save-budget-form').addEventListener('submit', function (event) {
