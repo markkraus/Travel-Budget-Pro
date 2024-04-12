@@ -237,6 +237,7 @@ app.post("/createBudget", async (req, res) => {
 
     // Deserialize the budget data from the hidden input field
     const budgetData = JSON.parse(req.body.budgetData);
+    const budgetID = req.body.budgetID;
 
     // Create a new object to store the spreadsheet data
     const budgetObject = {
@@ -250,8 +251,7 @@ app.post("/createBudget", async (req, res) => {
 
     //Search for existing budget
     const existingBudget = await budgets.findOne({
-      username: user,
-      budgetName: budgetData.budgetName
+      _id: budgetID,
     });
 
     if (existingBudget) {
@@ -260,6 +260,11 @@ app.post("/createBudget", async (req, res) => {
         { _id: existingBudget._id }, 
         { $set: budgetObject }
       );
+      //Update session budgets to reflect changed budget
+      const index = req.session.budgets.findIndex(b => b._id.toString() === existingBudget._id.toString());
+      if (index !== -1) {
+          req.session.budgets[index] = {...req.session.budgets[index], ...budgetObject};
+      }
     } else {
       // Save to the 'budgets' collection & session budgets
       const newBudget = await budgets.insertMany(budgetObject);

@@ -123,6 +123,7 @@
           <form id="save-budget-form" action="/createBudget" method="post">
             <!-- Hidden input field to store spreadsheet data for index.js to find -->
             <input type="hidden" id="budget-data" name="budgetData">
+            <input type="hidden" id="budget-id" name="budgetID">
             <!-- Button to save a budget-->
             <button id="save-budget-btn" type="submit" style="margin-bottom: 10px;">Save Budget</button>
           </form>
@@ -158,7 +159,6 @@
   </script>
   
   <script>
-    
     // Allows expenses tabs to be seen when table is shorter than tab list
     window.onload = function() {
       var container = document.getElementById('handsontable-container');
@@ -170,7 +170,11 @@
        if(stringBudgetData != '{}'){
         const budget = JSON.parse(stringBudgetData);
         document.getElementById('budget-title').value = budget.budgetName;  
-      }  
+        document.getElementById('budget-id').value = budget._id;
+      }  else{
+        //Assign null hex value to signify new budget
+        document.getElementById('budget-id').value = '000000000000000000000000';
+      }
     };
     
   </script>
@@ -303,8 +307,6 @@
         },
       ],
     });
-
-
 
     // Add event listener to the save button form submission
     document.getElementById('save-budget-form').addEventListener('submit', function (event) {
