@@ -166,33 +166,42 @@
         container.style.overflow = 'visible';
       }
 
-      //Loads budget name into box if user clicked on an existing budget
-      if(stringBudgetData != '{}'){
+       //Loads budget name into box if user clicked on an existing budget
+       if(stringBudgetData != '{}'){
         const budget = JSON.parse(stringBudgetData);
-        document.getElementById('budget-title').value = budget.budgetName;
-        
+        document.getElementById('budget-title').value = budget.budgetName;  
       }  
     };
     
   </script>
-  
 
   <!-- Saves a spreadsheet into a hidden input field when the save button is clicked -->
   <script>
     
     var container = document.getElementById('handsontable-container'); // Container where spreadsheet is displayed
     var save = document.getElementById('save'); // Save button
- 
+    var handsontableData = [{}]; //Assign handsontable data to empty (creates single empty row)
     //Trying to get length of array to set table size
     if(stringBudgetData.length > 2){
-          const arraySize = budget.expenseCategory.length;
-          rowCount = arraySize; 
-        } else{
-          rowCount = 1;
-        }
+      const budget = JSON.parse(stringBudgetData);
+      const arraySize = budget.expenseCategory.length;
+      rowCount = arraySize; 
+      var handsontableData = []; //Remove empty set before adding data
+      for (let i = 0; i < arraySize; i++) {
+      handsontableData.push({ //Add data to table
+        expenseCategory: budget.expenseCategory[i],
+        currency: budget.currency[i],
+        cost: budget.cost[i],
+        description: budget.description[i]
+      });
+    }
+    } else{
+      rowCount = 1;
+    }
 
     // Initialize the Handsontable instance
-      const hot = new Handsontable(container, {
+    const hot = new Handsontable(container, {
+      data: handsontableData,
       startRows: rowCount,
       startCols: 5,
       fillHandle: true,
@@ -253,7 +262,7 @@
         },
         // Currency settings
         {
-          data: 'Currency',
+          data: 'currency',
           type: 'dropdown',
           source: [
             "",
@@ -289,7 +298,9 @@
           type: 'numeric',
         },
         // Description settings
-        {}
+        {
+          data: 'description',
+        },
       ],
     });
 
