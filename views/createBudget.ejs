@@ -29,13 +29,24 @@
     flex-direction: column;
   }
   .title-box {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+  }
+  .budget-buttons {
     display: flex;
     flex-direction: row;
-    margin-bottom: 10px;
   }
   .input-box{
     margin-left: 20px;
-    margin-right: 50px;
+    margin-right: 0px;
+    width: 165px !important;
   }
   /* Table styles */
   #handsontable-container {
@@ -45,17 +56,14 @@
     overflow: hidden;
     flex: 1;
   }
-
   .ht_master {
     height: 100% !important;
     width: 100% !important;
   }
-
   .wtHolder {
     height: 100% !important;
     width: 100% !important;
   }
-
   .max-budget-container {
     position: relative;
     flex-direction: column;
@@ -72,11 +80,27 @@
     height: 50px;
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: row;
   }
 
   .max-per-catagory {
+    display: block !important;
     height: auto;
     width: 100%;
+    text-align: center;
+  }
+
+  .budget-input {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    text-align: center;
   }
 
   footer {
@@ -123,34 +147,36 @@
         <div class="title-box">
           <label class="white-label" for="budget-title">Budget Title:</label>
           <input type="text" id="budget-title" name="budgetTitle" placeholder="Enter budget title" class="input-box">
+        </div>
+
+        <div class="budget-buttons">
+          <!-- Buttons for adding/deleting rows -->
+          <button id="add-row-button" style="margin-right: 5px;">Add Expense</button> 
+          <button id="delete-row-button" style="margin-right: 5px;">Delete Last Expense</button>
+          <!-- Buttons to save/delete a budget -->
           <form id="save-budget-form" action="/createBudget" method="post">
             <!-- Hidden input field to store spreadsheet data for index.js to find -->
             <input type="hidden" id="budget-data" name="budgetData">
             <input type="hidden" id="budget-id" name="budgetID">
             <!-- Button to save a budget-->
-            <button id="save-budget-btn" type="submit" style="margin-bottom: 10px;">Save Budget</button>
+            <button id="save-budget-btn" type="submit" style="margin-right: 5px;">Save Budget</button>
           </form>
           <form id="delete-budget-form" action="/deleteBudget" method="post">
-            <button id="delete-budget-btn" type="submit" style="margin-bottom: 10px;">Delete Budget</button>
+            <button id="delete-budget-btn" type="submit" style="margin-right: 5px;">Delete Budget</button>
             <input type="hidden" id="budget-id1" name="budgetID1">
           </form>
-        
         </div>
-
-        <!-- Buttons for adding/deleting rows -->
-        <button id="add-row-button">Add Expense</button> 
-        <button id="delete-row-button">Delete Last Expense</button>
 
         <!-- Handsontable grid -->
         <div id="handsontable-container"></div>
       </div>
       <div class="max-budget-container">
-        <div class="total-max">
-          <h2>Budget Max: ENTER % OR X/TOTAL</h2>
-        </div>
+        <!-- <div class="total-max">
+          <h2>Budget Max: </h2>
+        </div> -->
         <div class="budget-input">
           <label for="max-budget">Maximum Budget:</label>
-          <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
+          <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget" class="input-box">
         </div>
         <div class="max-per-catagory">
           <h2>Max per Catagory</h2>
