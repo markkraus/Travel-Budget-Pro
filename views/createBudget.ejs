@@ -85,10 +85,14 @@
   }
 
   .max-per-catagory {
-    display: block !important;
     height: auto;
     width: 100%;
     text-align: center;
+    display: flex;
+  }
+
+  .pmc-container {
+    
   }
 
   .budget-input {
@@ -180,11 +184,16 @@
         </div>
         <div class="max-per-catagory">
           <h2>Max per Catagory</h2>
-          <ul>
-            <li>Category 1: %</li>
-            <li>Category 2: %</li>
-            <li>Category 3: %</li>
-          </ul>
+          <div class="catagory-titles"> <!-- should contain a list of all categories -->
+            <p>Category 1:</p>
+            <p>Category 2:</p>
+            <p>Category 3:</p>
+          </div>
+          <div class="catagory-percentage">
+            <p>%</p>
+            <p>%</p>
+            <p>%</p>
+          </div>
         </div>
       </div>
     </div>
