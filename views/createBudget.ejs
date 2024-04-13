@@ -126,9 +126,15 @@
           <form id="save-budget-form" action="/createBudget" method="post">
             <!-- Hidden input field to store spreadsheet data for index.js to find -->
             <input type="hidden" id="budget-data" name="budgetData">
+            <input type="hidden" id="budget-id" name="budgetID">
             <!-- Button to save a budget-->
             <button id="save-budget-btn" type="submit" style="margin-bottom: 10px;">Save Budget</button>
           </form>
+          <form id="delete-budget-form" action="/deleteBudget" method="post">
+            <button id="delete-budget-btn" type="submit" style="margin-bottom: 10px;">Delete Budget</button>
+            <input type="hidden" id="budget-id1" name="budgetID1">
+          </form>
+        
         </div>
 
         <!-- Buttons for adding/deleting rows -->
@@ -161,7 +167,10 @@
   <!-- Includes Handsontable API -->
   <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
   <script src="https://handsontable.com/docs/scripts/fixer.js"></script>
-
+  <script>
+    var stringBudgetData = '<%- JSON.stringify(budgetData || {}) %>';
+  </script>
+  
   <script>
     // Allows expenses tabs to be seen when table is shorter than tab list
     window.onload = function() {
@@ -169,18 +178,50 @@
       if (container) {
         container.style.overflow = 'visible';
       }
+
+       //Loads budget name into box if user clicked on an existing budget
+       if(stringBudgetData != '{}'){
+        const budget = JSON.parse(stringBudgetData);
+        document.getElementById('budget-title').value = budget.budgetName;  
+        document.getElementById('budget-id').value = budget._id;
+        document.getElementById('budget-id1').value = budget._id;
+      }  else{
+        //Assign null hex value to signify new budget
+        document.getElementById('budget-id').value = '000000000000000000000000';
+        document.getElementById('budget-id1').value = '000000000000000000000000';
+      }
     };
+    
   </script>
-  
 
   <!-- Saves a spreadsheet into a hidden input field when the save button is clicked -->
   <script>
+    
     var container = document.getElementById('handsontable-container'); // Container where spreadsheet is displayed
     var save = document.getElementById('save'); // Save button
+    var handsontableData = [{}]; //Assign handsontable data to empty (creates single empty row)
+    //Trying to get length of array to set table size
+    if(stringBudgetData.length > 2){
+      const budget = JSON.parse(stringBudgetData);
+      const arraySize = budget.expenseCategory.length;
+      rowCount = arraySize; 
+      var handsontableData = []; //Remove empty set before adding data
+      for (let i = 0; i < arraySize; i++) {
+      handsontableData.push({ //Add data to table
+        expenseCategory: budget.expenseCategory[i],
+        currency: budget.currency[i],
+        cost: budget.cost[i],
+        description: budget.description[i]
+      });
+    }
+    } else{
+      rowCount = 1;
+    }
 
     // Initialize the Handsontable instance
     const hot = new Handsontable(container, {
-      startRows: 1,
+      data: handsontableData,
+      startRows: rowCount,
       startCols: 5,
       fillHandle: true,
       contextMenu: {
@@ -240,7 +281,7 @@
         },
         // Currency settings
         {
-          data: 'Currency',
+          data: 'currency',
           type: 'dropdown',
           source: [
             "",
@@ -276,7 +317,9 @@
           type: 'numeric',
         },
         // Description settings
-        {}
+        {
+          data: 'description',
+        },
       ],
     });
 
@@ -315,6 +358,14 @@
 
         // Assign serialized data to the hidden input field
         document.getElementById('budget-data').value = serializedData;
+      }
+    });
+
+    //Stops new budget (unsaved) from being deleted
+    document.getElementById('delete-budget-form').addEventListener('submit', function (event) {
+      if(document.getElementById('budget-id').value == '000000000000000000000000'){
+        alert("Unsaved budgets cannot be deleted");
+        event.preventDefault(); // Prevent form submission
       }
     });
 

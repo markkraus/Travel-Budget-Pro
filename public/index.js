@@ -117,9 +117,59 @@ app.get("/settings", (req, res) => {
 });
 
 app.get("/createBudget", (req, res) => {
-  res.render("createBudget");
+  res.render("createBudget", { budgetData: null });
 });
 
+//-------------------------------------------------------------------
+//        Deletes budget and returns to home page
+//-------------------------------------------------------------------
+app.post("/deleteBudget", async (req, res) => {
+  const user = req.session.username;
+  const budgetID = req.body.budgetID1;
+
+  try {
+      const existingBudget = await budgets.findOne({ _id: budgetID });
+      if (existingBudget) {
+          // If the budget exists, delete it
+          const result = await budgets.deleteOne({ _id: budgetID });
+          console.log(`${result.deletedCount} budget(s) deleted.`);
+      } 
+      // Update the session by filtering out the deleted budget
+      if (req.session.budgets && Array.isArray(req.session.budgets)) {
+        req.session.budgets = req.session.budgets.filter(budget => budget._id.toString() !== budgetID);
+      }
+
+      res.redirect("/home");  // Redirect to the home page 
+  } catch (error) {
+      console.error("Error in deleting budget:", error);
+      res.status(500).send("Error deleting budget");
+  }
+});
+
+//-------------------------------------------------------------------
+// Loads budget data on create budget page when button is clicked
+//-------------------------------------------------------------------
+app.get('/budget', async (req, res) => {
+  const budgetId = req.query.id;
+
+  try {
+    // Assuming Budget is your model and budgetId is coming correctly formatted
+    const budgetData = await budgets.findById(budgetId);
+    if (!budgetData) {
+      res.status(404).send('Budget not found');
+      return;
+    }
+    // Print the retrieved budget data to the console for debugging
+    console.log('Retrieved budget data:', budgetData);
+    res.render("createBudget", { budgetData: budgetData });
+
+} catch (error) {
+  console.error('Database error:', error);
+  res.status(500).send('Error retrieving budget');
+}
+
+});  
+//-----------Conner Gyatt, write this \/-------------------------------
 
 app.get("/createReport", (req, res) => {
 
@@ -203,8 +253,6 @@ app.post("/home", async (req, res) => {
   }
 });
 
-
-
 //-------------------------------------------------------------------
 //           Save a budget
 //-------------------------------------------------------------------
@@ -214,6 +262,7 @@ app.post("/createBudget", async (req, res) => {
 
     // Deserialize the budget data from the hidden input field
     const budgetData = JSON.parse(req.body.budgetData);
+    const budgetID = req.body.budgetID;
 
     // Create a new object to store the spreadsheet data
     const budgetObject = {
@@ -225,9 +274,27 @@ app.post("/createBudget", async (req, res) => {
       description: budgetData.description
     };
 
-    // Save to the 'budgets' collection & session budgets
-    const newBudget = await budgets.insertMany(budgetObject);
-    req.session.budgets = req.session.budgets.concat(newBudget);
+    //Search for existing budget
+    const existingBudget = await budgets.findOne({
+      _id: budgetID,
+    });
+
+    if (existingBudget) {
+      // Update the existing budget
+      await budgets.updateOne(
+        { _id: existingBudget._id }, 
+        { $set: budgetObject }
+      );
+      //Update session budgets to reflect changed budget
+      const index = req.session.budgets.findIndex(b => b._id.toString() === existingBudget._id.toString());
+      if (index !== -1) {
+          req.session.budgets[index] = {...req.session.budgets[index], ...budgetObject};
+      }
+    } else {
+      // Save to the 'budgets' collection & session budgets
+      const newBudget = await budgets.insertMany(budgetObject);
+      req.session.budgets = req.session.budgets.concat(newBudget);
+    }
 
     res.redirect("/home");
   } catch (error) {
@@ -237,6 +304,3 @@ app.post("/createBudget", async (req, res) => {
   }
 });
 
-//-------------------------------------------------------------------
-//           Load a budget
-//-------------------------------------------------------------------
