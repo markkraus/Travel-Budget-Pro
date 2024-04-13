@@ -148,6 +148,10 @@
         <div class="total-max">
           <h2>Budget Max: ENTER % OR X/TOTAL</h2>
         </div>
+        <div class="budget-input">
+          <label for="max-budget">Maximum Budget:</label>
+          <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
+        </div>
         <div class="max-per-catagory">
           <h2>Max per Catagory</h2>
           <ul>
@@ -407,6 +411,19 @@
         }
       }
     });
+
+//button to insert max budget value
+    document.getElementById('max-budget').addEventListener('input', function (event) {
+  var maxBudgetAmount = event.target.value;
+  // Update the Budget Max display
+  var budgetMaxDisplay = document.querySelector('.total-max h2');
+  if(maxBudgetAmount) {
+    budgetMaxDisplay.textContent = 'Budget Max: ' + maxBudgetAmount;
+  } else {
+    budgetMaxDisplay.textContent = 'Budget Max: ENTER % OR X/TOTAL';
+  }
+});
+
   </script>
 </body>
 </html>
