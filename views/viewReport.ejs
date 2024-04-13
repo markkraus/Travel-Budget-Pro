@@ -258,7 +258,7 @@
         data: {
             labels: categories,
             datasets: [{
-                label: 'Cost per Category',
+                label: 'Cost',
                 data: categoryCosts,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -279,6 +279,22 @@
             scales: {
                 y: {
                     beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Total Costs by Category',
+                    font: {
+                        size: 18
+                    },
+                    padding: {
+                        top: 20,
+                        bottom: 30
+                    }
                 }
             }
         }
