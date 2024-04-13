@@ -29,23 +29,24 @@
     flex-direction: column;
   }
   .title-box {
-    display: flex;
-    flex-direction: row;
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
     margin-bottom: 10px;
+    font-weight: bold;
+    unicode-bidi: isolate;
   }
   .budget-buttons {
     display: flex;
     flex-direction: row;
   }
-  #save-budget-form {
-    width: 100px;
-  }
-  #delete-budget-from {
-
-  }
   .input-box{
     margin-left: 20px;
-    margin-right: 50px;
+    margin-right: 0px;
+    width: 165px !important;
   }
   /* Table styles */
   #handsontable-container {
@@ -55,17 +56,14 @@
     overflow: hidden;
     flex: 1;
   }
-
   .ht_master {
     height: 100% !important;
     width: 100% !important;
   }
-
   .wtHolder {
     height: 100% !important;
     width: 100% !important;
   }
-
   .max-budget-container {
     position: relative;
     flex-direction: column;
@@ -82,11 +80,27 @@
     height: 50px;
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: row;
   }
 
   .max-per-catagory {
+    display: block !important;
     height: auto;
     width: 100%;
+    text-align: center;
+  }
+
+  .budget-input {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    text-align: center;
   }
 
   footer {
@@ -157,12 +171,12 @@
         <div id="handsontable-container"></div>
       </div>
       <div class="max-budget-container">
-        <div class="total-max">
-          <h2>Budget Max: ENTER % OR X/TOTAL</h2>
-        </div>
+        <!-- <div class="total-max">
+          <h2>Budget Max: </h2>
+        </div> -->
         <div class="budget-input">
           <label for="max-budget">Maximum Budget:</label>
-          <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
+          <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget" class="input-box">
         </div>
         <div class="max-per-catagory">
           <h2>Max per Catagory</h2>
