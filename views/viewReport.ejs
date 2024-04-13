@@ -7,6 +7,23 @@
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+      .button {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .button:hover {
+    background-color: #0056b3;
+  }
     header {
       background-color: #333;
       color: #fff;
@@ -220,6 +237,8 @@
   
     <div class="content">
       <!-- Content loaded dynamically based on button clicks -->
+      <a href="/report?id=<%= budgetData._id %>&graphType=bar" class="button">Bar Graph</a>
+      <a href="/report?id=<%= budgetData._id %>&graphType=pie" class="button">Pie Graph</a>
       <canvas id="myChart" width="400" height="400"></canvas>
     </div>
   </div>
@@ -228,16 +247,14 @@
     &copy; 2024 Travel Budget Pro
   </footer>
 
-  <script>var stringBudgetData = '<%- JSON.stringify(budgetData || {}) %>';</script>
+  <script>var stringBudgetData = '<%- JSON.stringify(budgetData || {}) %>';
+  var graphType = "<%= graphType %>";
+  
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
-
-    window.onload = function() {    
-      const budget = JSON.parse(stringBudgetData);
-    };
-
-    //Searches budget data for categories with logged expenses
+    
     const budget = JSON.parse(stringBudgetData);
     let categories = [];
     let categoryCosts = [];
@@ -251,10 +268,10 @@
       categoriesIndex = categories.indexOf(budget.expenseCategory[i]);
       categoryCosts[categoriesIndex] += budget.cost[i];
     }
-
+    
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
-        type: 'bar',
+        type: graphType,
         data: {
             labels: categories,
             datasets: [{

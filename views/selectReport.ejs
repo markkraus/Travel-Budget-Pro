@@ -99,7 +99,7 @@
             <!-- Dynamically generate budget boxes -->
             <% budgets.forEach(budget=> { %>
               <div class="budget-box">
-                <a href="/report?id=<%= budget._id %>">
+                <a href="/report?id=<%= budget._id %>&graphType=bar">
                   <%= budget.budgetName %>
                 </a>
               </div>
