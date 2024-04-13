@@ -74,10 +74,16 @@
     text-align: center;
   }
 
-  .max-per-catagory {
+  .max-per-catagory >h2{
     height: auto;
     width: 100%;
+    text-align: center; /* Center the heading text */
   }
+
+  max-per-category >ul {
+
+ text-align: left;
+}
 
   footer {
     background-color: #333;
@@ -144,22 +150,44 @@
         <!-- Handsontable grid -->
         <div id="handsontable-container"></div>
       </div>
-      <div class="max-budget-container">
+
+      <!-- Max budget container -->
+        <div class="max-budget-container">
         <div class="total-max">
-          <h2>Budget Max: ENTER % OR X/TOTAL</h2>
+          <h2>Budget Max</h2>
         </div>
         <div class="budget-input">
           <label for="max-budget">Maximum Budget:</label>
           <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
         </div>
-        <div class="max-per-catagory">
-          <h2>Max per Catagory</h2>
-          <ul>
-            <li>Category 1: %</li>
-            <li>Category 2: %</li>
-            <li>Category 3: %</li>
-          </ul>
+       
+        <!-- Total cost display -->
+        <div class="budget-info">
+          <p id="total-cost">Total Cost: </p> <!-- This is where the total cost will be displayed -->
         </div>
+
+              <div class="max-per-catagory">
+        <h2>Category Maxes</h2>
+        <ul>
+          <li>
+            Category Food: <span id="category-food-percentage">%</span>
+            <input type="number" id="category-food-max" placeholder="Max budget for food">
+          </li>
+          <li>
+            Category Transportation: <span id="category-transportation-percentage">%</span>
+            <input type="number" id="category-transportation-max" placeholder="Max budget for transportation">
+          </li>
+          <li>
+            Category Entertainment: <span id="category-entertainment-percentage">%</span>
+            <input type="number" id="category-entertainment-max" placeholder="Max budget for entertainment">
+          </li>
+          <li>
+            Category Lodging: <span id="category-lodging-percentage">%</span>
+            <input type="number" id="category-lodging-max" placeholder="Max budget for lodging">
+          </li>
+        </ul>
+      </div>
+
       </div>
     </div>
   </div>
@@ -412,17 +440,105 @@
       }
     });
 
-//button to insert max budget value
-    document.getElementById('max-budget').addEventListener('input', function (event) {
-  var maxBudgetAmount = event.target.value;
-  // Update the Budget Max display
-  var budgetMaxDisplay = document.querySelector('.total-max h2');
-  if(maxBudgetAmount) {
-    budgetMaxDisplay.textContent = 'Budget Max: ' + maxBudgetAmount;
+//-------------------------------------------------------------------------------------------
+//                  MAX BUDGET CONTAINER
+//-------------------------------------------------------------------------------------------
+
+  // Function to calculate and update the total cost and the max budget display
+  function updateBudgetDisplays() {
+    var maxBudgetAmount = parseFloat(document.getElementById('max-budget').value) || 0;
+    var totalCost = 0;
+
+    // Calculate total cost from Handsontable data
+    var data = hot.getData();
+    data.forEach(function(row) {
+      totalCost += parseFloat(row[2]) || 0;  // Assuming the cost is in the third column
+    });
+
+    // Update the total cost element
+    var totalCostElement = document.getElementById('total-cost');
+    totalCostElement.textContent = maxBudgetAmount ? 
+      `Total Cost: ${totalCost.toFixed(2)} / ${maxBudgetAmount.toFixed(2)}` : 
+      `Total Cost: ${totalCost.toFixed(2)}`;
+
+    // Update the Budget Max display
+    var totalCostElement = document.getElementById('total-cost');
+  if (maxBudgetAmount > 0) {
+    totalCostElement.textContent = `Total Cost: ${totalCost.toFixed(2)} / ${maxBudgetAmount.toFixed(2)}`;
   } else {
-    budgetMaxDisplay.textContent = 'Budget Max: ENTER % OR X/TOTAL';
+    totalCostElement.textContent = `Total Cost: ${totalCost.toFixed(2)}`;
+  }
+}
+
+  // Event listener for the max budget input
+  document.getElementById('max-budget').addEventListener('input', updateBudgetDisplays);
+
+  // Hook to update total cost after any changes in the Handsontable data
+  hot.addHook('afterChange', function(changes, source) {
+    if (source === 'edit' || source === 'loadData') {
+      updateBudgetDisplays();
+    }
+  });
+
+  // Initially call the update function to set the initial values
+  document.addEventListener('DOMContentLoaded', function() {
+    updateBudgetDisplays(); // Call this after the Handsontable instance 'hot' has been initialized
+  });
+
+  //------------------     category section
+  
+// Object to store the total cost per category
+var categoryMaxes = {
+  'Food': document.getElementById('category-food-max'),
+  'Transportation': document.getElementById('category-transportation-max'),
+  'Entertainment': document.getElementById('category-entertainment-max'),
+  'Lodging': document.getElementById('category-lodging-max')
+};
+
+// Function to update the percentage spent for each category
+function updateCategoryPercentages() {
+  // Calculate the cost per category from the Handsontable data
+  var data = hot.getData();
+  var categoryCosts = {
+    'Food': 0,
+    'Transportation': 0,
+    'Entertainment': 0,
+    'Lodging': 0
+  };
+  
+  data.forEach(function(row) {
+    var category = row[0];
+    var cost = parseFloat(row[2]) || 0;
+    if (category in categoryCosts) {
+      categoryCosts[category] += cost;
+    }
+  });
+
+  // Update the percentage for each category
+  for (var category in categoryCosts) {
+    var max = parseFloat(categoryMaxes[category].value) || 0;
+    var cost = categoryCosts[category];
+    var percentage = max ? (cost / max * 100).toFixed(2) : '0';
+    document.getElementById(`category-${category.toLowerCase()}-percentage`).textContent = `${percentage}%`;
+  }
+}
+
+// Set up event listeners for changes in the category max inputs
+Object.values(categoryMaxes).forEach(input => {
+  input.addEventListener('input', function() {
+    updateCategoryPercentages();
+  });
+});
+
+// Set up a hook to update percentages when the Handsontable data changes
+hot.addHook('afterChange', function(changes, source) {
+  if (source === 'edit' || source === 'loadData') {
+    updateCategoryPercentages();
   }
 });
+
+// Call the function to set the initial state
+updateCategoryPercentages();
 
   </script>
 </body>
