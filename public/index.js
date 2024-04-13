@@ -169,12 +169,58 @@ app.get('/budget', async (req, res) => {
 }
 
 });  
+
+//-------------------------------------------------------------------
+// Loads report data on view report page when button is clicked
+//-------------------------------------------------------------------
+app.get('/report', async (req, res) => {
+  const budgetId = req.query.id;
+
+  try {
+    // Assuming Budget is your model and budgetId is coming correctly formatted
+    const budgetData = await budgets.findById(budgetId);
+    if (!budgetData) {
+      res.status(404).send('Budget not found');
+      return;
+    }
+    // Print the retrieved budget data to the console for debugging
+    console.log('Retrieved budget data:', budgetData);
+    res.render("viewReport", { budgetData: budgetData });
+
+} catch (error) {
+  console.error('Database error:', error);
+  res.status(500).send('Error retrieving budget');
+}
+
+});  
 //-----------Conner Gyatt, write this \/-------------------------------
 
-app.get("/createReport", (req, res) => {
+//------------------------------------------
 
-  res.render("createReport");
+app.get("/selectReport", (req, res) => {
+  res.render("selectReport");
 });
+
+app.get("/viewReport", async (req, res) => {
+  const budgetId = req.query.id;
+
+  try {
+    // Assuming Budget is your model and budgetId is coming correctly formatted
+    const budgetData = await budgets.findById(budgetId);
+    if (!budgetData) {
+      res.status(404).send('Budget not found');
+      return;
+    }
+    // Print the retrieved budget data to the console for debugging
+    console.log('Retrieved budget data:', budgetData);
+    res.render("viewReport", { budgetData: budgetData });
+
+  } catch (error) {
+    console.error('Database error:', error);
+    res.status(500).send('Error retrieving budget');
+  }
+});
+
 
 //-------------------------------------------------------------------
 //            User Registration

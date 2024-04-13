@@ -213,14 +213,14 @@
         <li><a href="/home">Home</a></li>
         <li><a href="/createBudget">Create New Budget</a></li>
         <li><a href="/createReport">Create Report</a></li>
-        <li><cur>View Existing Reports</cur></li> 
+        <li><cur>View Report</cur></li> 
         <li><a href="/settings">Edit Settings</a></li>
       </ul>
     </nav>
   
     <div class="content">
       <!-- Content loaded dynamically based on button clicks -->
-      
+      <canvas id="myChart" width="400" height="400"></canvas>
     </div>
   </div>
 
@@ -228,9 +228,62 @@
     &copy; 2024 Travel Budget Pro
   </footer>
 
-  <script src="../JavaScript/main.js"></script> <!-- Link to JS program -->
+  <script>var stringBudgetData = '<%- JSON.stringify(budgetData || {}) %>';</script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <script>
 
+    window.onload = function() {    
+      const budget = JSON.parse(stringBudgetData);
+    };
+
+    //Searches budget data for categories with logged expenses
+    const budget = JSON.parse(stringBudgetData);
+    let categories = [];
+    let categoryCosts = [];
+    for(let i = 0; i < budget.expenseCategory.length; i++){
+      //Add category to list 
+      if(!categories.includes(budget.expenseCategory[i]) ){
+        categories.push(budget.expenseCategory[i]); 
+        categoryCosts[categories.indexOf(budget.expenseCategory[i])] = 0;
+      }
+      //Add cost to array
+      categoriesIndex = categories.indexOf(budget.expenseCategory[i]);
+      categoryCosts[categoriesIndex] += budget.cost[i];
+    }
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: categories,
+            datasets: [{
+                label: 'Cost per Category',
+                data: categoryCosts,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 </body>
 
 </html>

@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+  .budgets-header {
+    align-items: center;
+    color: var(--ds-text-subtle, #fff);
+    display: flex;
+    flex: 1;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 20px 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .budget-selection-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .budget-selection-item {
+    margin: 0 2% 2% 0;
+    padding: 0;
+    transform: translate(0);
+    width: 23.5%;
+    height: 23.5%;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .budget-selection-create-new {
+    margin: 0 2% 2% 0;
+    padding: 0;
+    transform: translate(0);
+    /* width: 23.5%;
+    background-color: green;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer; */
+  }
+</style>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .budgets-header {
-      align-items: center;
-      color: var(--ds-text-subtle, #fff);
-      display: flex;
-      flex: 1;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 24px;
-      margin: 20px 30px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .budget-selection-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-
-    .budget-selection-item {
-      margin: 0 2% 2% 0;
-      padding: 0;
-      transform: translate(0);
-      width: 23.5%;
-      height: 23.5%;
-      background-color: #d9534f;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .budget-selection-create-new {
-      margin: 0 2% 2% 0;
-      padding: 0;
-      transform: translate(0);
-      /* width: 23.5%;
-      background-color: green;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer; */
-    }
+    
   </style>
 </head>
 
 <body>
   <header>
     <div class="welcome-message">
-      <h2>Welcome, <%= firstName %>
-      </h2> <!-- Dynamic greeting: This is not a bug! -->
+      <h2>Welcome, <%= firstName %></h2> <!-- Dynamic greeting: This is not a bug! -->
     </div>
     <div class="logout-button">
       <a href="/login">
-        <button id="logout-button">Logout</button>
+          <button id="logout-button">Logout</button>
       </a>
     </div>
     <div class="header-text-container"> <!-- Text container for independent positioning -->
@@ -74,22 +77,19 @@
   </header>
 
   <div id="display" class="display">
-    <!-- Sidebar content -->
     <nav id="sidebar">
       <h2>Menu</h2>
       <ul>
-        <li>
-          <cur>Home</cur>
-        </li>
+        <li><a href="/home">Home</a></li>
         <li><a href="/createBudget">Create Budget</a></li>
-        <li><a href="/selectReport">Select Report</a></li>
+        <li><cur>Select Report</cur></li> 
         <li><a href="/settings">Edit Settings</a></li>
       </ul>
     </nav>
-
+  
     <div class="content">
       <h3 class="budgets-header">
-        YOUR BUDGETS
+        SELECT A BUDGET 
       </h3>
 
       <div class="budget-selection-list">
@@ -99,7 +99,7 @@
             <!-- Dynamically generate budget boxes -->
             <% budgets.forEach(budget=> { %>
               <div class="budget-box">
-                <a href="/budget?id=<%= budget._id %>">
+                <a href="/report?id=<%= budget._id %>">
                   <%= budget.budgetName %>
                 </a>
               </div>
@@ -108,11 +108,11 @@
       </div>
     </div>
   </div>
+  </div>
 
   <footer>
     &copy; 2024 Travel Budget Pro
   </footer>
-
 </body>
 
 </html>
