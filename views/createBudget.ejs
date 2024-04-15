@@ -165,41 +165,68 @@
 
       <!-- Max budget container -->
         <div class="max-budget-container">
-        <div class="total-max">
-          <h2>Budget Max</h2>
-        </div>
-        <div class="budget-input">
-          <label for="max-budget">Maximum Budget:</label>
-          <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
-        </div>
-       
-        <!-- Total cost display -->
-        <div class="budget-info">
-          <p id="total-cost">Total Cost: </p> <!-- This is where the total cost will be displayed -->
-        </div>
+          <div class="total-max">
+            <h2>Budget Max</h2>
+          </div>
+          <div id="dropdown-container">
+            <label for="currency-select">Select Your Currency:</label>
+            <select id="currency-select" name="currency">
+              <option value="">--Please choose an option--</option>
+              <option value="USD">USD - United States Dollar</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="GBP">GBP - British Pound</option>
+              <option value="JPY">JPY - Japanese Yen</option>
+              <option value="CNY">CNY - Chinese Yuan</option>
+              <option value="INR">INR - Indian Rupee</option>
+              <option value="AUD">AUD - Australian Dollar</option>
+              <option value="CAD">CAD - Canadian Dollar</option>
+              <option value="SGD">SGD - Singapore Dollar</option>
+              <option value="CHF">CHF - Swiss Franc</option>
+              <option value="MYR">MYR - Malaysian Ringgit</option>
+              <option value="NZD">NZD - New Zealand Dollar</option>
+              <option value="THB">THB - Thai Baht</option>
+              <option value="RUB">RUB - Russian Ruble</option>
+              <option value="ZAR">ZAR - South African Rand</option>
+              <option value="BRL">BRL - Brazilian Real</option>
+              <option value="PHP">PHP - Philippine Peso</option>
+              <option value="IDR">IDR - Indonesian Rupiah</option>
+              <option value="TRY">TRY - Turkish Lira</option>
+              <option value="KRW">KRW - South Korean Won</option>
+              <option value="MXN">MXN - Mexican Peso</option>
+              <option value="NOK">NOK - Norwegian Krone</option>
+            </select>
+          </div>
+          <div class="budget-input">
+            <label for="max-budget">Maximum Budget:</label>
+            <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
+          </div>
+        
+          <!-- Total cost display -->
+          <div class="budget-info">
+            <p id="total-cost">Total Cost: </p> <!-- This is where the total cost will be displayed -->
+          </div>
 
-              <div class="max-per-catagory">
-        <h2>Category Maxes</h2>
-        <ul>
-          <li>
-            Category Food: <span id="category-food-percentage">%</span>
-            <input type="number" id="category-food-max" placeholder="Max budget for food">
-          </li>
-          <li>
-            Category Transportation: <span id="category-transportation-percentage">%</span>
-            <input type="number" id="category-transportation-max" placeholder="Max budget for transportation">
-          </li>
-          <li>
-            Category Entertainment: <span id="category-entertainment-percentage">%</span>
-            <input type="number" id="category-entertainment-max" placeholder="Max budget for entertainment">
-          </li>
-          <li>
-            Category Lodging: <span id="category-lodging-percentage">%</span>
-            <input type="number" id="category-lodging-max" placeholder="Max budget for lodging">
-          </li>
-        </ul>
-      </div>
-
+                <div class="max-per-catagory">
+          <h2>Category Maxes</h2>
+          <ul>
+            <li>
+              Category Food: <span id="category-food-percentage">%</span>
+              <input type="number" id="category-food-max" placeholder="Max budget for food">
+            </li>
+            <li>
+              Category Transportation: <span id="category-transportation-percentage">%</span>
+              <input type="number" id="category-transportation-max" placeholder="Max budget for transportation">
+            </li>
+            <li>
+              Category Entertainment: <span id="category-entertainment-percentage">%</span>
+              <input type="number" id="category-entertainment-max" placeholder="Max budget for entertainment">
+            </li>
+            <li>
+              Category Lodging: <span id="category-lodging-percentage">%</span>
+              <input type="number" id="category-lodging-max" placeholder="Max budget for lodging">
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
