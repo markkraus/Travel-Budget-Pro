@@ -7,6 +7,16 @@
   <title>Travel Budget Pro</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    .content {
+      display: flex;
+      flex-direction: row;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      margin-right: 20px;
+    }
     .button {
       display: inline-block;
       padding: 8px 15px;
@@ -65,8 +75,10 @@
   
     <div class="content">
       <!-- Content loaded dynamically based on button clicks -->
-      <a href="/report?id=<%= budgetData._id %>&graphType=bar" class="button">Bar Graph</a>
-      <a href="/report?id=<%= budgetData._id %>&graphType=pie" class="button">Pie Graph</a>
+      <div class="button-container">
+        <a href="/report?id=<%= budgetData._id %>&graphType=bar" class="button">Bar Graph</a>
+        <a href="/report?id=<%= budgetData._id %>&graphType=pie" class="button">Pie Graph</a>
+      </div>
       <canvas id="myChart" width="400" height="400"></canvas>
     </div>
   </div>
