@@ -489,6 +489,11 @@
 //                  MAX BUDGET CONTAINER
 //-------------------------------------------------------------------------------------------
 
+// Global variables to store category totals in Euro
+let foodTotalEuro = 0;
+let transportationTotalEuro = 0;
+let entertainmentTotalEuro = 0;
+let lodgingTotalEuro = 0;
   
 // Object to store the total cost per category
 var categoryMaxes = {
@@ -544,6 +549,9 @@ function updateTotalBudgetCost() {
 
   // Update the total cost element with the converted total cost and max budget
   totalCostElement.textContent = `Total Cost: ${totalCostInSelectedCurrency.toFixed(2)} / ${maxBudget.toFixed(2)} ${selectedCurrency}`;
+
+  // Save the converted total cost to sessionStorage
+  sessionStorage.setItem('convertedTotalCost', totalCostInSelectedCurrency.toFixed(2));
 }
 
 // Event listeners
@@ -597,7 +605,7 @@ function convertToTarget(amount, fromCurrency, toCurrency) {
   return amountInEuro * targetExchangeRate;
 }
 
-  // Update the totals and percentages for each category
+  /* OLD CODE BELOW IS TEST // Update the totals and percentages for each category
   Object.keys(categoryTotals).forEach(category => {
     const total = categoryTotals[category];
     const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
@@ -611,7 +619,36 @@ function convertToTarget(amount, fromCurrency, toCurrency) {
     // Update the percentage span
     const percentageSpan = document.getElementById(`category-${category.toLowerCase()}-percentage`);
     percentageSpan.textContent = ` = ${percentage}%`;
+  }); */
+  // Update the totals and percentages for each category
+
+  //NEW CODE BELOW
+  Object.keys(categoryTotals).forEach(category => {
+    const total = categoryTotals[category];
+    const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
+    const max = parseFloat(maxElement.value) || 0;
+    const percentage = max ? (total / max * 100).toFixed(2) : 0;
+
+    // Update global variables based on category
+    if (category === 'Food') {
+      foodTotalEuro = total;
+    } else if (category === 'Transportation') {
+      transportationTotalEuro = total;
+    } else if (category === 'Entertainment') {
+      entertainmentTotalEuro = total;
+    } else if (category === 'Lodging') {
+      lodgingTotalEuro = total;
+    }
+
+    // Update the total span
+    const totalSpan = document.getElementById(`category-${category.toLowerCase()}-total`);
+    totalSpan.textContent = `${total.toFixed(2)}/`;
+
+    // Update the percentage span
+    const percentageSpan = document.getElementById(`category-${category.toLowerCase()}-percentage`);
+    percentageSpan.textContent = ` = ${percentage}%`;
   });
+  //NEW CODE ABOVE
 }
 
 // Call the function to set the initial state
