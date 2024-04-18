@@ -411,12 +411,12 @@
       var col3 = hot.getDataAtCol(2);
       var col4 = hot.getDataAtCol(3);
       //MAX BUDGETS
-      var selectedCurrency = document.getElementById('currency-select').value.split(' - ')[0];
-      var maximumBudget = parseFloat(document.getElementById('max-budget').value) || 0;
-      var foodMax = parseFloat(document.getElementById('category-food-max').value) || 0;
-      var transportationMax = parseFloat(document.getElementById('category-transportation-max').value) || 0;
-      var entertainmentMax = parseFloat(document.getElementById('category-entertainment-max').value) || 0;
-      var lodgingMax = parseFloat(document.getElementById('category-lodging-max').value) || 0;
+      var selectedCurrencyInput = document.getElementById('currency-select').value.split(' - ')[0];
+      var maximumBudgetInput = parseFloat(document.getElementById('max-budget').value) || 0;
+      var foodMaxInput = parseFloat(document.getElementById('category-food-max').value) || 0;
+      var transportationMaxInput = parseFloat(document.getElementById('category-transportation-max').value) || 0;
+      var entertainmentMaxInput = parseFloat(document.getElementById('category-entertainment-max').value) || 0;
+      var lodgingMaxInput = parseFloat(document.getElementById('category-lodging-max').value) || 0;
 
 
       // Check if any cell is empty or there's no budget name
@@ -436,12 +436,12 @@
           currency: col2,
           cost: col3,
           description: col4,
-          selectedCurrency: selectedCurrency,
-          maximumBudget: maximumBudget,
-          foodMax: foodMax,
-          transportationMax: transportationMax,
-          entertainmentMax: entertainmentMax,
-          lodgingMax: lodgingMax
+          selectedCurrency: selectedCurrencyInput,
+          maximumBudget: maximumBudgetInput,
+          foodMax: foodMaxInput,
+          transportationMax: transportationMaxInput,
+          entertainmentMax: entertainmentMaxInput,
+          lodgingMax: lodgingMaxInput
         };
 
         // Serialize the column data
