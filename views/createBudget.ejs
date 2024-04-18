@@ -410,6 +410,14 @@
       var col2 = hot.getDataAtCol(1);
       var col3 = hot.getDataAtCol(2);
       var col4 = hot.getDataAtCol(3);
+      //MAX BUDGETS
+      var selectedCurrency = document.getElementById('currency-select').value.split(' - ')[0];
+      var maximumBudget = parseFloat(document.getElementById('max-budget').value) || 0;
+      var foodMax = parseFloat(document.getElementById('category-food-max').value) || 0;
+      var transportationMax = parseFloat(document.getElementById('category-transportation-max').value) || 0;
+      var entertainmentMax = parseFloat(document.getElementById('category-entertainment-max').value) || 0;
+      var lodgingMax = parseFloat(document.getElementById('category-lodging-max').value) || 0;
+
 
       // Check if any cell is empty or there's no budget name
       if (col1.some(cell => cell === null || cell === "") ||
@@ -422,16 +430,22 @@
         event.preventDefault(); // Prevent form submission
       } else {
         // Store the column data
-        var columnData = {
+        var allBudgetData = {
           budgetName: budgetTitle,
           expenseCategory: col1,
           currency: col2,
           cost: col3,
-          description: col4
+          description: col4,
+          selectedCurrency: selectedCurrency,
+          maximumBudget: maximumBudget,
+          foodMax: foodMax,
+          transportationMax: transportationMax,
+          entertainmentMax: entertainmentMax,
+          lodgingMax: lodgingMax
         };
 
         // Serialize the column data
-        var serializedData = JSON.stringify(columnData);
+        var serializedData = JSON.stringify(allBudgetData);
 
         // Assign serialized data to the hidden input field
         document.getElementById('budget-data').value = serializedData;

@@ -293,7 +293,13 @@ app.post("/createBudget", async (req, res) => {
       expenseCategory: budgetData.expenseCategory,
       currency: budgetData.currency,
       cost: budgetData.cost,
-      description: budgetData.description
+      description: budgetData.description,
+      selectedCurrency: budgetData.selectedCurrency,
+      maximumBudget: budgetData.maximumBudget,
+      foodMax: budgetData.foodMax,
+      transportationMax: budgetData.transportationMax,
+      entertainmentMax: budgetData.entertainmentMax,
+      lodgingMax: budgetData.lodgingMax
     };
 
     //Search for existing budget
