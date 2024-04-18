@@ -302,6 +302,8 @@ app.post("/createBudget", async (req, res) => {
       lodgingMax: budgetData.lodgingMax
     };
 
+    console.log('Saved budget data:', budgetData);
+
     //Search for existing budget
     const existingBudget = await budgets.findOne({
       _id: budgetID,
