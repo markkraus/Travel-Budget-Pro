@@ -109,21 +109,14 @@
     }
     
     const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+
+      const config = {
         type: graphType,
         data: {
             labels: categories,
             datasets: [{
                 label: 'Cost',
                 data: categoryCosts,
-      /* const ctx = document.getElementById('myChart').getContext('2d');
-      const myChart = new Chart(ctx, {
-        type: graphType,
-        data: {
-          labels: ['Food', 'Transportation', 'Entertainment', 'Lodging'],
-          datasets: [{
-            label: 'Cost',
-            data: [foodTotalEuro, transportationTotalEuro, entertainmentTotalEuro, lodgingTotalEuro], */
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -142,7 +135,23 @@
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                      display: (graphType == 'bar'), 
+                      color: 'white', 
+                      font: {
+                        weight: 'bold' 
+                      }
+                    }
+                },
+                x: {
+                  ticks: {
+                    display: (graphType == 'bar'), 
+                      color: 'white',
+                      font: {
+                        weight: 'bold'  
+                      }
+                    }
                 }
             },
             plugins: {
@@ -155,6 +164,8 @@
                     font: {
                         size: 18
                     },
+                    color: 'white', 
+                    weight: 'bold', 
                     padding: {
                         top: 20,
                         bottom: 30
@@ -162,7 +173,9 @@
                 }
             }
         }
-    });
+    };
+    
+    const myChart = new Chart(ctx, config);
 </script>
 </body>
 
