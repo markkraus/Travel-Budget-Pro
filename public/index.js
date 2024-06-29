@@ -22,10 +22,9 @@
 
 // Pulling libraries and dependencies
 const express = require('express');
-require('fs');
-require('path' );
+const path = require('path');
 const bcrypt = require('bcrypt');
-const {users, budgets} = require("./config"); // Mongo collections are pulled from config.js
+const { users, budgets } = require("./config"); // Adjusted path to config.js
 
 // Create an instance of the Express server
 const app = express();
@@ -36,11 +35,12 @@ app.use(express.json());
 // Set up middleware to parse user input data
 app.use(express.urlencoded({ extended: false }));
 
-// Use EJS to render the UI pages
+// Set the views directory and view engine
+app.set('views', path.join(__dirname, '..', 'views'));
 app.set('view engine', 'ejs');
 
-// Configure Express to send files (HTML, JavaScript, etc.) directly to the client
-app.use(express.static('public'));
+// Configure Express to send static files (HTML, JavaScript, etc.) directly to the client
+app.use(express.static(path.join(__dirname)));
 
 // Make variables last until users log out
 const session = require('express-session');
@@ -53,7 +53,6 @@ app.use(session({
 // Middleware function to retrieve user's first name from session
 const retrieveAttributes = (req, res, next) => {
   if (req.session.firstName) {
-    // first name exists in the session - make it available in locals
     res.locals.firstName = req.session.firstName;
     res.locals.budgets = req.session.budgets;
   }
@@ -76,18 +75,17 @@ app.use(setError("")); // Initialize error as empty string
 
 app.listen(process.env.PORT || 3000, () => {
   try {
-    console.log('Server worked.');
-  } catch {
-    console.error('Server did not work.')
+    console.log('Server is running on port 3000');
+  } catch (error) {
+    console.error('Server failed to start', error);
   }
-  
 });
 
 //-------------------------------------------------------------------
 //            Route Handlers
 //-------------------------------------------------------------------
 
-// Pulls login.ejs file for default site (no extension)
+// Example of a route
 app.get("/", (req, res) => {
   res.render("login");
 });
