@@ -107,6 +107,32 @@ h1{
   cursor: pointer;
 }
 
+.button {
+  background-color: #ccc;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  background-color: #bbb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.budget-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .header-text-container {
   text-align: center;
   /* margin-left: 330px; */
