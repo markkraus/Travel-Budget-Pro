@@ -23,11 +23,39 @@
     position: relative;
     width: 100%;
   }
+
   .budget-container {
     height: 100% !important;
     width: 70% !important;
     flex-direction: column;
   }
+
+  .button {
+    background-color: #ccc;
+    border: none;
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #bbb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .budget-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
   .title-box {
     display: block;
     font-size: 1.5em;
@@ -39,15 +67,13 @@
     font-weight: bold;
     unicode-bidi: isolate;
   }
-  .budget-buttons {
-    display: flex;
-    flex-direction: row;
-  }
-  .input-box{
+
+  .input-box {
     margin-left: 20px;
     margin-right: 0px;
     width: 165px !important;
   }
+
   /* Table styles */
   #handsontable-container {
     height: 80% !important;
@@ -85,15 +111,77 @@
     text-align: center;
   }
 
-  .max-per-catagory >h2{
+  .max-per-catagory>h2 {
     height: auto;
     width: 100%;
-    text-align: center; /* Center the heading text */
+    text-align: center;
+    /* Center the heading text */
   }
 
-  max-per-category >ul {
- text-align: left;
-}
+  max-per-category>ul {
+    text-align: left;
+  }
+
+  .max-budget-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+
+  .max-budget-container h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  #dropdown-container,
+  .budget-input,
+  .budget-info,
+  .max-per-catagory {
+    margin-bottom: 20px;
+  }
+
+  #currency-select,
+  #max-budget,
+  .max-per-catagory input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  #currency-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  .budget-info p,
+  .max-per-catagory li {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .max-per-catagory ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .max-per-catagory li {
+    margin-bottom: 10px;
+  }
+
+  .max-per-catagory input[type="number"] {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
 
   footer {
     background-color: #333;
@@ -101,19 +189,20 @@
     padding: 10px 20px;
     border-top: 2px solid #ccc;
     text-align: center;
-    margin-top: auto; /* Push footer to bottom */
+    margin-top: auto;
+    /* Push footer to bottom */
   }
-  
 </style>
 
 <body>
   <header>
     <div class="welcome-message">
-      <h2>Welcome, <%= firstName %></h2> <!-- Dynamic greeting: This is not a bug! -->
+      <h2>Welcome, <%= firstName %>
+      </h2> <!-- Dynamic greeting: This is not a bug! -->
     </div>
     <div class="logout-button">
       <a href="/login">
-          <button id="logout-button">Logout</button>
+        <button id="logout-button">Logout</button>
       </a>
     </div>
     <div class="header-text-container"> <!-- Text container for independent positioning -->
@@ -127,11 +216,13 @@
       <h2>Menu</h2>
       <ul>
         <li><a href="/home">Home</a></li>
-        <li><cur>Create Budget</cur></li> 
+        <li>
+          <cur>Create Budget</cur>
+        </li>
         <li><a href="/selectReport">Select Report</a></li>
       </ul>
     </nav>
-  
+
     <div class="content">
       <div class="budget-container">
         <!-- Box to name a budget -->
@@ -142,18 +233,18 @@
 
         <div class="budget-buttons">
           <!-- Buttons for adding/deleting rows -->
-          <button id="add-row-button" style="margin-right: 5px;">Add Expense</button> 
-          <button id="delete-row-button" style="margin-right: 5px;">Delete Last Expense</button>
+          <button id="add-row-button" class="button">Add Expense</button>
+          <button id="delete-row-button" class="button">Delete Last Expense</button>
           <!-- Buttons to save/delete a budget -->
           <form id="save-budget-form" action="/createBudget" method="post">
             <!-- Hidden input field to store spreadsheet data for index.js to find -->
             <input type="hidden" id="budget-data" name="budgetData">
             <input type="hidden" id="budget-id" name="budgetID">
             <!-- Button to save a budget-->
-            <button id="save-budget-btn" type="submit" style="margin-right: 5px;">Save Budget</button>
+            <button id="save-budget-btn" type="submit" class="button">Save Budget</button>
           </form>
           <form id="delete-budget-form" action="/deleteBudget" method="post">
-            <button id="delete-budget-btn" type="submit" style="margin-right: 5px;">Delete Budget</button>
+            <button id="delete-budget-btn" type="submit" class="button">Delete Budget</button>
             <input type="hidden" id="budget-id1" name="budgetID1">
           </form>
         </div>
@@ -163,78 +254,74 @@
       </div>
 
       <!-- Max budget container -->
-        <div class="max-budget-container">
-          <div class="total-max">
-            <h2>Budget Max</h2>
-          </div>
-          <div id="dropdown-container">
-            <label for="currency-select">Select Your Currency:</label>
-            <select id="currency-select" name="currency">
-              <option value="">--Please choose an option--</option>
-              <option value="USD">USD - United States Dollar</option>
-              <option value="EUR">EUR - Euro</option>
-              <option value="GBP">GBP - British Pound</option>
-              <option value="JPY">JPY - Japanese Yen</option>
-              <option value="CNY">CNY - Chinese Yuan</option>
-              <option value="INR">INR - Indian Rupee</option>
-              <option value="AUD">AUD - Australian Dollar</option>
-              <option value="CAD">CAD - Canadian Dollar</option>
-              <option value="SGD">SGD - Singapore Dollar</option>
-              <option value="CHF">CHF - Swiss Franc</option>
-              <option value="MYR">MYR - Malaysian Ringgit</option>
-              <option value="NZD">NZD - New Zealand Dollar</option>
-              <option value="THB">THB - Thai Baht</option>
-              <option value="RUB">RUB - Russian Ruble</option>
-              <option value="ZAR">ZAR - South African Rand</option>
-              <option value="BRL">BRL - Brazilian Real</option>
-              <option value="PHP">PHP - Philippine Peso</option>
-              <option value="IDR">IDR - Indonesian Rupiah</option>
-              <option value="TRY">TRY - Turkish Lira</option>
-              <option value="KRW">KRW - South Korean Won</option>
-              <option value="MXN">MXN - Mexican Peso</option>
-              <option value="NOK">NOK - Norwegian Krone</option>
-            </select>
-          </div>
-          <div class="budget-input">
-            <label for="max-budget">Maximum Budget:</label>
-            <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
-          </div>
-        
-          <!-- Total cost display -->
-          <div class="budget-info">
-            <p id="total-cost">Current Converted Cost: </p> <!-- This is where the total cost will be displayed -->
-          </div>
-
-                <div class="max-per-catagory">
+      <div class="max-budget-container">
+        <div class="total-max">
+          <h2>Budget Max</h2>
+        </div>
+        <div id="dropdown-container">
+          <label for="currency-select">Select Your Currency:</label>
+          <select id="currency-select" name="currency">
+            <option value="">--Please choose an option--</option>
+            <option value="USD">USD - United States Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="CNY">CNY - Chinese Yuan</option>
+            <option value="INR">INR - Indian Rupee</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="SGD">SGD - Singapore Dollar</option>
+            <option value="CHF">CHF - Swiss Franc</option>
+            <option value="MYR">MYR - Malaysian Ringgit</option>
+            <option value="NZD">NZD - New Zealand Dollar</option>
+            <option value="THB">THB - Thai Baht</option>
+            <option value="RUB">RUB - Russian Ruble</option>
+            <option value="ZAR">ZAR - South African Rand</option>
+            <option value="BRL">BRL - Brazilian Real</option>
+            <option value="PHP">PHP - Philippine Peso</option>
+            <option value="IDR">IDR - Indonesian Rupiah</option>
+            <option value="TRY">TRY - Turkish Lira</option>
+            <option value="KRW">KRW - South Korean Won</option>
+            <option value="MXN">MXN - Mexican Peso</option>
+            <option value="NOK">NOK - Norwegian Krone</option>
+          </select>
+        </div>
+        <div class="budget-input">
+          <label for="max-budget">Maximum Budget:</label>
+          <input type="number" id="max-budget" name="maxBudget" placeholder="Enter max budget">
+        </div>
+        <!-- Total cost display -->
+        <div class="budget-info">
+          <p id="total-cost">Current Converted Cost: </p> <!-- This is where the total cost will be displayed -->
+        </div>
+        <div class="max-per-catagory">
           <h2>Category Maxes</h2>
           <ul>
-                <li>
-                  Food: <span id="category-food-total">0/</span>
-                  <input type="number" id="category-food-max" placeholder="Max for Food">
-                  <span id="category-food-percentage"> = 0%</span>
-                </li>
-                <li>
-                  Transportation: <span id="category-transportation-total">0/</span>
-                  <input type="number" id="category-transportation-max" placeholder="Max for Transportation">
-                  <span id="category-transportation-percentage"> = 0%</span>
-                </li>
-                <li>
-                  Entertainment: <span id="category-entertainment-total">0/</span>
-                  <input type="number" id="category-entertainment-max" placeholder="Max for Entertainment">
-                  <span id="category-entertainment-percentage"> = 0%</span>
-                </li>
-                <li>
-                  Lodging: <span id="category-lodging-total">0/</span>
-                  <input type="number" id="category-lodging-max" placeholder="Max for Lodging">
-                  <span id="category-lodging-percentage"> = 0%</span>
-                </li>
-              </ul>              
-  
+            <li>
+              Food: <span id="category-food-total">0/</span>
+              <input type="number" id="category-food-max" placeholder="Max for Food">
+              <span id="category-food-percentage"> = 0%</span>
+            </li>
+            <li>
+              Transportation: <span id="category-transportation-total">0/</span>
+              <input type="number" id="category-transportation-max" placeholder="Max for Transportation">
+              <span id="category-transportation-percentage"> = 0%</span>
+            </li>
+            <li>
+              Entertainment: <span id="category-entertainment-total">0/</span>
+              <input type="number" id="category-entertainment-max" placeholder="Max for Entertainment">
+              <span id="category-entertainment-percentage"> = 0%</span>
+            </li>
+            <li>
+              Lodging: <span id="category-lodging-total">0/</span>
+              <input type="number" id="category-lodging-max" placeholder="Max for Lodging">
+              <span id="category-lodging-percentage"> = 0%</span>
             </li>
           </ul>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <footer>
@@ -247,51 +334,51 @@
   <script>
     var stringBudgetData = '<%- JSON.stringify(budgetData || {}) %>';
   </script>
-  
+
   <script>
     // Allows expenses tabs to be seen when table is shorter than tab list
-    window.onload = function() {
+    window.onload = function () {
       var container = document.getElementById('handsontable-container');
       if (container) {
         container.style.overflow = 'visible';
       }
 
-       //Loads budget name into box if user clicked on an existing budget
-       if(stringBudgetData != '{}'){
+      //Loads budget name into box if user clicked on an existing budget
+      if (stringBudgetData != '{}') {
         const budget = JSON.parse(stringBudgetData);
-        document.getElementById('budget-title').value = budget.budgetName;  
+        document.getElementById('budget-title').value = budget.budgetName;
         document.getElementById('budget-id').value = budget._id;
         document.getElementById('budget-id1').value = budget._id;
-      }  else{
+      } else {
         //Assign null hex value to signify new budget
         document.getElementById('budget-id').value = '000000000000000000000000';
         document.getElementById('budget-id1').value = '000000000000000000000000';
       }
     };
-    
+
   </script>
 
   <!-- Saves a spreadsheet into a hidden input field when the save button is clicked -->
   <script>
-    
+
     var container = document.getElementById('handsontable-container'); // Container where spreadsheet is displayed
     var save = document.getElementById('save'); // Save button
     var handsontableData = [{}]; //Assign handsontable data to empty (creates single empty row)
     //Trying to get length of array to set table size
-    if(stringBudgetData.length > 2){
+    if (stringBudgetData.length > 2) {
       const budget = JSON.parse(stringBudgetData);
       const arraySize = budget.expenseCategory.length;
-      rowCount = arraySize; 
+      rowCount = arraySize;
       var handsontableData = []; //Remove empty set before adding data
       for (let i = 0; i < arraySize; i++) {
-      handsontableData.push({ //Add data to table
-        expenseCategory: budget.expenseCategory[i],
-        currency: budget.currency[i],
-        cost: budget.cost[i],
-        description: budget.description[i]
-      });
-    }
-    } else{
+        handsontableData.push({ //Add data to table
+          expenseCategory: budget.expenseCategory[i],
+          currency: budget.currency[i],
+          cost: budget.cost[i],
+          description: budget.description[i]
+        });
+      }
+    } else {
       rowCount = 1;
     }
 
@@ -456,17 +543,17 @@
 
     //Stops new budget (unsaved) from being deleted
     document.getElementById('delete-budget-form').addEventListener('submit', function (event) {
-      if(document.getElementById('budget-id').value == '000000000000000000000000'){
+      if (document.getElementById('budget-id').value == '000000000000000000000000') {
         alert("Unsaved budgets cannot be deleted");
         event.preventDefault(); // Prevent form submission
       }
     });
 
     hot.addHook('afterRemoveRow', function () {
-        hot.updateSettings({
-          contextMenu: hot.getSettings().contextMenu
-        });
+      hot.updateSettings({
+        contextMenu: hot.getSettings().contextMenu
       });
+    });
   </script>
 
   <!-- Adds a row of cells when the "Add Expense" button is clicked. -->
@@ -501,183 +588,184 @@
       }
     });
 
-//-------------------------------------------------------------------------------------------
-//                  MAX BUDGET CONTAINER
-//-------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------
+    //                  MAX BUDGET CONTAINER
+    //-------------------------------------------------------------------------------------------
 
-// Global variables to store category totals in Euro
-let foodTotalEuro = 0;
-let transportationTotalEuro = 0;
-let entertainmentTotalEuro = 0;
-let lodgingTotalEuro = 0;
-  
-// Object to store the total cost per category
-var categoryMaxes = {
-  'Food': document.getElementById('category-food-max'),
-  'Transportation': document.getElementById('category-transportation-max'),
-  'Entertainment': document.getElementById('category-entertainment-max'),
-  'Lodging': document.getElementById('category-lodging-max')
-};
+    // Global variables to store category totals in Euro
+    let foodTotalEuro = 0;
+    let transportationTotalEuro = 0;
+    let entertainmentTotalEuro = 0;
+    let lodgingTotalEuro = 0;
 
-// Exchange rates to Euro for conversion purposes
-const exchangeRatesToEuro = {
-  'USD': 0.92, 'EUR': 1, 'GBP': 1.17, 'JPY': 0.0075, 'CNY': 0.13, 'INR': 0.011, 'AUD': 0.62,
-  'CAD': 0.69, 'SGD': 0.66, 'CHF': 1.03, 'MYR': 0.20, 'NZD': 0.58, 'THB': 0.025, 'RUB': 0.014,
-  'ZAR': 0.055, 'BRL': 0.18, 'PHP': 0.016, 'IDR': 0.00006, 'TRY': 0.054, 'KRW': 0.00072,
-  'MXN': 0.041, 'NOK': 0.098
-};
+    // Object to store the total cost per category
+    var categoryMaxes = {
+      'Food': document.getElementById('category-food-max'),
+      'Transportation': document.getElementById('category-transportation-max'),
+      'Entertainment': document.getElementById('category-entertainment-max'),
+      'Lodging': document.getElementById('category-lodging-max')
+    };
 
-// Function to convert any amount from its currency to Euro
-function convertToEuro(amount, currency) {
-  return amount * (exchangeRatesToEuro[currency] || 1); // Use the exchange rate, or assume 1 if not found
-}
+    // Exchange rates to Euro for conversion purposes
+    const exchangeRatesToEuro = {
+      'USD': 0.92, 'EUR': 1, 'GBP': 1.17, 'JPY': 0.0075, 'CNY': 0.13, 'INR': 0.011, 'AUD': 0.62,
+      'CAD': 0.69, 'SGD': 0.66, 'CHF': 1.03, 'MYR': 0.20, 'NZD': 0.58, 'THB': 0.025, 'RUB': 0.014,
+      'ZAR': 0.055, 'BRL': 0.18, 'PHP': 0.016, 'IDR': 0.00006, 'TRY': 0.054, 'KRW': 0.00072,
+      'MXN': 0.041, 'NOK': 0.098
+    };
 
-// Function to convert from Euro to the target currency
-function convertFromEuroToTarget(amount, targetCurrency) {
-  const rate = exchangeRatesToEuro[targetCurrency];
-  return rate ? (amount / rate) : amount; // Convert from Euro to target, or leave as is if rate not found
-}
-
-// Function to update the total cost in the Budget Max container
-function updateTotalBudgetCost() {
-  // Get the selected target currency from the dropdown
-  const selectedCurrency = document.getElementById('currency-select').value.split(' - ')[0];
-  const maxBudgetInput = document.getElementById('max-budget');
-  const maxBudget = parseFloat(maxBudgetInput.value) || 0; // Get the max budget or default to 0 if empty
-  const totalCostElement = document.getElementById('total-cost');
-
-  // Get the data from Handsontable
-  const data = hot.getData();
-  let totalCostInEuro = 0;
-
-  // Convert each expense to Euro and accumulate
-  data.forEach(row => {
-    const [category, currency, cost] = row;
-    if (category && currency && cost) { // Only proceed if row has valid data
-      const amount = parseFloat(cost) || 0; // Parse the cost, or default to 0
-      const currencyCode = currency.split(' - ')[0]; // Get the currency code (e.g., 'USD')
-      totalCostInEuro += convertToEuro(amount, currencyCode); // Convert and accumulate
+    // Function to convert any amount from its currency to Euro
+    function convertToEuro(amount, currency) {
+      return amount * (exchangeRatesToEuro[currency] || 1); // Use the exchange rate, or assume 1 if not found
     }
-  });
 
-  // Convert the total cost from Euro to the selected currency
-  const totalCostInSelectedCurrency = convertFromEuroToTarget(totalCostInEuro, selectedCurrency);
+    // Function to convert from Euro to the target currency
+    function convertFromEuroToTarget(amount, targetCurrency) {
+      const rate = exchangeRatesToEuro[targetCurrency];
+      return rate ? (amount / rate) : amount; // Convert from Euro to target, or leave as is if rate not found
+    }
 
-  // Update the total cost element with the converted total cost and max budget
-  totalCostElement.textContent = `Total Cost: ${totalCostInSelectedCurrency.toFixed(2)} / ${maxBudget.toFixed(2)} ${selectedCurrency}`;
+    // Function to update the total cost in the Budget Max container
+    function updateTotalBudgetCost() {
+      // Get the selected target currency from the dropdown
+      const selectedCurrency = document.getElementById('currency-select').value.split(' - ')[0];
+      const maxBudgetInput = document.getElementById('max-budget');
+      const maxBudget = parseFloat(maxBudgetInput.value) || 0; // Get the max budget or default to 0 if empty
+      const totalCostElement = document.getElementById('total-cost');
 
-  // Save the converted total cost to sessionStorage
-  sessionStorage.setItem('convertedTotalCost', totalCostInSelectedCurrency.toFixed(2));
-}
+      // Get the data from Handsontable
+      const data = hot.getData();
+      let totalCostInEuro = 0;
 
-// Event listeners
-document.getElementById('currency-select').addEventListener('change', updateTotalBudgetCost);
-document.getElementById('max-budget').addEventListener('input', updateTotalBudgetCost);
-hot.addHook('afterChange', updateTotalBudgetCost); // Add hook for any changes in Handsontable
+      // Convert each expense to Euro and accumulate
+      data.forEach(row => {
+        const [category, currency, cost] = row;
+        if (category && currency && cost) { // Only proceed if row has valid data
+          const amount = parseFloat(cost) || 0; // Parse the cost, or default to 0
+          const currencyCode = currency.split(' - ')[0]; // Get the currency code (e.g., 'USD')
+          totalCostInEuro += convertToEuro(amount, currencyCode); // Convert and accumulate
+        }
+      });
 
-// Initial call to update the display when the page is loaded
-document.addEventListener('DOMContentLoaded', updateTotalBudgetCost);
+      // Convert the total cost from Euro to the selected currency
+      const totalCostInSelectedCurrency = convertFromEuroToTarget(totalCostInEuro, selectedCurrency);
 
-// Function to calculate and update the total and category expenses
-function calculateAndUpdateDisplays() {
-  const targetCurrency = document.getElementById('currency-select').value.split(' - ')[0];
-  const data = hot.getData();
-}
+      // Update the total cost element with the converted total cost and max budget
+      totalCostElement.textContent = `Total Cost: ${totalCostInSelectedCurrency.toFixed(2)} / ${maxBudget.toFixed(2)} ${selectedCurrency}`;
 
-//categories
+      // Save the converted total cost to sessionStorage
+      sessionStorage.setItem('convertedTotalCost', totalCostInSelectedCurrency.toFixed(2));
+    }
+
+    // Event listeners
+    document.getElementById('currency-select').addEventListener('change', updateTotalBudgetCost);
+    document.getElementById('max-budget').addEventListener('input', updateTotalBudgetCost);
+    hot.addHook('afterChange', updateTotalBudgetCost); // Add hook for any changes in Handsontable
+
+    // Initial call to update the display when the page is loaded
+    document.addEventListener('DOMContentLoaded', updateTotalBudgetCost);
+
+    // Function to calculate and update the total and category expenses
+    function calculateAndUpdateDisplays() {
+      const targetCurrency = document.getElementById('currency-select').value.split(' - ')[0];
+      const data = hot.getData();
+    }
+
+    //categories
 
 
-// Function to update the category totals and percentages
-function updateCategoryTotalsAndPercentages() {
-  const selectedCurrency = document.getElementById('currency-select').value.split(' - ')[0];
-  const data = hot.getData();
-  let categoryTotals = {
-    'Food': 0,
-    'Transportation': 0,
-    'Entertainment': 0,
-    'Lodging': 0
-  };
+    // Function to update the category totals and percentages
+    function updateCategoryTotalsAndPercentages() {
+      const selectedCurrency = document.getElementById('currency-select').value.split(' - ')[0];
+      const data = hot.getData();
+      let categoryTotals = {
+        'Food': 0,
+        'Transportation': 0,
+        'Entertainment': 0,
+        'Lodging': 0
+      };
 
-  // Accumulate the totals for each category in their respective base currencies
-  data.forEach(function([category, currency, cost]) {
-    if (category && currency && cost) {
-      const amount = parseFloat(cost) || 0;
-      const currencyCode = currency.split(' - ')[0];
-      if (categoryTotals.hasOwnProperty(category)) {
-        categoryTotals[category] += convertToTarget(amount, currencyCode, selectedCurrency);
+      // Accumulate the totals for each category in their respective base currencies
+      data.forEach(function ([category, currency, cost]) {
+        if (category && currency && cost) {
+          const amount = parseFloat(cost) || 0;
+          const currencyCode = currency.split(' - ')[0];
+          if (categoryTotals.hasOwnProperty(category)) {
+            categoryTotals[category] += convertToTarget(amount, currencyCode, selectedCurrency);
+          }
+        }
+      });
+
+      // Define the convertToTarget function if not already defined
+      function convertToTarget(amount, fromCurrency, toCurrency) {
+        if (fromCurrency === toCurrency) {
+          return amount;
+        }
+        // Convert amount to Euro first
+        const amountInEuro = amount * exchangeRatesToEuro[fromCurrency];
+        // Then convert Euro to the target currency
+        const targetExchangeRate = 1 / exchangeRatesToEuro[toCurrency];
+        return amountInEuro * targetExchangeRate;
       }
-    }
-  });
 
-  // Define the convertToTarget function if not already defined
-function convertToTarget(amount, fromCurrency, toCurrency) {
-  if (fromCurrency === toCurrency) {
-    return amount;
-  }
-  // Convert amount to Euro first
-  const amountInEuro = amount * exchangeRatesToEuro[fromCurrency];
-  // Then convert Euro to the target currency
-  const targetExchangeRate = 1 / exchangeRatesToEuro[toCurrency];
-  return amountInEuro * targetExchangeRate;
-}
-
-  /* OLD CODE BELOW IS TEST // Update the totals and percentages for each category
-  Object.keys(categoryTotals).forEach(category => {
-    const total = categoryTotals[category];
-    const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
-    const max = parseFloat(maxElement.value) || 0;
-    const percentage = max ? (total / max * 100).toFixed(2) : 0;
+      /* OLD CODE BELOW IS TEST // Update the totals and percentages for each category
+      Object.keys(categoryTotals).forEach(category => {
+        const total = categoryTotals[category];
+        const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
+        const max = parseFloat(maxElement.value) || 0;
+        const percentage = max ? (total / max * 100).toFixed(2) : 0;
+        
+        // Update the total span
+        const totalSpan = document.getElementById(`category-${category.toLowerCase()}-total`);
+        totalSpan.textContent = `${total.toFixed(2)}/`;
     
-    // Update the total span
-    const totalSpan = document.getElementById(`category-${category.toLowerCase()}-total`);
-    totalSpan.textContent = `${total.toFixed(2)}/`;
+        // Update the percentage span
+        const percentageSpan = document.getElementById(`category-${category.toLowerCase()}-percentage`);
+        percentageSpan.textContent = ` = ${percentage}%`;
+      }); */
+      // Update the totals and percentages for each category
 
-    // Update the percentage span
-    const percentageSpan = document.getElementById(`category-${category.toLowerCase()}-percentage`);
-    percentageSpan.textContent = ` = ${percentage}%`;
-  }); */
-  // Update the totals and percentages for each category
+      //NEW CODE BELOW
+      Object.keys(categoryTotals).forEach(category => {
+        const total = categoryTotals[category];
+        const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
+        const max = parseFloat(maxElement.value) || 0;
+        const percentage = max ? (total / max * 100).toFixed(2) : 0;
 
-  //NEW CODE BELOW
-  Object.keys(categoryTotals).forEach(category => {
-    const total = categoryTotals[category];
-    const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
-    const max = parseFloat(maxElement.value) || 0;
-    const percentage = max ? (total / max * 100).toFixed(2) : 0;
+        // Update global variables based on category
+        if (category === 'Food') {
+          foodTotalEuro = total;
+        } else if (category === 'Transportation') {
+          transportationTotalEuro = total;
+        } else if (category === 'Entertainment') {
+          entertainmentTotalEuro = total;
+        } else if (category === 'Lodging') {
+          lodgingTotalEuro = total;
+        }
 
-    // Update global variables based on category
-    if (category === 'Food') {
-      foodTotalEuro = total;
-    } else if (category === 'Transportation') {
-      transportationTotalEuro = total;
-    } else if (category === 'Entertainment') {
-      entertainmentTotalEuro = total;
-    } else if (category === 'Lodging') {
-      lodgingTotalEuro = total;
+        // Update the total span
+        const totalSpan = document.getElementById(`category-${category.toLowerCase()}-total`);
+        totalSpan.textContent = `${total.toFixed(2)}/`;
+
+        // Update the percentage span
+        const percentageSpan = document.getElementById(`category-${category.toLowerCase()}-percentage`);
+        percentageSpan.textContent = ` = ${percentage}%`;
+      });
+      //NEW CODE ABOVE
     }
 
-    // Update the total span
-    const totalSpan = document.getElementById(`category-${category.toLowerCase()}-total`);
-    totalSpan.textContent = `${total.toFixed(2)}/`;
+    // Call the function to set the initial state
+    updateCategoryTotalsAndPercentages();
 
-    // Update the percentage span
-    const percentageSpan = document.getElementById(`category-${category.toLowerCase()}-percentage`);
-    percentageSpan.textContent = ` = ${percentage}%`;
-  });
-  //NEW CODE ABOVE
-}
-
-// Call the function to set the initial state
-updateCategoryTotalsAndPercentages();
-
-// Add event listeners to handle changes in category maximum inputs and currency selection
-document.getElementById('currency-select').addEventListener('change', updateCategoryTotalsAndPercentages);
-['Food', 'Transportation', 'Entertainment', 'Lodging'].forEach(category => {
-  const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
-  maxElement.addEventListener('input', updateCategoryTotalsAndPercentages);
-});
-hot.addHook('afterChange', updateCategoryTotalsAndPercentages);
+    // Add event listeners to handle changes in category maximum inputs and currency selection
+    document.getElementById('currency-select').addEventListener('change', updateCategoryTotalsAndPercentages);
+    ['Food', 'Transportation', 'Entertainment', 'Lodging'].forEach(category => {
+      const maxElement = document.getElementById(`category-${category.toLowerCase()}-max`);
+      maxElement.addEventListener('input', updateCategoryTotalsAndPercentages);
+    });
+    hot.addHook('afterChange', updateCategoryTotalsAndPercentages);
 
   </script>
 </body>
+
 </html>
